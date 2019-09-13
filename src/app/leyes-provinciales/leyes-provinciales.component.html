@@ -1,0 +1,31 @@
+<app-header></app-header>
+<div class="card border-primary mb-3">
+  <div class="card-header">LEYES</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">LISTADO DE LEYES</h5>
+
+  <table class= "table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Número</th>
+        <th>Título</th>
+        <th>Fecha de Sancion</th>
+        <th>Publicacion en BO</th>
+      </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let ley of leyes"> <!--"leyes" viene de -> leyes: LeyProvincial[] -->
+        <td>{{ley.id}}</td>
+        <td>{{ley.numero}}</td>
+        <td>{{ley.titulo}}</td>
+        <td>{{ley.fechaSancion}}</td>
+        <td>{{ley.publicacionBO}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  </div>
+</div>
+
+<app-footer></app-footer>

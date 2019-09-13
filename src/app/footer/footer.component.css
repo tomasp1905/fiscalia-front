@@ -1,0 +1,19 @@
+p {
+  color: #3498db;
+  text-align: center;
+}
+
+dl {
+  color: #3498db;
+  text-align: center;
+}
+
+dd {
+  color: #3498db;
+  text-align: center;
+}
+
+.footer {
+  bottom: 0px;
+  margin-top: 10px;
+}
