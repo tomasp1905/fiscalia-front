@@ -1,26 +1,47 @@
-<app-header></app-header>
+
+
 <div class="card border-primary mb-3">
   <div class="card-header">LEYES</div>
   <div class="card-body text-primary">
     <h5 class="card-title">LISTADO DE LEYES</h5>
 
-  <table class= "table table-bordered table-striped">
+    <div class="my-2 text-left">
+      <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/leyesProvinciales/form']">
+      CARGAR LEY PROVINCIAL
+      </button>
+    </div>
+
+    <div *ngIf="leyes?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos
+    </div>
+
+  <table class= "table table-bordered table-striped" *ngIf="leyes?.length>0">
     <thead>
       <tr>
-        <th>ID</th>
+        <th>Archivo</th>
         <th>Número</th>
         <th>Título</th>
-        <th>Fecha de Sancion</th>
-        <th>Publicacion en BO</th>
+        <th>Fecha de Sanción</th>
+        <th>Publicación en BO</th>
       </tr>
     </thead>
     <tbody>
        <tr *ngFor="let ley of leyes"> <!--"leyes" viene de -> leyes: LeyProvincial[] -->
-        <td>{{ley.id}}</td>
+        <!-- <td>{{ley.id}}</td> -->
+        <td> <button type="button" [routerLink] = "['/leyesProvinciales/cargar', ley.id]" class="btn btn-dark btn-sm">Subir Archivo</button></td>
         <td>{{ley.numero}}</td>
         <td>{{ley.titulo}}</td>
         <td>{{ley.fechaSancion}}</td>
         <td>{{ley.publicacionBO}}</td>
+
+        <td>
+          <button type="button" name="editar" [routerLink] = "['/leyesProvinciales/form', ley.id]" class="btn btn-success btn-sm"> EDITAR </button>
+        </td>
+
+        <td>
+          <button type="button" name="eliminar" (click)='delete(ley)' class="btn btn-danger btn-sm"> ELIMINAR </button>
+        </td>
+
       </tr>
     </tbody>
   </table>
@@ -28,4 +49,4 @@
   </div>
 </div>
 
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->

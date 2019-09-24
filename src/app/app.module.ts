@@ -9,16 +9,23 @@ import { LeyesProvincialesComponent } from './leyes-provinciales/leyes-provincia
 import {LeyProvincialService} from './leyes-provinciales/ley-provincial.service';
 import { RouterModule, Routes} from '@angular/router'; //importaciones para usar Rutas
 import { ConstitucionProvincialComponent } from './constitucion-provincial/constitucion-provincial.component';
-import { FormComponent } from './leyes-provinciales/form/form.component';
+import { FormComponent } from './leyes-provinciales/form.component';
 import { FormsModule } from '@angular/forms'; //para hacer formularios
 import { HttpClientModule } from '@angular/common/http';
+import { ArchivoComponent } from './leyes-provinciales/archivo/archivo.component';
+
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/section', pathMatch: 'full'},
   {path: 'section', component: SectionComponent},
   {path: 'leyesProvinciales', component: LeyesProvincialesComponent},
-  {path: 'constitucionProvincial', component: ConstitucionProvincialComponent}
-]
+  {path: 'constitucionProvincial', component: ConstitucionProvincialComponent},
+  {path: 'leyesProvinciales/form', component: FormComponent},
+  {path: 'leyesProvinciales/form/:id', component: FormComponent},
+  {path: 'leyesProvinciales/cargar/:id', component: ArchivoComponent}
+
+];
 
 @NgModule({
   declarations: [
@@ -29,6 +36,7 @@ const routes: Routes = [
     LeyesProvincialesComponent,
     ConstitucionProvincialComponent,
     FormComponent,
+    ArchivoComponent,
 
   ],
   imports: [

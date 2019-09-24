@@ -4,5 +4,5 @@ export class LeyProvincial {
   titulo: string;
   fechaSancion: string;
   publicacionBO: string;
-
+  foto: string;
 }
