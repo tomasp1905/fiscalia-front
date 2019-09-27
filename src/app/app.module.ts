@@ -6,8 +6,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SectionComponent } from './section/section.component';
 import { LeyesProvincialesComponent } from './leyes-provinciales/leyes-provinciales.component';
-import {LeyProvincialService} from './leyes-provinciales/ley-provincial.service';
-import { RouterModule, Routes} from '@angular/router'; //importaciones para usar Rutas
+import { LeyProvincialService } from './leyes-provinciales/ley-provincial.service';
+import { RouterModule, Routes } from '@angular/router'; //importaciones para usar Rutas
 import { ConstitucionProvincialComponent } from './constitucion-provincial/constitucion-provincial.component';
 import { FormComponent } from './leyes-provinciales/form.component';
 import { FormsModule } from '@angular/forms'; //para hacer formularios
@@ -17,13 +17,13 @@ import { ArchivoComponent } from './leyes-provinciales/archivo/archivo.component
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/section', pathMatch: 'full'},
-  {path: 'section', component: SectionComponent},
-  {path: 'leyesProvinciales', component: LeyesProvincialesComponent},
-  {path: 'constitucionProvincial', component: ConstitucionProvincialComponent},
-  {path: 'leyesProvinciales/form', component: FormComponent},
-  {path: 'leyesProvinciales/form/:id', component: FormComponent},
-  {path: 'leyesProvinciales/cargar/:id', component: ArchivoComponent}
+  { path: '', redirectTo: '/section', pathMatch: 'full' },
+  { path: 'section', component: SectionComponent },
+  { path: 'leyesProvinciales', component: LeyesProvincialesComponent },
+  { path: 'constitucionProvincial', component: ConstitucionProvincialComponent },
+  { path: 'leyesProvinciales/form', component: FormComponent },
+  { path: 'leyesProvinciales/form/:id', component: FormComponent },
+  { path: 'leyesProvinciales/cargar/:id', component: ArchivoComponent }
 
 ];
 

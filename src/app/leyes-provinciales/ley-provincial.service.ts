@@ -59,31 +59,31 @@ export class LeyProvincialService {
   }
 
   //Subir Archivo
-/*  subirArchivo(archivo: File, id): Observable<LeyProvincial> {
+  /*  subirArchivo(archivo: File, id): Observable<LeyProvincial> {
+      let formData = new FormData();
+      formData.append("archivo", archivo);
+      formData.append("id", id);
+      return this.http.post(`${this.urlEndPoint}/upload`, formData).pipe(
+        map((response: any) => response.leyprovincial as LeyProvincial),
+        catchError(e => {
+          console.error(e.error.mensaje);
+          swal.fire(e.error.mensaje, e.error.error, 'error');
+          return throwError(e);
+        })
+      );
+    } */
+
+  subirArchivo(archivo: File, id): Observable<HttpEvent<{}>> {
     let formData = new FormData();
     formData.append("archivo", archivo);
     formData.append("id", id);
-    return this.http.post(`${this.urlEndPoint}/upload`, formData).pipe(
-      map((response: any) => response.leyprovincial as LeyProvincial),
-      catchError(e => {
-        console.error(e.error.mensaje);
-        swal.fire(e.error.mensaje, e.error.error, 'error');
-        return throwError(e);
-      })
-    );
-  } */
 
-  subirArchivo(archivo: File, id): Observable < HttpEvent < {} >> {
-  let formData = new FormData();
-  formData.append("archivo", archivo);
-  formData.append("id", id);
+    const req = new HttpRequest('POST', `${this.urlEndPoint}/upload`, formData, {
+      reportProgress: true
+    });
 
-  const req = new HttpRequest('POST', `${this.urlEndPoint}/upload`, formData, {
-    reportProgress: true
-  });
-
-  return this.http.request(req)
-}
+    return this.http.request(req);
+  }
 
 
 }

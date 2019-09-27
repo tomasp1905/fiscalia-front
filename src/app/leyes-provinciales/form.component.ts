@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LeyProvincial } from './ley-provincial';
 import { LeyProvincialService } from './ley-provincial.service';
-import { Router, ActivatedRoute } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2'
 
 
@@ -12,7 +12,7 @@ import swal from 'sweetalert2'
 export class FormComponent implements OnInit {
 
   private leyProvincial: LeyProvincial = new LeyProvincial();
-  private titulo: string = "SUBIR LEY"
+
 
   constructor(private leyProvincialService: LeyProvincialService,
     private router: Router,

@@ -23,10 +23,13 @@
               <label class="custom-file-label" for="inputGroupFile04">Seleccionar Archivo</label>
             </div>
 
+
             <div class="input-group-append">
               <button (click)="subirArchivo()" class="btn btn-primary" type="button" id="inputGroupFileAddon04">Subir</button>
             </div>
           </div>
+
+
 
           <div *ngIf="progreso > 0" class="progress" style="height: 30px;">
             <div class="progress-bar progress-bar-striped" role="progressbar" [ngStyle]="{width:progreso+'%'}" attr.aria-valuenow="{{progreso}}" aria-valuemin="0" aria-valuemax="100">

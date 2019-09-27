@@ -11,7 +11,8 @@ import swal from 'sweetalert2';
 export class LeyesProvincialesComponent implements OnInit {
 
   leyes: LeyProvincial[];
-  leySeleccionada: LeyProvincial;
+
+
 
   constructor(private leyProvincialService: LeyProvincialService) { }
   //constructor (private NombreDelAtributo: Servicio) {} --> instanciar servicio
@@ -52,10 +53,6 @@ export class LeyesProvincialesComponent implements OnInit {
 
       }
     })
-  }
-
-  abrirModal(leyProvincial: LeyProvincial) {
-    this.leySeleccionada = leyProvincial;
   }
 
 }

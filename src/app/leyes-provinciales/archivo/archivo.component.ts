@@ -14,9 +14,13 @@ import { HttpEventType } from '@angular/common/http';
 export class ArchivoComponent implements OnInit {
 
   leyProvincial: LeyProvincial;
+
   titulo: string = "ARCHIVO LEY PROVINCIAL";
   private archivoSeleccionado: File;
    progreso:number = 0;
+
+
+
 
   constructor(private leyProvincialService: LeyProvincialService, private activatedRoute: ActivatedRoute) { }
 
@@ -29,7 +33,7 @@ export class ArchivoComponent implements OnInit {
         });
       }
     });
-  }
+   }
 
   seleccionarArchivo(event) {
     this.archivoSeleccionado = event.target.files[0];
@@ -46,7 +50,9 @@ export class ArchivoComponent implements OnInit {
           let response: any = event.body;
           this.leyProvincial = response.leyProvincial as LeyProvincial;
           swal.fire('Archivo subido completamente', response.mensaje, 'success');
+          console.log("Esta es la Ley provincial" + this.leyProvincial.id);
         }
+
 
         //this.leyProvincial = leyProvincial;
 
