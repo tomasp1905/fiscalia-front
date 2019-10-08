@@ -1,5 +1,8 @@
-<!-- PARA MODAL -->
+<app-header></app-header>
 
+<!-- PARA MODAL -->
+<ley-archivo *ngIf="leyProvincialSeleccionada" [leyProvincial]="leyProvincialSeleccionada"></ley-archivo>
+<!-- PARA MODAL -->
 
 <div class="card border-primary mb-3">
   <div class="card-header">LEYES</div>
@@ -29,8 +32,7 @@
       <tbody>
         <tr *ngFor="let ley of leyes">
           <!--"leyes" viene de -> leyes: LeyProvincial[] -->
-          <!-- <td>{{ley.id}}</td> -->
-          <td> <button type="button" [routerLink]="['/leyesProvinciales/cargar', ley.id]" class="btn btn-dark btn-sm">Subir Archivo</button></td>
+          <td> <button type="button" (click)="abirModal(ley)" class="btn btn-dark btn-sm">Subir Archivo</button></td>
           <td>{{ley.numero}}</td>
           <td>{{ley.titulo}}</td>
           <td>{{ley.fechaSancion}}</td>

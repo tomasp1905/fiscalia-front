@@ -4,6 +4,8 @@ import { LeyProvincialService } from '../ley-provincial.service';
 import { ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 import { HttpEventType } from '@angular/common/http';
+import { ModalService } from './modal.service';
+
 
 
 @Component({
@@ -13,27 +15,26 @@ import { HttpEventType } from '@angular/common/http';
 })
 export class ArchivoComponent implements OnInit {
 
-  leyProvincial: LeyProvincial;
-
+  @Input() leyProvincial: LeyProvincial; //INPUT MODAL
   titulo: string = "ARCHIVO LEY PROVINCIAL";
   private archivoSeleccionado: File;
-   progreso:number = 0;
+  progreso: number = 0;
 
 
-
-
-  constructor(private leyProvincialService: LeyProvincialService, private activatedRoute: ActivatedRoute) { }
+  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService) { }
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(params => {
+    //Se saca para el MODAL
+  /*  this.activatedRoute.paramMap.subscribe(params => {
       let id = +params.get('id');
       if (id) {
         this.leyProvincialService.getLeyProvincial(id).subscribe(leyProvincial => {
           this.leyProvincial = leyProvincial;
         });
       }
-    });
-   }
+    }); */
+
+  }
 
   seleccionarArchivo(event) {
     this.archivoSeleccionado = event.target.files[0];
@@ -41,22 +42,34 @@ export class ArchivoComponent implements OnInit {
     console.log(this.archivoSeleccionado);
   }
 
+
   subirArchivo() {
     this.leyProvincialService.subirArchivo(this.archivoSeleccionado, this.leyProvincial.id)
       .subscribe(event => {
-        if(event.type === HttpEventType.UploadProgress){
-          this.progreso = Math.round((event.loaded/event.total)*100);
-        } else if (event.type === HttpEventType.Response){
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progreso = Math.round((event.loaded / event.total) * 100);
+        } else if (event.type === HttpEventType.Response) {
           let response: any = event.body;
-          this.leyProvincial = response.leyProvincial as LeyProvincial;
+
+          console.log(response);
+
+
+          this.leyProvincial = response.leyprovincial as LeyProvincial;
+          console.log(this.leyProvincial);
+          console.log(response.leyProvincial);
+          console.log(response.mensaje);
+
           swal.fire('Archivo subido completamente', response.mensaje, 'success');
           console.log("Esta es la Ley provincial" + this.leyProvincial.id);
         }
 
-
-        //this.leyProvincial = leyProvincial;
-
       });
+  }
+
+  cerrarModal() {
+    this.modalService.cerrarModal();
+    this.archivoSeleccionado = null;
+    this.progreso = 0;
   }
 
 }

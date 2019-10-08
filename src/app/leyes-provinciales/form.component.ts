@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LeyProvincial } from './ley-provincial';
 import { LeyProvincialService } from './ley-provincial.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import swal from 'sweetalert2'
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -12,6 +12,8 @@ import swal from 'sweetalert2'
 export class FormComponent implements OnInit {
 
   private leyProvincial: LeyProvincial = new LeyProvincial();
+  errores: string[];
+
 
 
   constructor(private leyProvincialService: LeyProvincialService,
@@ -19,7 +21,13 @@ export class FormComponent implements OnInit {
     private activatedRouter: ActivatedRoute) { }
 
   ngOnInit() {
-    this.cargarLey(); //cargandolo acá permite visualizar los datos cuando hacemos click en EDITAR
+  //  this.cargarLey(); //cargandolo acá permite visualizar los datos cuando hacemos click en EDITAR
+    this.activatedRouter.paramMap.subscribe(params => {
+      let id = +params.get('id');
+      if (id) {
+        this.leyProvincialService.getLeyProvincial(id).subscribe((leyProvincial) => this.leyProvincial = leyProvincial);
+      }
+    });
   }
 
   //metodo para buscar cliente por ID (para luego modificarlo por ejemplo con el boton EDITAR)
@@ -33,23 +41,34 @@ export class FormComponent implements OnInit {
   }
 
   // Metodo para crear ley
-  public create(): void { //viene de <form (ngSubmit) = "create()"> --> se llama a este metodo
+   create(): void { //viene de <form (ngSubmit) = "create()"> --> se llama a este metodo
     this.leyProvincialService.create(this.leyProvincial).subscribe( //invoco el método que esta en el Service
-      leyProvincial => {
-        this.router.navigate(['leyesProvinciales']) // la respuesta sería que una vez creado el objeto redirije al listado de leyes para mostrar la nueva ley creada
-        swal.fire('Nueva Ley', `Ley  ${leyProvincial.numero} creada con éxito`, 'success')
+      leyprovincial => {
+        this.router.navigate(['/leyesProvinciales']) // la respuesta sería que una vez creado el objeto redirije al listado de leyes para mostrar la nueva ley creada
+        swal.fire('Nueva Ley', `La Ley  se creó con éxito`, 'success')
+      },
+      err => {
+        this.errores = err.error.errors as string[];
+        console.error('Código del error desde el backend: ' + err.status);
+        console.error(err.error.errors);
       }
-    )
+    );
   }
 
-  update(): void {
-    this.leyProvincialService.update(this.leyProvincial)
-      .subscribe(leyProvincial => {
-        this.router.navigate(['/leyesProvinciales'])
-        swal.fire('Ley Actualizada', `Ley ${leyProvincial.numero} actualizada con éxito!`, 'success')
+update(): void {
+  this.leyProvincialService.update(this.leyProvincial)
+    .subscribe(json => {
+      this.router.navigate(['/leyesProvinciales'])
+      swal.fire('Ley Actualizada', `${json.mensaje}`, 'success');
+    },
+      err => {
+        this.errores = err.error.errors as string[];
+        console.error('Código del error desde el backend: ' + err.status);
+        console.error(err.error.errors);
       }
-      )
-  }
+    )
+}
+
 
 
 }

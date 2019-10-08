@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LeyProvincial } from './ley-provincial';
 import { LeyProvincialService } from './ley-provincial.service';
 import swal from 'sweetalert2';
+import { ModalService } from './archivo/modal.service';
+
 
 
 @Component({
@@ -11,11 +13,12 @@ import swal from 'sweetalert2';
 export class LeyesProvincialesComponent implements OnInit {
 
   leyes: LeyProvincial[];
+  leyProvincialSeleccionada:LeyProvincial; //MODAL
 
 
+//constructor (private NombreDelAtributo: Servicio) {} --> instanciar servicio
+  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService) { }
 
-  constructor(private leyProvincialService: LeyProvincialService) { }
-  //constructor (private NombreDelAtributo: Servicio) {} --> instanciar servicio
 
   ngOnInit() {
     this.leyProvincialService.getLeyesProvinciales().subscribe( //llama al metodo GET del Service
@@ -53,6 +56,11 @@ export class LeyesProvincialesComponent implements OnInit {
 
       }
     })
+  }
+
+  abirModal(ley: LeyProvincial){
+    this.leyProvincialSeleccionada = ley;
+    this.modalService.abirModal();
   }
 
 }

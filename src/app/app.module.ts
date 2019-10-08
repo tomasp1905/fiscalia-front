@@ -13,6 +13,7 @@ import { FormComponent } from './leyes-provinciales/form.component';
 import { FormsModule } from '@angular/forms'; //para hacer formularios
 import { HttpClientModule } from '@angular/common/http';
 import { ArchivoComponent } from './leyes-provinciales/archivo/archivo.component';
+import { LoginComponent } from './usuarios/login.component';
 
 
 
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: 'constitucionProvincial', component: ConstitucionProvincialComponent },
   { path: 'leyesProvinciales/form', component: FormComponent },
   { path: 'leyesProvinciales/form/:id', component: FormComponent },
-  { path: 'leyesProvinciales/cargar/:id', component: ArchivoComponent }
+  { path: 'login', component: LoginComponent }
 
 ];
 
@@ -37,6 +38,7 @@ const routes: Routes = [
     ConstitucionProvincialComponent,
     FormComponent,
     ArchivoComponent,
+    LoginComponent,
 
   ],
   imports: [

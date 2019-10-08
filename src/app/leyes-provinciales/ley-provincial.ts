@@ -1,6 +1,6 @@
 export class LeyProvincial {
   id: number;
-  numero: number;
+  numero: string;
   titulo: string;
   fechaSancion: string;
   publicacionBO: string;

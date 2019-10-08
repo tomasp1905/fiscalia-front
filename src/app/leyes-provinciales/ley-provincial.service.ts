@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { LeyProvincial } from './ley-provincial.js';
-import { of, Observable, throwError } from 'rxjs'; //Observable esta basado en el patron Observador
+import { Observable, throwError } from 'rxjs'; //Observable esta basado en el patron Observador
 import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
 import { formatDate } from '@angular/common';
 import swal from 'sweetalert2';
-import { map, catchError, tap } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 
@@ -14,14 +15,11 @@ export class LeyProvincialService {
 
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' }) //especificamos el tipo de contenido que estamos enviando desde el cliente angular hacia el api rest, los datos los estamos enviando en estructura json
 
-  constructor(private http: HttpClient) { } //se inyecta la referencia a HttpClient
+  constructor(private http: HttpClient, private router: Router) { } //se inyecta la referencia a HttpClient
+
 
   //----------- METODOS -----------//
 
-  /*Para traer las leyes
-  getLeyesProvinciales(): Observable <LeyProvincial[]> { //convierte el listado de leyes en un Observable
-   return this.http.get<LeyProvincial[]>(this.urlEndPoint); //lleva el THIS porque es un atributo
- } */
 
   getLeyesProvinciales(): Observable<LeyProvincial[]> {
     return this.http.get(this.urlEndPoint).pipe(
@@ -37,41 +35,57 @@ export class LeyProvincialService {
     );
   }
 
-
   //para crear una ley
   create(leyProvincial: LeyProvincial): Observable<LeyProvincial> {
-    return this.http.post<LeyProvincial>(this.urlEndPoint, leyProvincial, { headers: this.httpHeaders })
+    return this.http.post(this.urlEndPoint, leyProvincial, { headers: this.httpHeaders }).pipe(
+      map((response: any) => response.leyProvincial as LeyProvincial),
+      catchError(e => {
+        if (e.status == 400) {
+          return throwError(e);
+        }
+
+        console.log(e.error.mensaje);
+        swal.fire(e.error.mensaje, e.error.error, 'error');
+        return throwError(e);
+      })
+    );
   }
 
   //para traer ley por ID
   getLeyProvincial(id): Observable<LeyProvincial> {
-    return this.http.get<LeyProvincial>(`${this.urlEndPoint}/${id}`)
+    return this.http.get<LeyProvincial>(`${this.urlEndPoint}/${id}`).pipe(
+      catchError(e => {
+        this.router.navigate(['/leyesProvinciales'])
+        console.error(e.error.mensaje);
+        swal.fire('Error al editar', e.error.mensaje, 'error');
+        return throwError(e);
+      })
+    );
   }
 
   //para modificar ley por ID
-  update(leyProvincial: LeyProvincial): Observable<LeyProvincial> {
-    return this.http.put<LeyProvincial>(`${this.urlEndPoint}/${leyProvincial.id}`, leyProvincial, { headers: this.httpHeaders })
+  update(leyProvincial: LeyProvincial): Observable<any> {
+    return this.http.put<any>(`${this.urlEndPoint}/${leyProvincial.id}`, leyProvincial, { headers: this.httpHeaders }).pipe(
+      catchError(e => {
+        console.log(e.error.mensaje);
+        swal.fire(e.error.mensaje, e.error.error, 'error');
+        return throwError(e);
+      })
+    );
   }
 
   //eliminar
   delete(id: number): Observable<LeyProvincial> {
-    return this.http.delete<LeyProvincial>(`${this.urlEndPoint}/${id}`, { headers: this.httpHeaders })
+    return this.http.delete<LeyProvincial>(`${this.urlEndPoint}/${id}`, { headers: this.httpHeaders }).pipe(
+      catchError(e => {
+        console.log(e.error.mensaje);
+        swal.fire(e.error.mensaje, e.error.error, 'error');
+        return throwError(e);
+      })
+    );
+
   }
 
-  //Subir Archivo
-  /*  subirArchivo(archivo: File, id): Observable<LeyProvincial> {
-      let formData = new FormData();
-      formData.append("archivo", archivo);
-      formData.append("id", id);
-      return this.http.post(`${this.urlEndPoint}/upload`, formData).pipe(
-        map((response: any) => response.leyprovincial as LeyProvincial),
-        catchError(e => {
-          console.error(e.error.mensaje);
-          swal.fire(e.error.mensaje, e.error.error, 'error');
-          return throwError(e);
-        })
-      );
-    } */
 
   subirArchivo(archivo: File, id): Observable<HttpEvent<{}>> {
     let formData = new FormData();
