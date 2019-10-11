@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 import { HttpEventType } from '@angular/common/http';
 import { ModalService } from './modal.service';
+import { AuthService } from 'src/app/usuarios/auth.service';
 
 
 
@@ -21,7 +22,7 @@ export class ArchivoComponent implements OnInit {
   progreso: number = 0;
 
 
-  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService) { }
+  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService, private authService: AuthService) { }
 
   ngOnInit() {
     //Se saca para el MODAL

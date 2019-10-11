@@ -3,6 +3,7 @@ import { LeyProvincial } from './ley-provincial';
 import { LeyProvincialService } from './ley-provincial.service';
 import swal from 'sweetalert2';
 import { ModalService } from './archivo/modal.service';
+import { AuthService } from '../usuarios/auth.service';
 
 
 
@@ -17,7 +18,7 @@ export class LeyesProvincialesComponent implements OnInit {
 
 
 //constructor (private NombreDelAtributo: Servicio) {} --> instanciar servicio
-  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService) { }
+  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService, private authService: AuthService) { }
 
 
   ngOnInit() {

@@ -11,9 +11,13 @@ import { RouterModule, Routes } from '@angular/router'; //importaciones para usa
 import { ConstitucionProvincialComponent } from './constitucion-provincial/constitucion-provincial.component';
 import { FormComponent } from './leyes-provinciales/form.component';
 import { FormsModule } from '@angular/forms'; //para hacer formularios
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ArchivoComponent } from './leyes-provinciales/archivo/archivo.component';
 import { LoginComponent } from './usuarios/login.component';
+import { AuthGuard } from './usuarios/guards/auth.guard';
+import { RoleGuard } from './usuarios/guards/role.guard';
+import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
+import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
 
 
 
@@ -22,8 +26,8 @@ const routes: Routes = [
   { path: 'section', component: SectionComponent },
   { path: 'leyesProvinciales', component: LeyesProvincialesComponent },
   { path: 'constitucionProvincial', component: ConstitucionProvincialComponent },
-  { path: 'leyesProvinciales/form', component: FormComponent },
-  { path: 'leyesProvinciales/form/:id', component: FormComponent },
+  { path: 'leyesProvinciales/form', component: FormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
+  { path: 'leyesProvinciales/form/:id', component: FormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   { path: 'login', component: LoginComponent }
 
 ];
@@ -47,7 +51,7 @@ const routes: Routes = [
     FormsModule, //hacemos la importacion para usar los formularios
     HttpClientModule
   ],
-  providers: [LeyProvincialService], //servicios globales
+  providers: [LeyProvincialService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },], //servicios globales
   bootstrap: [AppComponent]
 })
 export class AppModule { }
