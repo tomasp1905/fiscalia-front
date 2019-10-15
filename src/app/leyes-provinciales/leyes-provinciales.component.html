@@ -10,7 +10,7 @@
     <h5 class="card-title">LISTADO DE LEYES</h5>
 
     <div class="my-2 text-left">
-      <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]="['/leyesProvinciales/form']">
+      <button *ngIf="authService.hasRole('ROLE_USER','ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]="['/leyesProvinciales/form']">
         CARGAR LEY PROVINCIAL
       </button>
     </div>
@@ -32,13 +32,13 @@
       <tbody>
         <tr *ngFor="let ley of leyes">
           <!--"leyes" viene de -> leyes: LeyProvincial[] -->
-          <td *ngIf="authService.hasRole('ROLE_USER')"> <button type="button" (click)="abirModal(ley)" class="btn btn-dark btn-sm">Subir Archivo</button></td>
+          <td *ngIf="authService.hasRole('ROLE_USER', 'ROLE_ADMIN')"> <button type="button" (click)="abirModal(ley)" class="btn btn-dark btn-sm">Subir Archivo</button></td>
           <td>{{ley.numero}}</td>
           <td>{{ley.titulo}}</td>
           <td>{{ley.fechaSancion}}</td>
           <td>{{ley.publicacionBO}}</td>
 
-          <td *ngIf="authService.hasRole('ROLE_ADMIN')">
+          <td *ngIf="authService.hasRole('ROLE_USER','ROLE_ADMIN')">
             <button type="button" name="editar" [routerLink]="['/leyesProvinciales/form', ley.id]" class="btn btn-success btn-sm"> EDITAR </button>
           </td>
 
