@@ -10,7 +10,7 @@ import { LeyProvincialService } from './leyes-provinciales/ley-provincial.servic
 import { RouterModule, Routes } from '@angular/router'; //importaciones para usar Rutas
 import { ConstitucionProvincialComponent } from './constitucion-provincial/constitucion-provincial.component';
 import { FormComponent } from './leyes-provinciales/form.component';
-import { FormsModule } from '@angular/forms'; //para hacer formularios
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms'; 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ArchivoComponent } from './leyes-provinciales/archivo/archivo.component';
 import { LoginComponent } from './usuarios/login.component';
@@ -18,6 +18,11 @@ import { AuthGuard } from './usuarios/guards/auth.guard';
 import { RoleGuard } from './usuarios/guards/role.guard';
 import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
 import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 
@@ -49,7 +54,9 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule, //hacemos la importacion para usar los formularios
-    HttpClientModule
+    HttpClientModule, BrowserAnimationsModule,
+    ReactiveFormsModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule //busqueda autocomplete
+
   ],
   providers: [LeyProvincialService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },], //servicios globales
   bootstrap: [AppComponent]

@@ -9,11 +9,25 @@
   <div class="card-body text-primary">
     <h5 class="card-title">LISTADO DE LEYES</h5>
 
+  <div class="form-group row">
+    <div class="form col-sm-6">
+      <mat-form-field class="full-width">
+        <input type="text" placeholder="Buscar Ley" aria-label="Leyes" matInput [formControl]="autocompleteControl" [matAutocomplete]="auto" style="WIDTH: 228px;">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="mostrarTitulo">
+          <mat-option *ngFor="let ley of leyesFiltradas | async" [value]="ley">
+            {{ley.titulo}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+
     <div class="my-2 text-left">
       <button *ngIf="authService.hasRole('ROLE_USER','ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]="['/leyesProvinciales/form']">
         CARGAR LEY PROVINCIAL
       </button>
     </div>
+
 
     <div *ngIf="leyes?.length == 0" class="alert alert-info">
       No hay registros en la Base de Datos
@@ -31,8 +45,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let ley of leyes">
-          <!--"leyes" viene de -> leyes: LeyProvincial[] -->
-          <td *ngIf="authService.hasRole('ROLE_USER', 'ROLE_ADMIN')"> <button type="button" (click)="abirModal(ley)" class="btn btn-dark btn-sm">Subir Archivo</button></td>
+
+          <td *ngIf="authService.hasRole('ROLE_USER', 'ROLE_ADMIN')"><button type="button" (click)="abrirModal(ley)" class="btn btn-dark btn-sm">Subir Archivo</button></td>
           <td>{{ley.numero}}</td>
           <td>{{ley.titulo}}</td>
           <td>{{ley.fechaSancion}}</td>
@@ -44,6 +58,10 @@
 
           <td *ngIf="authService.hasRole('ROLE_ADMIN')">
             <button type="button" name="eliminar" (click)='delete(ley)' class="btn btn-danger btn-sm"> ELIMINAR </button>
+          </td>
+
+          <td *ngIf="authService.hasRole('ROLE_USER','ROLE_ADMIN')">
+            <button type="button" name="ver"  class="btn btn-info btn-sm"> VER ARCHIVO </button>
           </td>
 
         </tr>

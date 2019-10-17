@@ -5,16 +5,25 @@ import swal from 'sweetalert2';
 import { ModalService } from './archivo/modal.service';
 import { AuthService } from '../usuarios/auth.service';
 
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, flatMap} from 'rxjs/operators';
+
 
 
 @Component({
   selector: 'app-leyes-provinciales',
-  templateUrl: './leyes-provinciales.component.html'
+  templateUrl: './leyes-provinciales.component.html',
+  styleUrls: ['./leyes-provinciales.css']
 })
 export class LeyesProvincialesComponent implements OnInit {
 
   leyes: LeyProvincial[];
   leyProvincialSeleccionada:LeyProvincial; //MODAL
+
+  autocompleteControl = new FormControl();
+
+  leyesFiltradas: Observable<LeyProvincial[]>;
 
 
 //constructor (private NombreDelAtributo: Servicio) {} --> instanciar servicio
@@ -25,7 +34,24 @@ export class LeyesProvincialesComponent implements OnInit {
     this.leyProvincialService.getLeyesProvinciales().subscribe( //llama al metodo GET del Service
       leyes => this.leyes = leyes //es el Observador, esto actualiza el listado de leyes y lo pasa a la vista con los posibles cambios
     );
+
+    this.leyesFiltradas = this.autocompleteControl.valueChanges
+      .pipe(
+        map(value => typeof value === 'string'? value: value.titulo),
+        flatMap(value => value ? this._filter(value): [])
+      );
   }
+
+ private _filter(value: string): Observable<LeyProvincial[]> {
+   const filterValue = value.toLowerCase();
+
+   return this.leyProvincialService.filtrarLeyes(filterValue);
+ }
+
+ mostrarTitulo(ley?: LeyProvincial): string | undefined {
+   return ley? ley.titulo: undefined;
+ }
+
 
   delete(leyProvincial: LeyProvincial): void {
     swal.fire({
@@ -59,7 +85,9 @@ export class LeyesProvincialesComponent implements OnInit {
     })
   }
 
-  abirModal(ley: LeyProvincial){
+
+
+  abrirModal(ley: LeyProvincial){
     this.leyProvincialSeleccionada = ley;
     this.modalService.abirModal();
   }

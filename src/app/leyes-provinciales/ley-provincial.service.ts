@@ -116,4 +116,8 @@ export class LeyProvincialService {
     return this.http.request(req);
   }
 
+  filtrarLeyes(term:string):Observable<LeyProvincial[]> {
+    return this.http.get<LeyProvincial[]>(`${this.urlEndPoint}/filtrar-titulo/${term}`);
+  }
+
 }
