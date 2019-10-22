@@ -20,6 +20,8 @@ export class LeyesProvincialesComponent implements OnInit {
 
   leyes: LeyProvincial[];
   leyProvincialSeleccionada:LeyProvincial; //MODAL
+  titulo:string;
+  numero:string;
 
   autocompleteControl = new FormControl();
 
@@ -35,22 +37,9 @@ export class LeyesProvincialesComponent implements OnInit {
       leyes => this.leyes = leyes //es el Observador, esto actualiza el listado de leyes y lo pasa a la vista con los posibles cambios
     );
 
-    this.leyesFiltradas = this.autocompleteControl.valueChanges
-      .pipe(
-        map(value => typeof value === 'string'? value: value.titulo),
-        flatMap(value => value ? this._filter(value): [])
-      );
+
   }
 
- private _filter(value: string): Observable<LeyProvincial[]> {
-   const filterValue = value.toLowerCase();
-
-   return this.leyProvincialService.filtrarLeyes(filterValue);
- }
-
- mostrarTitulo(ley?: LeyProvincial): string | undefined {
-   return ley? ley.titulo: undefined;
- }
 
 
   delete(leyProvincial: LeyProvincial): void {
@@ -92,4 +81,26 @@ export class LeyesProvincialesComponent implements OnInit {
     this.modalService.abirModal();
   }
 
-}
+  searchTitulo(){
+    if(this.titulo != ""){
+      this.leyes = this.leyes.filter(res=>{
+        return res.titulo.toLocaleLowerCase().match(this.titulo.toLocaleLowerCase());
+      });
+    }else if(this.titulo == ""){
+      this.ngOnInit();
+    }
+
+  }
+
+  searchNumero() {
+    if(this.numero != ""){
+      this.leyes = this.leyes.filter(res=>{
+        return res.numero.toLocaleLowerCase().match(this.numero.toLocaleLowerCase());
+      });
+    }else if(this.numero == ""){
+      this.ngOnInit();
+    }
+
+  }
+
+  }

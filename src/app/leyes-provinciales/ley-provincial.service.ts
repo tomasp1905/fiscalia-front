@@ -18,13 +18,7 @@ export class LeyProvincialService {
 
   constructor(private http: HttpClient, private router: Router) { } //se inyecta la referencia a HttpClient
 
-  /*  private agregarAuthorizationHeader(){
-      let token = this.authService.token;
-      if(token != null ){
-        return this.httpHeaders.append('Authorization', 'Bearer ' + token);
-      }
-      return this.httpHeaders;
-    } */
+
 
 
   //----------- METODOS -----------//
@@ -116,8 +110,6 @@ export class LeyProvincialService {
     return this.http.request(req);
   }
 
-  filtrarLeyes(term:string):Observable<LeyProvincial[]> {
-    return this.http.get<LeyProvincial[]>(`${this.urlEndPoint}/filtrar-titulo/${term}`);
-  }
+
 
 }

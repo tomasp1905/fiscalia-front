@@ -22,6 +22,7 @@ export class ArchivoComponent implements OnInit {
   progreso: number = 0;
 
 
+
   constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService, private authService: AuthService) { }
 
   ngOnInit() {
@@ -41,6 +42,7 @@ export class ArchivoComponent implements OnInit {
     this.archivoSeleccionado = event.target.files[0];
     this.progreso = 0;
     console.log(this.archivoSeleccionado);
+
   }
 
 

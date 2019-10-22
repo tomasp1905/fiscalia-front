@@ -28,7 +28,6 @@
                     <label class="custom-file-label" for="inputGroupFile04">Seleccionar Archivo</label>
                   </div>
 
-
                   <div class="input-group-append">
                     <button (click)="subirArchivo()" class="btn btn-primary" type="button" id="inputGroupFileAddon04">Subir</button>
                   </div>
@@ -42,7 +41,23 @@
                   </div>
                 </div>
 
+                <div>
+                  <div class="col-sm">
+                    <p><a *ngIf="leyProvincial?.foto" href="http://localhost:8080/api/uploads/img/{{leyProvincial.foto}}" target='_blank' title="Click aquí para descargar el archivo">Click aquí para descargar el archivo</a></p>
+                </div>
               </div>
+
+              </div>
+
+              <!-- <div class="col-sm">
+                <img *ngIf="leyProvincial?.foto" src="http://localhost:8080/api/uploads/img/{{leyProvincial.foto}}" alt="{{leyProvincial.foto}}">
+              </div> -->
+
+               <!-- <div class="col-sm">
+                 <iframe *ngIf="leyProvincial?.foto"  width="400" height="300" src=" http://localhost:8080/api/leyesProvinciales/uploads/img/{{leyProvincial.foto}}"></iframe>
+               </div> -->
+
+
             </div>
           </div>
         </div>
