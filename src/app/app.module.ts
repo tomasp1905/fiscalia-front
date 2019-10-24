@@ -10,7 +10,7 @@ import { LeyProvincialService } from './leyes-provinciales/ley-provincial.servic
 import { RouterModule, Routes } from '@angular/router'; //importaciones para usar Rutas
 import { ConstitucionProvincialComponent } from './constitucion-provincial/constitucion-provincial.component';
 import { FormComponent } from './leyes-provinciales/form.component';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ArchivoComponent } from './leyes-provinciales/archivo/archivo.component';
 import { LoginComponent } from './usuarios/login.component';
@@ -19,6 +19,7 @@ import { RoleGuard } from './usuarios/guards/role.guard';
 import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
 import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {PaginatorComponent} from './paginator/paginator.component';
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/section', pathMatch: 'full' },
   { path: 'section', component: SectionComponent },
   { path: 'leyesProvinciales', component: LeyesProvincialesComponent },
+  { path: 'leyesProvinciales/page/:page', component: LeyesProvincialesComponent },
   { path: 'constitucionProvincial', component: ConstitucionProvincialComponent },
   { path: 'leyesProvinciales/form', component: FormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   { path: 'leyesProvinciales/form/:id', component: FormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
@@ -48,6 +50,7 @@ const routes: Routes = [
     FormComponent,
     ArchivoComponent,
     LoginComponent,
+    PaginatorComponent
 
   ],
   imports: [
