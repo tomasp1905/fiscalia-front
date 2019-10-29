@@ -1,6 +1,6 @@
-<!-- <app-header></app-header> -->
+<app-header></app-header>
 
-<div class="card bg-dark text-white" style="width: 50rem;">
+<div class="card bg-dark text-white mx-auto" style="width: 50rem;">
   <div class="card-header">SUBIR LEY</div>
   <div class="card-body">
 
@@ -37,7 +37,7 @@
 
 
       <div class="form-group row">
-        <div class="col-auto">
+        <div class="col-auto" style="display: inline-block; text-align: right; width: 100%">
           <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!leyProvincial.id else elseBlock" [disabled]="!leyForm.form.valid">SUBIR</button>
           <!--[disabled="!leyForm.form.valid"]sirve para habilitar boton cuando los datos ingresados sean validos-->
 
@@ -51,4 +51,11 @@
 
   </div>
 </div>
-<!-- <app-footer></app-footer> -->
+
+<br>
+
+<div class="form-group row" style="display: inline-block; text-align: right; width: 100%">
+  <div class="col-10">
+  <button class="btn btn-primary" role="button" [routerLink]="['/leyesProvinciales']" >VOLVER ATRÁS</button>
+  </div>
+</div>
