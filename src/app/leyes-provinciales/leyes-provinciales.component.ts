@@ -7,8 +7,7 @@ import { AuthService } from '../usuarios/auth.service';
 
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
-import {map, flatMap, tap} from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import {map, flatMap} from 'rxjs/operators';
 
 
 
@@ -23,40 +22,21 @@ export class LeyesProvincialesComponent implements OnInit {
   leyProvincialSeleccionada:LeyProvincial; //MODAL
   titulo:string;
   numero:string;
-  paginador: any;
 
   autocompleteControl = new FormControl();
 
-  leyesFiltradas: Observable<LeyProvincial[]>; 
+  leyesFiltradas: Observable<LeyProvincial[]>;
 
 
 //constructor (private NombreDelAtributo: Servicio) {} --> instanciar servicio
-  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService, private authService: AuthService, private activatedRoute:ActivatedRoute) { }
+  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService, private authService: AuthService) { }
 
 
   ngOnInit() {
-  //  this.leyProvincialService.getLeyesProvinciales().subscribe( //llama al metodo GET del Service
-  //    leyes => this.leyes = leyes //es el Observador, esto actualiza el listado de leyes y lo pasa a la vista con los posibles cambios
-  //
+    this.leyProvincialService.getLeyesProvinciales().subscribe( //llama al metodo GET del Service
+      leyes => this.leyes = leyes //es el Observador, esto actualiza el listado de leyes y lo pasa a la vista con los posibles cambios
+    );
 
-  this.activatedRoute.paramMap.subscribe(params => {
-    let page: number = +params.get('page');
-
-    if (!page) {
-      page = 0;
-    }
-
-    this.leyProvincialService.getLeyes(page)
-      .pipe(
-        tap(response => {
-          console.log('ClientesComponent: tap 3');
-          (response.content as LeyProvincial[]).forEach(ley => console.log(ley.titulo));
-        })
-      ).subscribe(response => {
-        this.leyes = response.content as LeyProvincial[];
-        this.paginador = response;
-      });
-  });
 
   }
 

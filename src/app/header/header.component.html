@@ -13,7 +13,7 @@
         <li *ngIf="!authService.isAuthenticated()"><a [routerLink]="['/login']" class="btn btn-outline-primary">INICIAR SESIÓN</a></li>
 
         <li *ngIf="authService.isAuthenticated()" class="dropdown">
-        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="btn btn-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{authService.usuario.username}}
         </a>
 
@@ -21,6 +21,12 @@
           <button (click)="logout()" class="dropdown-item" type="submit">CERRAR SESIÓN</button>
         </div>
       </li>
+
+      <br>
+
+      <td *ngIf="authService.hasRole('ROLE_ADMIN')">
+        <button class="btn btn-outline-primary" role="button">LISTA DE USUARIOS</button>
+      </td>
 
       </ul>
     </div>

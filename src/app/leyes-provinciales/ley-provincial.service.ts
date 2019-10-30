@@ -3,7 +3,7 @@ import { LeyProvincial } from './ley-provincial.js';
 import { Observable, throwError } from 'rxjs'; //Observable esta basado en el patron Observador
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { formatDate } from '@angular/common';
-import { map, catchError, tap } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 
@@ -23,40 +23,18 @@ export class LeyProvincialService {
 
   //----------- METODOS -----------//
 
-  // getLeyesProvinciales(): Observable<LeyProvincial[]> {
-  //   return this.http.get(this.urlEndPoint).pipe(
-  //     map(response => {
-  //       let leyesProvinciales = response as LeyProvincial[];
-  //       return leyesProvinciales.map(ley => {
-  //         ley.fechaSancion = formatDate(ley.fechaSancion, 'dd-MM-yyyy', 'en-US');
-  //         ley.publicacionBO = formatDate(ley.publicacionBO, 'dd-MM-yyyy', 'en-US');
-  //         return ley;
-  //       });
-  //     }
-  //     )
-  //   );
-  // }
 
-  getLeyes(page: number): Observable<any> {
-    return this.http.get(this.urlEndPoint + '/page/' + page).pipe(
-      tap((response: any) => {
-        console.log('ClienteService: tap 1');
-        (response.content as LeyProvincial[]).forEach(ley => console.log(ley.titulo));
-      }),
-      map((response: any) => {
-        (response.content as LeyProvincial[]).map(ley => {
-          ley.titulo = ley.titulo.toUpperCase();
-          //let datePipe = new DatePipe('es');
-          //cliente.createAt = datePipe.transform(cliente.createAt, 'EEEE dd, MMMM yyyy');
-          //cliente.createAt = formatDate(cliente.createAt, 'dd-MM-yyyy', 'es');
+  getLeyesProvinciales(): Observable<LeyProvincial[]> {
+    return this.http.get(this.urlEndPoint).pipe(
+      map(response => {
+        let leyesProvinciales = response as LeyProvincial[];
+        return leyesProvinciales.map(ley => {
+          ley.fechaSancion = formatDate(ley.fechaSancion, 'dd-MM-yyyy', 'en-US');
+          ley.publicacionBO = formatDate(ley.publicacionBO, 'dd-MM-yyyy', 'en-US');
           return ley;
         });
-        return response;
-      }),
-      tap(response => {
-        console.log('ClienteService: tap 2');
-        (response.content as LeyProvincial[]).forEach(ley => console.log(ley.titulo));
-      })
+      }
+      )
     );
   }
 
