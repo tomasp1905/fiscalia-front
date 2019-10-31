@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from './usuario';
+import {Role } from './role';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class AuthService {
 
   private _usuario: Usuario;
   private _token: string;
+
 
   constructor(private http: HttpClient) { }
 
@@ -83,6 +85,7 @@ export class AuthService {
   hasRole(role: string): boolean {
     if (this.usuario.roles.includes(role)) {
       return true;
+      console.log(this.usuario.roles)
     }
     return false;
   }
@@ -94,6 +97,7 @@ export class AuthService {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('usuario');
   }
+
 
 
 }

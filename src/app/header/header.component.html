@@ -25,7 +25,7 @@
       <br>
 
       <td *ngIf="authService.hasRole('ROLE_ADMIN')">
-        <button class="btn btn-outline-primary" role="button">LISTA DE USUARIOS</button>
+        <button class="btn btn-outline-primary" [routerLink]="['/crearUsuario']" type="button">LISTA DE USUARIOS</button>
       </td>
 
       </ul>

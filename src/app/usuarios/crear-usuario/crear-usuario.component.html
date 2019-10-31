@@ -1,0 +1,53 @@
+<app-header></app-header>
+
+
+<div class="card border-primary mb-3">
+  <div class="card-header">
+    <h5 align="center">LISTADO DE USUARIOS</h5>
+  </div>
+  <div class="card-body text-primary">
+
+
+    <div class="my-2 text-left">
+      <button class="btn btn-rounded btn-primary" type="button">
+        CARGAR USUARIO
+      </button>
+    </div>
+
+
+    <table class="table table-bordered table-striped text-center">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Email</th>
+          <th>Username</th>
+          <th>Rol</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+
+          <td>{{usuario.nombre}}</td>
+          <td>{{usuario.apellido}}</td>
+          <td>{{usuario.email}}</td>
+          <td>{{usuario.username}}</td>
+          <td >
+            <h6 *ngIf="usuario.roles.length === 1">Usuario</h6>
+            <h6 *ngIf="usuario.roles.length === 2">Administrador y Usuario</h6>
+          </td>
+
+          <td>
+            <button type="button" class="btn btn-success btn-sm"> EDITAR </button>
+          </td>
+
+          <td>
+            <button type="button" name="eliminar" class="btn btn-danger btn-sm"> ELIMINAR </button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

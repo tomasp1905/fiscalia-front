@@ -24,6 +24,8 @@ import {PaginatorComponent} from './paginator/paginator.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
+
 
 
 
@@ -35,7 +37,8 @@ const routes: Routes = [
   { path: 'constitucionProvincial', component: ConstitucionProvincialComponent },
   { path: 'leyesProvinciales/form', component: FormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   { path: 'leyesProvinciales/form/:id', component: FormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'crearUsuario', component: CrearUsuarioComponent }
 
 ];
 
@@ -50,7 +53,8 @@ const routes: Routes = [
     FormComponent,
     ArchivoComponent,
     LoginComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    CrearUsuarioComponent
 
   ],
   imports: [
