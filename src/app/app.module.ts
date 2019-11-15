@@ -25,12 +25,14 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
+import {FormComponentUsuario} from './usuarios/formUsuario.component';
+import { BuscadorComponent } from './buscador/buscador.component';
 
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/section', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'section', component: SectionComponent },
   { path: 'leyesProvinciales', component: LeyesProvincialesComponent },
   { path: 'leyesProvinciales/page/:page', component: LeyesProvincialesComponent },
@@ -38,7 +40,10 @@ const routes: Routes = [
   { path: 'leyesProvinciales/form', component: FormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   { path: 'leyesProvinciales/form/:id', component: FormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
   { path: 'login', component: LoginComponent },
-  { path: 'crearUsuario', component: CrearUsuarioComponent }
+  { path: 'crearUsuario', component: CrearUsuarioComponent },
+  { path: 'usuarios/formUsuario', component: FormComponentUsuario},
+  { path: 'usuarios/formUsuario/:id', component: FormComponentUsuario},
+  {path: 'buscador', component: BuscadorComponent}
 
 ];
 
@@ -54,7 +59,9 @@ const routes: Routes = [
     ArchivoComponent,
     LoginComponent,
     PaginatorComponent,
-    CrearUsuarioComponent
+    CrearUsuarioComponent,
+    FormComponentUsuario,
+    BuscadorComponent
 
   ],
   imports: [

@@ -29,7 +29,7 @@ export class LeyesProvincialesComponent implements OnInit {
 
 
 //constructor (private NombreDelAtributo: Servicio) {} --> instanciar servicio
-  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService, private authService: AuthService) { }
+  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService, public authService: AuthService) { }
 
 
   ngOnInit() {

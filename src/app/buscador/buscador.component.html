@@ -1,0 +1,39 @@
+<app-header></app-header>
+
+<div class="cardcss card border-primary mb-3">
+  <div class="card-header"><h2>BÚSQUEDA</h2></div>
+  <br>
+
+
+  <div class="input-group mb-3" style="width: 35rem;">
+    <input type="text" class="form-control" placeholder="BUSCAR POR TÍTULO" aria-describedby="button-addon2">
+    <div class="input-group-append">
+    <button type="submit"><i class="fa fa-search"></i></button>
+    </div>
+  </div>
+
+  <div class="buttoncss input-group mb-3" style="width: 15rem;">
+    <input type="text" class="form-control" placeholder="BUSCAR POR NÚMERO" aria-describedby="button-addon2">
+    <div class="input-group-append">
+    <button type="submit"><i class="fa fa-search"></i></button>
+    </div>
+  </div>
+
+  <br>
+
+  <table class="table table-bordered table-striped text-center" *ngIf="leyes?.length>0">
+    <thead>
+      <tr>
+        <th>Archivo</th>
+        <th>Número</th>
+        <th>Título</th>
+        <th>Fecha de Sanción</th>
+        <th>Publicación en BO</th>
+      </tr>
+    </thead>
+
+  </table>
+
+</div>
+
+<!-- <app-footer></app-footer> -->

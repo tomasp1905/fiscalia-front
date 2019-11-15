@@ -23,7 +23,7 @@ export class ArchivoComponent implements OnInit {
 
 
 
-  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService, private authService: AuthService) { }
+  constructor(private leyProvincialService: LeyProvincialService, public modalService: ModalService, public authService: AuthService) { }
 
   ngOnInit() {
     //Se saca para el MODAL

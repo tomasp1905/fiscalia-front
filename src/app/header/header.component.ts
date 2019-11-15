@@ -11,9 +11,9 @@ import swal from 'sweetalert2';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
-  logout():void{
+  public logout():void{
     let username = this.authService.usuario.username;
     this.authService.logout();
     swal.fire('Logout', `${username} cerraste sesión con éxito`,'success');

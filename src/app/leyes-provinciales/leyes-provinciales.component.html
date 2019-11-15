@@ -10,9 +10,7 @@
   </div>
   <div class="card-body text-primary">
 
-
-
-    <div *ngIf="authService.hasRole('ROLE_USER','ROLE_ADMIN')" class="row">
+    <div  class="row">
       <div class="input-group input-group-sm col-4">
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputTitulo">Buscar por Título:</span>
@@ -23,7 +21,7 @@
 
     <br>
 
-    <div *ngIf="authService.hasRole('ROLE_USER','ROLE_ADMIN')" class="row">
+    <div  class="row">
       <div class="input-group input-group-sm col-2">
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputNumero">Buscar por N°:</span>
@@ -34,8 +32,9 @@
 
     <br>
 
+
     <div class="my-2 text-left">
-      <button *ngIf="authService.hasRole('ROLE_USER','ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink]="['/leyesProvinciales/form']">
+      <button  class="btn btn-rounded btn-primary" type="button" [routerLink]="['/leyesProvinciales/form']">
         CARGAR LEY PROVINCIAL
       </button>
     </div>
@@ -71,7 +70,6 @@
           <td *ngIf="authService.hasRole('ROLE_ADMIN')">
             <button type="button" name="eliminar" (click)='delete(ley)' class="btn btn-danger btn-sm"> ELIMINAR </button>
           </td>
-
 
         </tr>
       </tbody>

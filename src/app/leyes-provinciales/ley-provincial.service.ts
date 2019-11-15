@@ -6,12 +6,14 @@ import { formatDate } from '@angular/common';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
+import {URL_BACKEND} from '../config/config';
+
 
 
 
 @Injectable()
 export class LeyProvincialService {
-  private urlEndPoint: string = 'http://localhost:8080/api/leyesProvinciales'; //defino EndPoint del BACK
+  private urlEndPoint: string = URL_BACKEND + '/api/leyesProvinciales'; //defino EndPoint del BACK
 
   //private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' }); //especificamos el tipo de contenido que estamos enviando desde el cliente angular hacia el api rest, los datos los estamos enviando en estructura json
 

@@ -1,0 +1,76 @@
+<app-header></app-header>
+
+
+<div class="card bg-dark text-white mx-auto" style="width: 50rem;">
+  <div class="card-header">SUBIR USUARIO</div>
+  <div class="card-body">
+
+    <form #leyForm="ngForm">
+      <!--esto sirve para habilitar el boton cuando los datos ingresados sean válidos -->
+
+      <div class="form-group row">
+        <label for="numero" class="col-form-label col-auto">Username:</label>
+        <div class="col-auto">
+          <input type="text" class="form-control" [(ngModel)]="usuario.username" name="numero" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="titulo" class="col-form-label col-auto">Password:</label>
+        <div class="col-8">
+          <input type="password" class="form-control" [(ngModel)]="usuario.password" name="titulo" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="fechaSancion" class="col-form-label col-auto">Nombre:</label>
+        <div class="col-auto">
+          <input type="text" class="form-control" [(ngModel)]="usuario.nombre" name="fechaSancion" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="publicacionBO" class="col-form-label col-auto">Apellido:</label>
+        <div class="col-auto">
+          <input type="text" class="form-control" [(ngModel)]="usuario.apellido" name="publicacionBO" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="publicacionBO" class="col-form-label col-auto">Email:</label>
+        <div class="col-auto">
+          <input type="text" class="form-control" [(ngModel)]="usuario.email" name="publicacionBO" required>
+        </div>
+      </div>
+
+      <!-- <div class="form-group row">
+        <label for="publicacionBO" class="col-form-label col-auto">Rol:</label>
+        <div class="col-auto">
+          <input type="number" class="form-control" [(ngModel)]="" name="publicacionBO" required>
+        </div>
+      </div> -->
+
+
+      <div class="form-group row">
+        <div class="col-auto" style="display: inline-block; text-align: right; width: 100%">
+          <button class="btn btn-primary" role="button" (click)='createUsuario()' *ngIf="!usuario.id else elseBlock" [disabled]="!UsuarioForm.formUsuario.valid">SUBIR</button>
+
+
+          <ng-template #elseBlock>
+            <button class="btn btn-primary" role="button" (click)='updateUsuario()' [disabled]="!UsuarioForm.formUsuario.valid">EDITAR</button>
+          </ng-template>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+<br>
+
+<div class="form-group row" style="display: inline-block; text-align: right; width: 100%">
+  <div class="col-10">
+  <button class="btn btn-primary" role="button" [routerLink]="['/crearUsuario']">VOLVER ATRÁS</button>
+  </div>
+</div>

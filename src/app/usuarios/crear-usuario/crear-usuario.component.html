@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 
-<div class="card border-primary mb-3">
+<div class="cardcss card border-primary mb-3">
   <div class="card-header">
     <h5 align="center">LISTADO DE USUARIOS</h5>
   </div>
@@ -9,7 +9,7 @@
 
 
     <div class="my-2 text-left">
-      <button class="btn btn-rounded btn-primary" type="button">
+      <button class="btn btn-rounded btn-primary" type="button" type="button" [routerLink]="['/usuarios/formUsuario']">
         CARGAR USUARIO
       </button>
     </div>
@@ -34,15 +34,15 @@
           <td>{{usuario.username}}</td>
           <td >
             <h6 *ngIf="usuario.roles.length === 1">Usuario</h6>
-            <h6 *ngIf="usuario.roles.length === 2">Administrador y Usuario</h6>
+            <h6 *ngIf="usuario.roles.length === 2">Administrador</h6>
           </td>
 
           <td>
-            <button type="button" class="btn btn-success btn-sm"> EDITAR </button>
+            <button type="button" [routerLink]="['/usuarios/formUsuario', usuario.id]" class="btn btn-success btn-sm"> EDITAR </button>
           </td>
 
           <td>
-            <button type="button" name="eliminar" class="btn btn-danger btn-sm"> ELIMINAR </button>
+            <button type="button" name="eliminar" (click)='deleteUsuario(ley)' class="btn btn-danger btn-sm"> ELIMINAR </button>
           </td>
 
         </tr>
@@ -50,4 +50,10 @@
     </table>
 
   </div>
+</div>
+
+<div class="my-2 text-left">
+  <button class="btncss btn btn-rounded btn-primary" type="button" type="button" [routerLink]="['/leyesProvinciales']">
+    VOLVER ATRÁS
+  </button>
 </div>
