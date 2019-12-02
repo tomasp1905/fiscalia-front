@@ -19,6 +19,15 @@
     </div>
   </div>
 
+  <div  class="row">
+    <div class="input-group input-group-sm col-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputTitulo">Buscar por Títuloo:</span>
+      </div>
+      <input type="text" [(ngModel)]="titulo" (input)="searchTitulo()" class="form-control" aria-describedby="inputTitulo" />
+    </div>
+  </div>
+
   <br>
 
   <table class="table table-bordered table-striped text-center" *ngIf="leyes?.length>0">
@@ -36,4 +45,4 @@
 
 </div>
 
-<!-- <app-footer></app-footer> -->
+<app-footer></app-footer>

@@ -1,0 +1,10 @@
+h5 {
+  color: #3498db;
+  text-align: center;
+}
+
+.footer {
+  margin-top: 10px;
+  position: absolute;
+  bottom: 0;
+}

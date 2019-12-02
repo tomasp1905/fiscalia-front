@@ -1,48 +1,55 @@
 <app-header></app-header>
 
 <div class="card bg-dark text-white mx-auto" style="width: 50rem;">
-  <div class="card-header">LEY PROVINCIAL</div>
+  <div class="card-header">DECRETO</div>
   <div class="card-body">
 
-    <form #leyForm="ngForm">
+    <form #decretoForm="ngForm">
       <!--esto sirve para habilitar el boton cuando los datos ingresados sean válidos -->
 
       <div class="form-group row">
         <label for="numero" class="col-form-label col-auto">Número:</label>
         <div class="col-auto">
-          <input type="number" class="form-control" [(ngModel)]="leyProvincial.numero" name="numero" required>
+          <input type="number" class="form-control" [(ngModel)]="decreto.numero" name="numero" required>
         </div>
       </div>
 
       <div class="form-group row">
         <label for="titulo" class="col-form-label col-auto">Título:</label>
         <div class="col-8">
-          <input type="text" class="form-control" [(ngModel)]="leyProvincial.titulo" name="titulo" required>
+          <input type="text" class="form-control" [(ngModel)]="decreto.titulo" name="titulo" required>
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="fechaSancion" class="col-form-label col-auto">Fecha Sanción:</label>
+        <label for="anio" class="col-form-label col-auto">Año:</label>
+        <div class="col-8">
+          <input type="text" class="form-control" [(ngModel)]="decreto.anio" name="anio" required>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="fechaEmision" class="col-form-label col-auto">Fecha Emisión:</label>
         <div class="col-auto">
-          <input type="date" class="form-control" [(ngModel)]="leyProvincial.fechaSancion" name="fechaSancion" required>
+          <input type="date" class="form-control" [(ngModel)]="decreto.fechaEmision" name="fechaEmision" required>
         </div>
       </div>
 
       <div class="form-group row">
         <label for="publicacionBO" class="col-form-label col-auto">Publicación BO:</label>
         <div class="col-auto">
-          <input type="date" class="form-control" [(ngModel)]="leyProvincial.publicacionBO" name="publicacionBO" required>
+          <input type="date" class="form-control" [(ngModel)]="decreto.publicacionBO" name="publicacionBO" required>
         </div>
       </div>
 
 
       <div class="form-group row">
         <div class="col-auto" style="display: inline-block; text-align: right; width: 100%">
-          <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!leyProvincial.id else elseBlock" [disabled]="!leyForm.form.valid">SUBIR</button>
+          <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!decreto.id else elseBlock" [disabled]="!decretoForm.form.valid">SUBIR</button>
           <!--[disabled="!leyForm.form.valid"]sirve para habilitar boton cuando los datos ingresados sean validos-->
 
           <ng-template #elseBlock>
-            <button class="btn btn-primary" role="button" (click)='update()' [disabled]="!leyForm.form.valid">EDITAR</button>
+            <button class="btn btn-primary" role="button" (click)='update()' [disabled]="!decretoForm.form.valid">EDITAR</button>
           </ng-template>
         </div>
       </div>
@@ -56,7 +63,7 @@
 
 <div class="form-group row" style="display: inline-block; text-align: right; width: 100%">
   <div class="col-10">
-  <button class="btn btn-primary" role="button" [routerLink]="['/leyesProvinciales']">VOLVER ATRÁS</button>
+  <button class="btn btn-primary" role="button" [routerLink]="['/decretos']">VOLVER ATRÁS</button>
   </div>
 </div>
 

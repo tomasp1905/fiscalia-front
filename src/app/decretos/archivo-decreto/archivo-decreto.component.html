@@ -1,4 +1,4 @@
-<div class="abrir-modal animacion fadeIn" *ngIf="modalService.modal">
+<div class="abrir-modal animacion fadeIn" *ngIf="modalDecretoService.modal">
 
   <div class="modal" tabindex="-1" role="dialog" style="display:block;">
     <div class="modal-dialog" role="document">
@@ -14,15 +14,16 @@
             <div class="row">
               <div class="col-sm">
 
-                <ul *ngIf="leyProvincial" class="list-group text-dark mb-3">
-                  <li class="list-group-item"><b>NUMERO</b>: {{leyProvincial.numero}}</li>
-                  <li class="list-group-item"><b>TITULO</b>: {{leyProvincial.titulo}}</li>
-                  <li class="list-group-item"><b>FECHA SANCIÓN</b>: {{leyProvincial.fechaSancion}}</li>
-                  <li class="list-group-item"><b>PUBLICACIÓN EN BO</b>: {{leyProvincial.publicacionBO}}</li>
+                <ul *ngIf="decreto" class="list-group text-dark mb-3">
+                  <li class="list-group-item"><b>NÚMERO</b>: {{decreto.numero}}</li>
+                  <li class="list-group-item"><b>TÍTULO</b>: {{decreto.titulo}}</li>
+                  <li class="list-group-item"><b>AÑO</b>: {{decreto.anio}}</li>
+                  <li class="list-group-item"><b>FECHA EMISIÓN</b>: {{decreto.fechaEmision}}</li>
+                  <li class="list-group-item"><b>PUBLICACIÓN EN BO</b>: {{decreto.publicacionBO}}</li>
                 </ul>
 
 
-                <div class="input-group mb-3" *ngIf="authService.hasRole('ROLE_ADMIN', 'ROLE_USER')">
+                <div class="input-group mb-3">
                   <div class="custom-file">
                     <input (change)="seleccionarArchivo($event)" type="file" class="custom-file-input" id="customFileLang" aria-describedby="inputGroupFileAddon04">
                     <label class="custom-file-label" for="inputGroupFile04">Seleccionar Archivo</label>
@@ -43,12 +44,11 @@
 
                 <div>
                   <div class="col-sm">
-                    <p><a *ngIf="leyProvincial?.foto" href="http://localhost:8080/api/uploads/img/{{leyProvincial.foto}}" target='_blank' title="Click aquí para descargar el archivo">Click aquí para descargar el archivo</a></p>
+                    <p><a *ngIf="decreto?.archivo" href="http://localhost:8080/api/uploads/archivo/{{decreto.archivo}}" target='_blank' title="Click aquí para descargar el archivo">Click aquí para descargar el archivo</a></p>
+                  </div>
                 </div>
-              </div>
 
               </div>
-
 
             </div>
           </div>

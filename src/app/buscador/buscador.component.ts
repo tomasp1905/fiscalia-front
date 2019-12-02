@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LeyesProvincialesComponent } from '../leyes-provinciales/leyes-provinciales.component';
 import { LeyProvincial } from '../leyes-provinciales/ley-provincial';
-
+import { LeyProvincialService } from '../leyes-provinciales/ley-provincial.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -11,22 +11,28 @@ import { LeyProvincial } from '../leyes-provinciales/ley-provincial';
 })
 export class BuscadorComponent implements OnInit {
 
-  leyes: LeyProvincial[];
-  titulo:string;
-  numero:string;
-
-  @Input() pruebaCom: LeyesProvincialesComponent
-
+    leyes: LeyProvincial[];
+    titulo:string;
+    numero:string;
+    leyesFiltradas: Observable<LeyProvincial[]>;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  searchTitulo2(){
-    this.pruebaCom.searchTitulo();
-    console.log();
+  searchTitulo(){
+    if(this.titulo != ""){
+      this.leyes = this.leyes.filter(res=>{
+        return res.titulo.toLocaleLowerCase().match(this.titulo.toLocaleLowerCase());
+      });
+    }else if(this.titulo == ""){
+      this.ngOnInit();
+    }
+
   }
+
+
 
 
   }

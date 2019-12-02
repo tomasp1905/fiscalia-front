@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
 import { Usuario } from './usuario';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
@@ -49,5 +50,7 @@ export class LoginComponent implements OnInit {
     }
     );
   }
+
+
 
 }

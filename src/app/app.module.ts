@@ -20,19 +20,20 @@ import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
 import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {PaginatorComponent} from './paginator/paginator.component';
-
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
 import {FormComponentUsuario} from './usuarios/formUsuario.component';
 import { BuscadorComponent } from './buscador/buscador.component';
-
-
+import { DecretosComponent } from './decretos/decretos.component';
+import { FormDecretoComponent } from './decretos/form-decreto.component';
+import { SectionInternoComponent } from './section-interno/section-interno.component';
+import { ArchivoDecretoComponent } from './decretos/archivo-decreto/archivo-decreto.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/sectionInterno', pathMatch: 'full' },
   { path: 'section', component: SectionComponent },
   { path: 'leyesProvinciales', component: LeyesProvincialesComponent },
   { path: 'leyesProvinciales/page/:page', component: LeyesProvincialesComponent },
@@ -43,7 +44,11 @@ const routes: Routes = [
   { path: 'crearUsuario', component: CrearUsuarioComponent },
   { path: 'usuarios/formUsuario', component: FormComponentUsuario},
   { path: 'usuarios/formUsuario/:id', component: FormComponentUsuario},
-  {path: 'buscador', component: BuscadorComponent}
+  {path: 'buscador', component: BuscadorComponent},
+  {path: 'decretos', component: DecretosComponent},
+  {path: 'decretos/formDecreto', component: FormDecretoComponent},
+  {path: 'decretos/formDecreto/:id', component: FormDecretoComponent},
+  { path: 'sectionInterno', component: SectionInternoComponent }
 
 ];
 
@@ -61,7 +66,11 @@ const routes: Routes = [
     PaginatorComponent,
     CrearUsuarioComponent,
     FormComponentUsuario,
-    BuscadorComponent
+    BuscadorComponent,
+    DecretosComponent,
+    FormDecretoComponent,
+    SectionInternoComponent,
+    ArchivoDecretoComponent,
 
   ],
   imports: [

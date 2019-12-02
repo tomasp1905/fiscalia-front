@@ -1,0 +1,42 @@
+section {
+
+}
+
+h2 {
+  color: #3498db;
+}
+
+h3 {
+  color: #3498db;
+}
+
+h4 {
+  color: #3498db;
+}
+
+h5 {
+  color: #3498db;
+  text-align: center;
+}
+
+header {
+  margin-bottom: 20px;
+  padding: 20px;
+  margin-top: -15px;
+}
+
+#list-home-list{
+  font-size: 120%;
+}
+
+.footer {
+  margin-top: 10px;
+  position: absolute;
+  bottom: 0;
+}
+
+button {
+  text-align: center;
+  margin-top: 5px;
+
+}
