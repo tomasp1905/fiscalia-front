@@ -1,23 +1,23 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Decreto } from '../decreto';
-import { DecretoService } from '../decreto.service';
-import { ModalDecretoService } from './modal-decreto.service';
 import { HttpEventType } from '@angular/common/http';
 import swal from 'sweetalert2';
+import { DecretoLey } from '../decretoLey';
+import { DecretoLeyService } from '../decreto-ley.service';
+import { ModalDecretoLeyService } from './modal-decreto-ley.service';
 
 @Component({
-  selector: 'app-archivo-decreto',
-  templateUrl: './archivo-decreto.component.html',
-  styleUrls: ['./archivo-decreto.component.css']
+  selector: 'app-archivo-decreto-ley',
+  templateUrl: './archivo-decreto-ley.component.html',
+  styleUrls: ['./archivo-decreto-ley.component.css']
 })
-export class ArchivoDecretoComponent implements OnInit {
+export class ArchivoDecretoLeyComponent implements OnInit {
 
-  @Input() decreto: Decreto; //INPUT MODAL
+  @Input() decretoLey: DecretoLey; //INPUT MODAL
   titulo: string = "ARCHIVO DECRETO";
   private archivoSeleccionado: File;
   progreso: number = 0;
 
-  constructor(private decretoService: DecretoService, public modalDecretoService: ModalDecretoService) { }
+  constructor(private decretoLeyService: DecretoLeyService, public modalDecretoLeyService: ModalDecretoLeyService) { }
 
   ngOnInit() {
   }
@@ -26,12 +26,10 @@ export class ArchivoDecretoComponent implements OnInit {
     this.archivoSeleccionado = event.target.files[0];
     this.progreso = 0;
     console.log(this.archivoSeleccionado);
-
   }
 
-
   subirArchivo() {
-    this.decretoService.subirArchivoDecreto(this.archivoSeleccionado, this.decreto.id)
+    this.decretoLeyService.subirArchivoDecretoLey(this.archivoSeleccionado, this.decretoLey.id)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progreso = Math.round((event.loaded / event.total) * 100);
@@ -40,21 +38,21 @@ export class ArchivoDecretoComponent implements OnInit {
 
           console.log(response);
 
+          this.decretoLey = response.decreto as DecretoLey;
 
-          this.decreto = response.decreto as Decreto;
-          console.log(this.decreto);
-          console.log(response.decreto);
+          console.log(this.decretoLey);
+          console.log(response.decretoLey);
           console.log(response.mensaje);
 
           swal.fire('Archivo subido completamente', response.mensaje, 'success');
-          console.log("Este es el decreto" + this.decreto.id);
+          console.log("Este es el decreto" + this.decretoLey.id);
         }
 
       });
   }
 
   cerrarModal() {
-    this.modalDecretoService.cerrarModal();
+    this.modalDecretoLeyService.cerrarModal();
     this.archivoSeleccionado = null;
     this.progreso = 0;
   }

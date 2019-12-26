@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LeyProvincial } from '../ley-provincial';
 import { LeyProvincialService } from '../ley-provincial.service';
-import { ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 import { HttpEventType } from '@angular/common/http';
 import { ModalService } from './modal.service';

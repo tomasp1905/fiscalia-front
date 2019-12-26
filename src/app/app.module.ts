@@ -11,13 +11,14 @@ import { RouterModule, Routes } from '@angular/router'; //importaciones para usa
 import { ConstitucionProvincialComponent } from './constitucion-provincial/constitucion-provincial.component';
 import { FormComponent } from './leyes-provinciales/form.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+//import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ArchivoComponent } from './leyes-provinciales/archivo/archivo.component';
 import { LoginComponent } from './usuarios/login.component';
-import { AuthGuard } from './usuarios/guards/auth.guard';
-import { RoleGuard } from './usuarios/guards/role.guard';
-import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
-import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
+// import { AuthGuard } from './usuarios/guards/auth.guard';
+// import { RoleGuard } from './usuarios/guards/role.guard';
+// import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
+// import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {PaginatorComponent} from './paginator/paginator.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -30,6 +31,16 @@ import { DecretosComponent } from './decretos/decretos.component';
 import { FormDecretoComponent } from './decretos/form-decreto.component';
 import { SectionInternoComponent } from './section-interno/section-interno.component';
 import { ArchivoDecretoComponent } from './decretos/archivo-decreto/archivo-decreto.component';
+import { DecretosLeyComponent } from './decretos-ley/decretos-ley.component';
+import { ArchivoDecretoLeyComponent } from './decretos-ley/archivo-decreto-ley/archivo-decreto-ley.component';
+import { FormDecretoLeyComponent } from './decretos-ley/form-decreto-ley.component';
+import { ResumenNormativoComponent } from './resumen-normativo/resumen-normativo.component';
+import { FormResumenNormativoComponent } from './resumen-normativo/form-resumen-normativo.component';
+import { ArchivoResumenNormativoComponent } from './resumen-normativo/archivo-resumen-normativo/archivo-resumen-normativo.component';
+import { DecretoReglamentarioComponent } from './decreto-reglamentario/decreto-reglamentario.component';
+import { FormDecretoReglamentarioComponent } from './decreto-reglamentario/form-decreto-reglamentario.component';
+import { ArchivoDecretoReglamentarioComponent } from './decreto-reglamentario/archivo-decreto-reglamentario/archivo-decreto-reglamentario.component';
+
 
 
 const routes: Routes = [
@@ -38,17 +49,26 @@ const routes: Routes = [
   { path: 'leyesProvinciales', component: LeyesProvincialesComponent },
   { path: 'leyesProvinciales/page/:page', component: LeyesProvincialesComponent },
   { path: 'constitucionProvincial', component: ConstitucionProvincialComponent },
-  { path: 'leyesProvinciales/form', component: FormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
-  { path: 'leyesProvinciales/form/:id', component: FormComponent, canActivate: [AuthGuard, RoleGuard], data: { role: 'ROLE_ADMIN' } },
-  { path: 'login', component: LoginComponent },
-  { path: 'crearUsuario', component: CrearUsuarioComponent },
-  { path: 'usuarios/formUsuario', component: FormComponentUsuario},
-  { path: 'usuarios/formUsuario/:id', component: FormComponentUsuario},
+  { path: 'leyesProvinciales/form', component: FormComponent },
+  { path: 'leyesProvinciales/form/:id', component: FormComponent},
+  //{ path: 'login', component: LoginComponent },
+  //{ path: 'crearUsuario', component: CrearUsuarioComponent },
+  //{ path: 'usuarios/formUsuario', component: FormComponentUsuario},
+ //{ path: 'usuarios/formUsuario/:id', component: FormComponentUsuario},
   {path: 'buscador', component: BuscadorComponent},
   {path: 'decretos', component: DecretosComponent},
   {path: 'decretos/formDecreto', component: FormDecretoComponent},
   {path: 'decretos/formDecreto/:id', component: FormDecretoComponent},
-  { path: 'sectionInterno', component: SectionInternoComponent }
+  {path: 'sectionInterno', component: SectionInternoComponent },
+  {path: 'decretosLey', component: DecretosLeyComponent},
+  {path: 'decretosLey/formDecretoLey', component: FormDecretoLeyComponent},
+  {path: 'decretosLey/formDecretoLey/:id', component: FormDecretoLeyComponent},
+  {path: 'resumenesNormativos', component: ResumenNormativoComponent},
+  {path: 'resumenesNormativos/formResumenNormativo', component: FormResumenNormativoComponent},
+  {path: 'resumenesNormativos/formResumenNormativo/:id', component: FormResumenNormativoComponent},
+  {path: 'decretosReglamentarios', component: DecretoReglamentarioComponent},
+  {path: 'decretosReglamentarios/formDecretoReglamentario', component: FormDecretoReglamentarioComponent},
+  {path: 'decretosReglamentarios/formDecretoReglamentario/:id', component: FormDecretoReglamentarioComponent}
 
 ];
 
@@ -71,6 +91,16 @@ const routes: Routes = [
     FormDecretoComponent,
     SectionInternoComponent,
     ArchivoDecretoComponent,
+    DecretosLeyComponent,
+    ArchivoDecretoLeyComponent,
+    FormDecretoLeyComponent,
+    ResumenNormativoComponent,
+    FormResumenNormativoComponent,
+    ArchivoResumenNormativoComponent,
+    DecretoReglamentarioComponent,
+    FormDecretoReglamentarioComponent,
+    ArchivoDecretoReglamentarioComponent,
+
 
   ],
   imports: [
@@ -81,7 +111,7 @@ const routes: Routes = [
     ReactiveFormsModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule //busqueda autocomplete
 
   ],
-  providers: [LeyProvincialService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },], //servicios globales
+  providers: [LeyProvincialService],// { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },], //servicios globales
   bootstrap: [AppComponent]
 })
 export class AppModule { }

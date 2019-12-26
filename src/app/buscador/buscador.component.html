@@ -1,28 +1,30 @@
 <app-header></app-header>
 
 <div class="cardcss card border-primary mb-3">
-  <div class="card-header"><h2>BÚSQUEDA</h2></div>
+  <div class="card-header">
+    <h2>BÚSQUEDA</h2>
+  </div>
   <br>
 
 
   <div class="input-group mb-3" style="width: 35rem;">
     <input type="text" class="form-control" placeholder="BUSCAR POR TÍTULO" aria-describedby="button-addon2">
     <div class="input-group-append">
-    <button type="submit"><i class="fa fa-search"></i></button>
+      <button type="submit"><i class="fa fa-search"></i></button>
     </div>
   </div>
 
   <div class="buttoncss input-group mb-3" style="width: 15rem;">
     <input type="text" class="form-control" placeholder="BUSCAR POR NÚMERO" aria-describedby="button-addon2">
     <div class="input-group-append">
-    <button type="submit"><i class="fa fa-search"></i></button>
+      <button type="submit"><i class="fa fa-search"></i></button>
     </div>
   </div>
 
-  <div  class="row">
+  <div class="row">
     <div class="input-group input-group-sm col-4">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="inputTitulo">Buscar por Títuloo:</span>
+        <span class="input-group-text" id="inputTitulo">Buscar por Título:</span>
       </div>
       <input type="text" [(ngModel)]="titulo" (input)="searchTitulo()" class="form-control" aria-describedby="inputTitulo" />
     </div>
@@ -40,7 +42,6 @@
         <th>Publicación en BO</th>
       </tr>
     </thead>
-
   </table>
 
 </div>

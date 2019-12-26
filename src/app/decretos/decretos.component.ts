@@ -46,8 +46,8 @@ export class DecretosComponent implements OnInit {
           response => {
             this.decretos = this.decretos.filter(dec => dec !== decreto)
             swal.fire(
-              'Ley Eliminada!',
-              `Ley ${decreto.numero} eliminada con éxito.`,
+              'Decreto Eliminado!',
+              `Decreto ${decreto.numero} eliminado con éxito.`,
               'success'
             )
           }

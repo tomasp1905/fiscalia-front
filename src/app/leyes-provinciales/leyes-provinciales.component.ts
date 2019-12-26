@@ -72,7 +72,6 @@ export class LeyesProvincialesComponent implements OnInit {
     })
   }
 
-
   abrirModal(ley: LeyProvincial) {
     this.leyProvincialSeleccionada = ley;
     this.modalService.abirModal();

@@ -1,4 +1,4 @@
-<div class="abrir-modal animacion fadeIn" *ngIf="modalService.modal">
+<div class="abrir-modal animacion fadeIn" *ngIf="modalResumenService.modal">
 
   <div class="modal" tabindex="-1" role="dialog" style="display:block;">
     <div class="modal-dialog" role="document">
@@ -14,13 +14,11 @@
             <div class="row">
               <div class="col-sm">
 
-                <ul *ngIf="leyProvincial" class="list-group text-dark mb-3">
-                  <li class="list-group-item"><b>NUMERO</b>: {{leyProvincial.numero}}</li>
-                  <li class="list-group-item"><b>TITULO</b>: {{leyProvincial.titulo}}</li>
-                  <li class="list-group-item"><b>FECHA SANCIÓN</b>: {{leyProvincial.fechaSancion}}</li>
-                  <li class="list-group-item"><b>PUBLICACIÓN EN BO</b>: {{leyProvincial.publicacionBO}}</li>
+                <ul *ngIf="resumen" class="list-group text-dark mb-3">
+                  <li class="list-group-item"><b>AÑO</b>: {{resumen.anio}}</li>
+                  <li class="list-group-item"><b>MES</b>: {{resumen.mes}}</li>
+                  <li class="list-group-item"><b>SEMANA</b>: {{resumen.semana}}</li>
                 </ul>
-
 
                 <div class="input-group mb-3">
                   <div class="custom-file">
@@ -43,12 +41,11 @@
 
                 <div>
                   <div class="col-sm">
-                    <p><a *ngIf="leyProvincial?.foto" href="http://localhost:8080/api/uploads/img/{{leyProvincial.foto}}" target='_blank' title="Click aquí para descargar el archivo">Click aquí para descargar el archivo</a></p>
+                    <p><a *ngIf="resumen?.archivo" href="http://localhost:8080/api/uploads/archivo/{{resumen.archivo}}" target='_blank' title="Click aquí para descargar el archivo">Click aquí para descargar el archivo</a></p>
+                  </div>
                 </div>
-              </div>
 
               </div>
-
 
             </div>
           </div>

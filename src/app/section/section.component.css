@@ -1,4 +1,13 @@
 section {
-  margin-bottom: 20px;
-  
+ margin-left: 5px;
+ 
+}
+
+button {
+  text-align: center;
+  margin-top: 5px;
+}
+
+#list-home-list{
+  font-size: 85%;
 }

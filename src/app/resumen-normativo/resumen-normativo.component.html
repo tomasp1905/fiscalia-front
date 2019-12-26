@@ -1,0 +1,63 @@
+<app-header></app-header>
+
+<!-- PARA MODAL -->
+<!-- <app-archivo-decreto-ley *ngIf="decretoLeySeleccionado" [decretoLey]="decretoLeySeleccionado"></app-archivo-decreto-ley> -->
+<!-- PARA MODAL -->
+
+<div class="card border-primary mb-3">
+  <div class="card-header">
+    <h5 align="center">LISTADO RESUMENES NORMATIVOS SEMANALES</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div class="row">
+      <div class="input-group input-group-sm col-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputNumero">Buscar por Año°:</span>
+        </div>
+        <input type="text" [(ngModel)]="anio" (input)="searchAnio()" class="form-control" aria-describedby="inputNumero" />
+      </div>
+    </div>
+
+    <br>
+
+    <div class="my-2 text-left">
+      <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/resumenesNormativos/formResumenNormativo']">
+        CARGAR RESUMEN NORMATIVO
+      </button>
+    </div>
+
+    <div *ngIf="resumenes?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos
+    </div>
+
+    <table class="table table-bordered table-striped text-center">
+      <thead>
+        <tr>
+          <th>Archivo</th>
+          <th>Año</th>
+          <th>Mes</th>
+          <th>Semana</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let resumen of resumenes">
+
+          <td><button type="button" (click)="abrirModal(resumen)" class="btn btn-dark btn-sm">ARCHIVO</button></td>
+          <td>{{resumen.anio}}</td>
+          <td>{{resumen.mes}}</td>
+          <td>{{resumen.semana}}</td>
+
+          <td>
+            <button type="button" name="editar" [routerLink]="['/resumenesNormativos/formResumenNormativo', resumen.id]" class="btn btn-success btn-sm"> EDITAR </button>
+          </td>
+
+          <td>
+            <button type="button" name="eliminar" (click)='delete(resumen)' class="btn btn-danger btn-sm"> ELIMINAR </button>
+          </td>
+
+        </tr>
+      </tbody>
+
+    </table>

@@ -1,25 +1,15 @@
 <app-header></app-header>
 
 <!-- PARA MODAL -->
-<app-archivo-decreto *ngIf="decretoSeleccionado" [decreto]="decretoSeleccionado"></app-archivo-decreto>
+<app-archivo-decreto-reglamentario *ngIf="decretoReglamentarioSeleccionado" [decretoReglamentario]="decretoReglamentarioSeleccionado"></app-archivo-decreto-reglamentario>
 <!-- PARA MODAL -->
 
 <div class="card border-primary mb-3">
   <div class="card-header">
-    <h5 align="center">LISTADO DECRETOS</h5>
+    <h5 align="center">LISTADO DECRETOS REGLAMENTARIOS</h5>
   </div>
   <div class="card-body text-primary">
 
-    <div  class="row">
-      <div class="input-group input-group-sm col-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputTitulo">Buscar por Título:</span>
-        </div>
-         <input type="text" [(ngModel)]="titulo" (input)="searchTitulo()" class="form-control" aria-describedby="inputTitulo" />
-      </div>
-    </div>
-
-    <br>
 
     <div  class="row">
       <div class="input-group input-group-sm col-2">
@@ -44,12 +34,12 @@
     <br>
 
     <div class="my-2 text-left">
-      <button  class="btn btn-rounded btn-primary" type="button" [routerLink]="['/decretos/formDecreto']">
-        CARGAR DECRETO 
+      <button  class="btn btn-rounded btn-primary" type="button" [routerLink]="['/decretosReglamentarios/formDecretoReglamentario']">
+        CARGAR DECRETO REGLAMENTARIO
       </button>
     </div>
 
-    <div *ngIf="decretos?.length == 0" class="alert alert-info">
+    <div *ngIf="decretosReglamentarios?.length == 0" class="alert alert-info">
       No hay registros en la Base de Datos
     </div>
 
@@ -58,7 +48,6 @@
         <tr>
           <th>Archivo</th>
           <th>Número</th>
-          <th>Título</th>
           <th>Año</th>
           <th>Fecha de Emisión</th>
           <th>Publicación en BO</th>
@@ -66,21 +55,20 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let decreto of decretos">
+        <tr *ngFor="let decretoReglamentario of decretosReglamentarios">
 
-          <td><button type="button" (click)="abrirModal(decreto)" class="btn btn-dark btn-sm">ARCHIVO</button></td>
-          <td>{{decreto.numero}}</td>
-          <td>{{decreto.titulo}}</td>
-          <td>{{decreto.anio}}</td>
-          <td>{{decreto.fechaEmision}}</td>
-          <td>{{decreto.publicacionBO}}</td>
+          <td><button type="button" (click)="abrirModal(decretoReglamentario)" class="btn btn-dark btn-sm">ARCHIVO</button></td>
+          <td>{{decretoReglamentario.numero}}</td>
+          <td>{{decretoReglamentario.anio}}</td>
+          <td>{{decretoReglamentario.fechaEmision}}</td>
+          <td>{{decretoReglamentario.publicacionBO}}</td>
 
           <td>
-            <button type="button" name="editar" [routerLink]="['/decretos/formDecreto', decreto.id]" class="btn btn-success btn-sm"> EDITAR </button>
+            <button type="button" name="editar" [routerLink]="['/decretosReglamentarios/formDecretoReglamentario', decretoReglamentario.id]" class="btn btn-success btn-sm"> EDITAR </button>
           </td>
 
           <td >
-            <button type="button" name="eliminar" (click)='delete(decreto)' class="btn btn-danger btn-sm"> ELIMINAR </button>
+            <button type="button" name="eliminar" (click)='delete(decretoReglamentario)' class="btn btn-danger btn-sm"> ELIMINAR </button>
           </td>
 
         </tr>

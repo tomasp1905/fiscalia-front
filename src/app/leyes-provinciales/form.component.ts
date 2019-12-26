@@ -4,6 +4,10 @@ import { LeyProvincialService } from './ley-provincial.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-form',
@@ -29,6 +33,8 @@ export class FormComponent implements OnInit {
         this.leyProvincialService.getLeyProvincial(id).subscribe((leyProvincial) => this.leyProvincial = leyProvincial);
       }
     });
+
+
   }
 
   //metodo para buscar cliente por ID (para luego modificarlo por ejemplo con el boton EDITAR)

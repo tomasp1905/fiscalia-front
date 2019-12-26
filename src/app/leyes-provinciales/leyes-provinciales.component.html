@@ -52,22 +52,25 @@
           <th>Título</th>
           <th>Fecha Sanción</th>
           <th>Publicación en BO</th>
+
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let ley of leyes">
 
-          <td *ngIf="authService.hasRole('ROLE_USER', 'ROLE_ADMIN')"><button type="button" (click)="abrirModal(ley)" class="btn btn-dark btn-sm">ARCHIVO</button></td>
+          <td><button type="button" (click)="abrirModal(ley)" class="btn btn-dark btn-sm">ARCHIVO</button></td>
           <td>{{ley.numero}}</td>
           <td>{{ley.titulo}}</td>
           <td>{{ley.fechaSancion}}</td>
           <td>{{ley.publicacionBO}}</td>
 
-          <td *ngIf="authService.hasRole('ROLE_USER','ROLE_ADMIN')">
+
+
+          <td>
             <button type="button" name="editar" [routerLink]="['/leyesProvinciales/form', ley.id]" class="btn btn-success btn-sm"> EDITAR </button>
           </td>
 
-          <td *ngIf="authService.hasRole('ROLE_ADMIN')">
+          <td>
             <button type="button" name="eliminar" (click)='delete(ley)' class="btn btn-danger btn-sm"> ELIMINAR </button>
           </td>
 
