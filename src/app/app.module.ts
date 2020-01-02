@@ -26,7 +26,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
 import {FormComponentUsuario} from './usuarios/formUsuario.component';
-import { BuscadorComponent } from './buscador/buscador.component';
+
 import { DecretosComponent } from './decretos/decretos.component';
 import { FormDecretoComponent } from './decretos/form-decreto.component';
 import { SectionInternoComponent } from './section-interno/section-interno.component';
@@ -55,7 +55,6 @@ const routes: Routes = [
   //{ path: 'crearUsuario', component: CrearUsuarioComponent },
   //{ path: 'usuarios/formUsuario', component: FormComponentUsuario},
  //{ path: 'usuarios/formUsuario/:id', component: FormComponentUsuario},
-  {path: 'buscador', component: BuscadorComponent},
   {path: 'decretos', component: DecretosComponent},
   {path: 'decretos/formDecreto', component: FormDecretoComponent},
   {path: 'decretos/formDecreto/:id', component: FormDecretoComponent},
@@ -86,7 +85,6 @@ const routes: Routes = [
     PaginatorComponent,
     CrearUsuarioComponent,
     FormComponentUsuario,
-    BuscadorComponent,
     DecretosComponent,
     FormDecretoComponent,
     SectionInternoComponent,

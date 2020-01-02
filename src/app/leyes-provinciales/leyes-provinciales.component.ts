@@ -4,11 +4,8 @@ import { LeyProvincialService } from './ley-provincial.service';
 import swal from 'sweetalert2';
 import { ModalService } from './archivo/modal.service';
 import { AuthService } from '../usuarios/auth.service';
-
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map, flatMap } from 'rxjs/operators';
-
 
 
 @Component({
@@ -36,7 +33,6 @@ export class LeyesProvincialesComponent implements OnInit {
     this.leyProvincialService.getLeyesProvinciales().subscribe( //llama al metodo GET del Service
       leyes => this.leyes = leyes //es el Observador, esto actualiza el listado de leyes y lo pasa a la vista con los posibles cambios
     );
-
   }
 
 
@@ -98,5 +94,7 @@ export class LeyesProvincialesComponent implements OnInit {
     }
 
   }
+
+
 
 }
