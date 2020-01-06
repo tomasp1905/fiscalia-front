@@ -1,0 +1,50 @@
+<app-header></app-header>
+
+<div class="card border-primary mb-3">
+  <div class="card-header">
+    <h5 align="center">LISTADO DE LEYES PROVINCIALES</h5>
+  </div>
+  <div class="card-body text-primary">
+
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Buscador de Leyes Provinciales" aria-label="Leyes" matInput [formControl]="autocompleteControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="mostrarNombre" (optionSelected)="seleccionarLey($event)">
+              <mat-option *ngFor="let leyes of leyesFiltradas | async" [value]="leyes">
+                {{leyes.titulo}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+
+
+    <table class="table table-bordered table-striped text-center">
+      <thead>
+        <tr>
+          <th>Archivo</th>
+          <th>Número</th>
+          <th>Título</th>
+          <th>Fecha Sanción</th>
+          <th>Publicación en BO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ley of leyes">
+          <!-- <td><button type="button" (click)="abrirModal(ley)" class="btn btn-dark btn-sm">ARCHIVO</button></td> -->
+          <td>{{ley.numero}}</td>
+          <td>{{ley.titulo}}</td>
+          <td>{{ley.fechaSancion}}</td>
+          <td>{{ley.publicacionBO}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<app-footer></app-footer>

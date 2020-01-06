@@ -27,6 +27,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
 import {FormComponentUsuario} from './usuarios/formUsuario.component';
 
+
 import { DecretosComponent } from './decretos/decretos.component';
 import { FormDecretoComponent } from './decretos/form-decreto.component';
 import { SectionInternoComponent } from './section-interno/section-interno.component';
@@ -40,6 +41,8 @@ import { ArchivoResumenNormativoComponent } from './resumen-normativo/archivo-re
 import { DecretoReglamentarioComponent } from './decreto-reglamentario/decreto-reglamentario.component';
 import { FormDecretoReglamentarioComponent } from './decreto-reglamentario/form-decreto-reglamentario.component';
 import { ArchivoDecretoReglamentarioComponent } from './decreto-reglamentario/archivo-decreto-reglamentario/archivo-decreto-reglamentario.component';
+import { LeyesProvincialesExtComponent } from './leyes-provinciales-ext/leyes-provinciales-ext.component';
+
 
 
 
@@ -67,7 +70,8 @@ const routes: Routes = [
   {path: 'resumenesNormativos/formResumenNormativo/:id', component: FormResumenNormativoComponent},
   {path: 'decretosReglamentarios', component: DecretoReglamentarioComponent},
   {path: 'decretosReglamentarios/formDecretoReglamentario', component: FormDecretoReglamentarioComponent},
-  {path: 'decretosReglamentarios/formDecretoReglamentario/:id', component: FormDecretoReglamentarioComponent}
+  {path: 'decretosReglamentarios/formDecretoReglamentario/:id', component: FormDecretoReglamentarioComponent},
+  {path: 'leyesProvincialesExt', component: LeyesProvincialesExtComponent },
 
 ];
 
@@ -98,6 +102,7 @@ const routes: Routes = [
     DecretoReglamentarioComponent,
     FormDecretoReglamentarioComponent,
     ArchivoDecretoReglamentarioComponent,
+    LeyesProvincialesExtComponent,
 
 
   ],
