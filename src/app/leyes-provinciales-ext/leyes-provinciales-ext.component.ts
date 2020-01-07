@@ -5,6 +5,9 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, flatMap} from 'rxjs/operators'
 import { MatAutocompleteSelectedEvent} from '@angular/material';
+import { LeyProvincialExt } from './ley-provincial-ext';
+ import {HttpClientModule} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-leyes-provinciales-ext',
@@ -21,19 +24,17 @@ export class LeyesProvincialesExtComponent implements OnInit {
 
   leyesFiltradas: Observable<LeyProvincial[]>;
 
+  leyProvincialExt: LeyProvincialExt = new LeyProvincialExt();
 
-  constructor(private leyProvincialServiceExt: LeyesProvincialesExtServiceService ) { }
+
+  constructor(private leyProvincialServiceExt: LeyesProvincialesExtServiceService, public http: HttpClient ) { }
 
   ngOnInit() {
-      // this.leyProvincialServiceExt.getLeyesProvinciales().subscribe(
-      //  leyes => this.leyes = leyes
-      // );
      this.leyesFiltradas = this.autocompleteControl.valueChanges
        .pipe(
          map(value => typeof value === 'string'? value: value.titulo),
          flatMap(value =>value ?  this._filter(value): [] )
        );
-
 
   }
 
@@ -50,12 +51,18 @@ export class LeyesProvincialesExtComponent implements OnInit {
  }
 
  seleccionarLey(event: MatAutocompleteSelectedEvent) : void {
-   let leyes = event.option.value as LeyProvincial;
-   console.log(leyes);
+   let ley = event.option.value as LeyProvincial;
+   console.log(ley);
+   this.leyProvincialExt.listaDeLeyes.push(ley);
 
+   this.autocompleteControl.setValue('');
+   event.option.focus();
+   event.option.deselect();
 
+   //this.leyesTabla.push(leyes);
  }
 
+/*
   searchTitulo() {
     if (this.titulo != "") {
       this.leyes = this.leyes.filter(res => {
@@ -64,6 +71,9 @@ export class LeyesProvincialesExtComponent implements OnInit {
     } else if (this.titulo == "") {
       this.ngOnInit();
     }
+  } */
+
+  abrirArchivo(archivo){
 
   }
 

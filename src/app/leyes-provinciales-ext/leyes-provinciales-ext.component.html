@@ -23,28 +23,39 @@
     </div>
 
 
-    <table class="table table-bordered table-striped text-center">
-      <thead>
-        <tr>
-          <th>Archivo</th>
-          <th>Número</th>
-          <th>Título</th>
-          <th>Fecha Sanción</th>
-          <th>Publicación en BO</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let ley of leyes">
-          <!-- <td><button type="button" (click)="abrirModal(ley)" class="btn btn-dark btn-sm">ARCHIVO</button></td> -->
-          <td>{{ley.numero}}</td>
-          <td>{{ley.titulo}}</td>
-          <td>{{ley.fechaSancion}}</td>
-          <td>{{ley.publicacionBO}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <br>
+
+    <div class="form-group row">
+      <div class="col-auto">
+        <table class="table table-bordered">
+          <thead>
+            <tr class="table-primary" align="center">
+              <th>TÍTULO</th>
+              <th>NÚMERO</th>
+              <th>FECHA SANCIÓN</th>
+              <th>PUBLICACIÓN EN BO</th>
+              <th>ARCHIVO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ley of leyProvincialExt.listaDeLeyes" align="center">
+              <td>{{ley.titulo}}</td>
+              <td>{{ley.numero}}</td>
+              <td>{{ley.fechaSancion}}</td>
+              <td>{{ley.publicacionBO}}</td>
+              <td>
+                <div>
+                  <!-- <p><a *ngIf="ley?.foto" href="http://localhost:8080/api/uploads/img/{{ley.foto}}" target='_blank' title="Click aquí para descargar el archivo">Click aquí para descargar el archivo</a></p> -->
+                  <a href="http://localhost:8080/api/uploads/img/{{ley.foto}}" onclick="window.open('archivo.pdf')">Abrir archivo pdf</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
   </div>
 </div>
 
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->

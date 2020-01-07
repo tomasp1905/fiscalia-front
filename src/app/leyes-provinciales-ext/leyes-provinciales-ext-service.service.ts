@@ -13,7 +13,6 @@ export class LeyesProvincialesExtServiceService {
   private urlEndPoint: string = 'http://localhost:8080/api/leyesProvinciales';
 
 
-
   constructor(private http: HttpClient) { }
 
   getLeyesProvinciales(): Observable<LeyProvincial[]> {
