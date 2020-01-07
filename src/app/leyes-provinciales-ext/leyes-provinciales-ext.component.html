@@ -46,7 +46,8 @@
               <td>
                 <div>
                   <!-- <p><a *ngIf="ley?.foto" href="http://localhost:8080/api/uploads/img/{{ley.foto}}" target='_blank' title="Click aquí para descargar el archivo">Click aquí para descargar el archivo</a></p> -->
-                  <a href="http://localhost:8080/api/uploads/img/{{ley.foto}}" onclick="window.open('archivo.pdf')">Abrir archivo pdf</a>
+                  <!-- <a href="http://localhost:8080/api/uploads/img/{{ley.foto}}" onclick="window.open('archivo.pdf')">Abrir archivo</a> -->
+                  <iframe  src="http://localhost:8080/api/uploads/img/{{ley.foto}}"></iframe>
                 </div>
               </td>
             </tr>
