@@ -29,8 +29,12 @@ export class LeyesProvincialesExtServiceService {
     );
   }
 
-filtrarLeyes(term:string):Observable<LeyProvincial[]> {
+filtrarLeyesPorTitulo(term:string):Observable<LeyProvincial[]> {
   return this.http.get<LeyProvincial[]>(`${this.urlEndPoint}/filtrar-titulo/${term}`)
+}
+
+filtrarLeyesPorNumero(term:string):Observable<LeyProvincial[]> {
+  return this.http.get<LeyProvincial[]>(`${this.urlEndPoint}/filtrar-numero/${term}`)
 }
 
 

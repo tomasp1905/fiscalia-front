@@ -26,6 +26,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
 import {FormComponentUsuario} from './usuarios/formUsuario.component';
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { PdfViewerModule} from 'ng2-pdf-viewer';
+
 
 
 import { DecretosComponent } from './decretos/decretos.component';
@@ -42,6 +45,8 @@ import { DecretoReglamentarioComponent } from './decreto-reglamentario/decreto-r
 import { FormDecretoReglamentarioComponent } from './decreto-reglamentario/form-decreto-reglamentario.component';
 import { ArchivoDecretoReglamentarioComponent } from './decreto-reglamentario/archivo-decreto-reglamentario/archivo-decreto-reglamentario.component';
 import { LeyesProvincialesExtComponent } from './leyes-provinciales-ext/leyes-provinciales-ext.component';
+import { DecretosExtComponent } from './decretos-ext/decretos-ext.component';
+import { DecretosLeyExtComponent } from './decretos-ley-ext/decretos-ley-ext.component';
 
 
 
@@ -72,6 +77,9 @@ const routes: Routes = [
   {path: 'decretosReglamentarios/formDecretoReglamentario', component: FormDecretoReglamentarioComponent},
   {path: 'decretosReglamentarios/formDecretoReglamentario/:id', component: FormDecretoReglamentarioComponent},
   {path: 'leyesProvincialesExt', component: LeyesProvincialesExtComponent },
+  {path: 'decretosExt', component: DecretosExtComponent },
+  {path: 'decretosLeyExt', component: DecretosLeyExtComponent },
+  {path: 'decretosLeyExt/page/:page', component: DecretosLeyExtComponent }
 
 ];
 
@@ -103,6 +111,8 @@ const routes: Routes = [
     FormDecretoReglamentarioComponent,
     ArchivoDecretoReglamentarioComponent,
     LeyesProvincialesExtComponent,
+    DecretosExtComponent,
+    DecretosLeyExtComponent,
 
 
   ],
@@ -111,7 +121,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule, //hacemos la importacion para usar los formularios
     HttpClientModule, BrowserAnimationsModule,
-    ReactiveFormsModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule //busqueda autocomplete
+    ReactiveFormsModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule, //busqueda autocomplete
+    MatDatepickerModule, MatNativeDateModule,
+    PdfViewerModule
 
   ],
   providers: [LeyProvincialService],// { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },], //servicios globales

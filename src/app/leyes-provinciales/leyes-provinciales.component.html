@@ -1,12 +1,13 @@
 <app-header></app-header>
 
+
 <!-- PARA MODAL -->
 <ley-archivo *ngIf="leyProvincialSeleccionada" [leyProvincial]="leyProvincialSeleccionada"></ley-archivo>
 <!-- PARA MODAL -->
 
 <div class="card border-primary mb-3">
   <div class="card-header">
-    <h5 align="center">LISTADO DE LEYES PROVINCIALES</h5>
+    <h5 align="center">LISTADO COMPLETO DE LEYES PROVINCIALES</h5>
   </div>
   <div class="card-body text-primary">
 
@@ -47,11 +48,12 @@
     <table class="table table-bordered table-striped text-center" *ngIf="leyes?.length>0">
       <thead>
         <tr>
-          <th>Archivo</th>
+          <th>Cargar Archivo</th>
           <th>Número</th>
           <th>Título</th>
           <th>Fecha Sanción</th>
           <th>Publicación en BO</th>
+          <th>Archivo</th>
 
         </tr>
       </thead>
@@ -64,6 +66,9 @@
           <td>{{ley.fechaSancion}}</td>
           <td>{{ley.publicacionBO}}</td>
 
+          <td>
+            <p><a *ngIf="ley?.archivo" href="http://localhost:8080/api/uploads/img/{{ley.archivo}}" target='_heopenit' title="Descargar archivo">Descargar archivo</a></p>
+          </td>
 
           <td>
             <button type="button" name="editar" [routerLink]="['/leyesProvinciales/form', ley.id]" class="btn btn-success btn-sm"> EDITAR </button>

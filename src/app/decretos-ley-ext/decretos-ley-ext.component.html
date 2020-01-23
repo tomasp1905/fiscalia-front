@@ -1,0 +1,131 @@
+<app-header></app-header>
+
+<div class="card border-primary mb-3">
+  <div class="card-header">
+    <h5 align="center">BÚSQUEDA PERSONALIZADA</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Ingrese título del Decreto" aria-label="DecretosLey" matInput [formControl]="autocompleteControlPorTitulo" [matAutocomplete]="autoTitulo">
+            <mat-autocomplete #autoTitulo="matAutocomplete" [displayWith]="mostrarNombrePorTitulo" (optionSelected)="seleccionarDecretoLeyPorTitulo($event)">
+              <mat-option *ngFor="let decretosAuto of decretosLeyFiltradosPorTitulo | async" [value]="decretosAuto">
+                {{decretosAuto.titulo}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Ingrese N° del Decreto" aria-label="DecretosLey" matInput [formControl]="autocompleteControlPorNumero" [matAutocomplete]="autoNumero">
+            <mat-autocomplete #autoNumero="matAutocomplete" [displayWith]="mostrarNombrePorNumero" (optionSelected)="seleccionarDecretoLeyPorNumero($event)">
+              <mat-option *ngFor="let decretosAuto of decretosLeyFiltradosPorNumero | async" [value]="decretosAuto">
+              N°: {{decretosAuto.numero}} - Título: {{decretosAuto.titulo}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Ingrese año del Decreto" aria-label="DecretosLey" matInput [formControl]="autocompleteControlPorAnio" [matAutocomplete]="autoAnio">
+            <mat-autocomplete #autoAnio="matAutocomplete" [displayWith]="mostrarNombrePorAnio" (optionSelected)="seleccionarDecretoLeyPorAnio($event)">
+              <mat-option *ngFor="let decretosAuto of decretosLeyFiltradosPorAnio | async" [value]="decretosAuto">
+              Año: {{decretosAuto.anio}} - Título: {{decretosAuto.titulo}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-auto">
+        <table class="table table-bordered" *ngIf="decretoLeyExt.listaDeDecretosLey?.length > 0 ">
+          <thead>
+            <tr class="table-primary" align="center">
+              <th>TÍTULO</th>
+              <th>NÚMERO</th>
+              <th>FECHA SANCIÓN</th>
+              <th>PUBLICACIÓN EN BO</th>
+               <th>ARCHIVO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let decretoAuto of decretoLeyExt.listaDeDecretosLey" align="center">
+              <td>{{decretoAuto.titulo}}</td>
+              <td>{{decretoAuto.numero}}</td>
+              <td>{{decretoAuto.fechaSancion}}</td>
+              <td>{{decretoAuto.publicacionBO}}</td>
+              <td>
+                <div>
+                  <p><a *ngIf="decretoAuto?.archivo" href="http://localhost:8080/api/uploads/archivodecreto/{{decretoAuto.archivo}}" target='_heopenit' title="Descargar archivo">Descargar archivo</a></p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <br>
+
+
+  </div>
+</div>
+
+<div class="card border-primary mb-3">
+  <div class="card-header">
+    <h5 align="center">LISTADO COMPLETO DECRETOS LEY</h5>
+  </div>
+  <div class="card-body text-primary">
+
+
+    <div class="form-group row">
+      <div class="col-auto">
+        <table class="table table-bordered">
+          <thead>
+            <tr class="table-primary" align="center">
+              <th>TÍTULO</th>
+              <th>NÚMERO</th>
+              <th>FECHA SANCIÓN</th>
+              <th>PUBLICACIÓN EN BO</th>
+               <th>ARCHIVO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let decretoLey of decretosLey" align="center">
+              <td>{{decretoLey.titulo}}</td>
+              <td>{{decretoLey.numero}}</td>
+              <td>{{decretoLey.fechaSancion}}</td>
+              <td>{{decretoLey.publicacionBO}}</td>
+              <td>
+                <div>
+                  <p><a *ngIf="decretoLey?.archivo" href="http://localhost:8080/api/uploads/archivodecreto/{{decretoLey.archivo}}" target='_heopenit' title="Descargar archivo">Descargar archivo</a></p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="col-10">
+  <button class="btn btn-primary" role="button" [routerLink]="['/section']">VOLVER ATRÁS</button>
+</div>

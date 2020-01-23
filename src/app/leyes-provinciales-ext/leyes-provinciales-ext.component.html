@@ -2,18 +2,17 @@
 
 <div class="card border-primary mb-3">
   <div class="card-header">
-    <h5 align="center">LISTADO DE LEYES PROVINCIALES</h5>
+    <h5 align="center">LEYES PROVINCIALES</h5>
   </div>
   <div class="card-body text-primary">
-
 
     <div class="form-group row">
       <div class="col-sm-6">
         <form class="example-form">
           <mat-form-field class="example-full-width">
-            <input type="text" placeholder="Buscador de Leyes Provinciales" aria-label="Leyes" matInput [formControl]="autocompleteControl" [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete" [displayWith]="mostrarNombre" (optionSelected)="seleccionarLey($event)">
-              <mat-option *ngFor="let leyes of leyesFiltradas | async" [value]="leyes">
+            <input type="text" placeholder="Ingrese título de la Ley" aria-label="Leyes" matInput [formControl]="autocompleteControlPorTitulo" [matAutocomplete]="autoTitulo">
+            <mat-autocomplete #autoTitulo="matAutocomplete" [displayWith]="mostrarNombrePorTitulo" (optionSelected)="seleccionarLeyPorTitulo($event)">
+              <mat-option *ngFor="let leyes of leyesFiltradasPorTitulo | async" [value]="leyes">
                 {{leyes.titulo}}
               </mat-option>
             </mat-autocomplete>
@@ -22,12 +21,26 @@
       </div>
     </div>
 
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Ingrese N° de la Ley" aria-label="Leyes" matInput [formControl]="autocompleteControlPorNumero" [matAutocomplete]="autoNumero">
+            <mat-autocomplete #autoNumero="matAutocomplete" [displayWith]="mostrarNombrePorNumero" (optionSelected)="seleccionarLeyPorNumero($event)">
+              <mat-option *ngFor="let leyes of leyesFiltradasPorNumero | async" [value]="leyes">
+                {{leyes.numero}} - {{leyes.titulo}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
 
     <br>
 
     <div class="form-group row">
       <div class="col-auto">
-        <table class="table table-bordered">
+        <table class="table table-bordered" *ngIf="leyProvincialExt.listaDeLeyes?.length > 0">
           <thead>
             <tr class="table-primary" align="center">
               <th>TÍTULO</th>
@@ -45,9 +58,7 @@
               <td>{{ley.publicacionBO}}</td>
               <td>
                 <div>
-                  <!-- <p><a *ngIf="ley?.foto" href="http://localhost:8080/api/uploads/img/{{ley.foto}}" target='_blank' title="Click aquí para descargar el archivo">Click aquí para descargar el archivo</a></p> -->
-                  <!-- <a href="http://localhost:8080/api/uploads/img/{{ley.foto}}" onclick="window.open('archivo.pdf')">Abrir archivo</a> -->
-                  <iframe  src="http://localhost:8080/api/uploads/img/{{ley.foto}}"></iframe>
+                  <a *ngIf="ley?.archivo" href="http://localhost:8080/api/uploads/img/{{ley.archivo}}" title="Descargar archivo">Descargar archivo</a>
                 </div>
               </td>
             </tr>
@@ -57,6 +68,9 @@
     </div>
 
   </div>
+
 </div>
 
-<!-- <app-footer></app-footer> -->
+<div class="col-10">
+  <button class="btn btn-primary" role="button" [routerLink]="['/section']">VOLVER ATRÁS</button>
+</div>

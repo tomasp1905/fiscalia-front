@@ -6,8 +6,7 @@ import {Observable} from 'rxjs';
 import {map, flatMap} from 'rxjs/operators'
 import { MatAutocompleteSelectedEvent} from '@angular/material';
 import { LeyProvincialExt } from './ley-provincial-ext';
- import {HttpClientModule} from '@angular/common/http';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-leyes-provinciales-ext',
@@ -17,68 +16,74 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class LeyesProvincialesExtComponent implements OnInit {
 
   leyes: LeyProvincial[];
-  titulo: string;
-  termino:string;
+//  titulo: string;
 
-  autocompleteControl = new FormControl();
+  autocompleteControlPorTitulo = new FormControl();
+  autocompleteControlPorNumero = new FormControl();
 
-  leyesFiltradas: Observable<LeyProvincial[]>;
+  leyesFiltradasPorTitulo: Observable<LeyProvincial[]>;
+  leyesFiltradasPorNumero: Observable<LeyProvincial[]>;
 
   leyProvincialExt: LeyProvincialExt = new LeyProvincialExt();
 
 
-  constructor(private leyProvincialServiceExt: LeyesProvincialesExtServiceService, public http: HttpClient ) { }
+  constructor(private leyProvincialServiceExt: LeyesProvincialesExtServiceService ) { }
 
   ngOnInit() {
-     this.leyesFiltradas = this.autocompleteControl.valueChanges
+     this.leyesFiltradasPorTitulo = this.autocompleteControlPorTitulo.valueChanges
        .pipe(
          map(value => typeof value === 'string'? value: value.titulo),
-         flatMap(value =>value ?  this._filter(value): [] )
+         flatMap(value =>value ?  this._filterPorTitulo(value): [] )
        );
+
+       this.leyesFiltradasPorNumero = this.autocompleteControlPorNumero.valueChanges
+         .pipe(
+           map(value => typeof value === 'string'? value: value.numero),
+           flatMap(value =>value ?  this._filterPorNumero(value): [] )
+         );
 
   }
 
 
-
- private _filter(value: string): Observable<LeyProvincial[]> {
+ private _filterPorTitulo(value: string): Observable<LeyProvincial[]> {
    const filterValue = value.toLowerCase();
 
-   return this.leyProvincialServiceExt.filtrarLeyes(filterValue);
+   return this.leyProvincialServiceExt.filtrarLeyesPorTitulo(filterValue);
  }
 
- mostrarNombre(leyes?: LeyProvincial):string | undefined {
+ private _filterPorNumero(value: string): Observable<LeyProvincial[]> {
+   return this.leyProvincialServiceExt.filtrarLeyesPorNumero(value);
+ }
+
+ mostrarNombrePorTitulo(leyes?: LeyProvincial):string | undefined {
    return leyes? leyes.titulo: undefined;
  }
 
- seleccionarLey(event: MatAutocompleteSelectedEvent) : void {
+ seleccionarLeyPorTitulo(event: MatAutocompleteSelectedEvent) : void {
    let ley = event.option.value as LeyProvincial;
    console.log(ley);
    this.leyProvincialExt.listaDeLeyes.push(ley);
 
-   this.autocompleteControl.setValue('');
+   this.autocompleteControlPorTitulo.setValue('');
    event.option.focus();
    event.option.deselect();
 
-   //this.leyesTabla.push(leyes);
  }
 
-/*
-  searchTitulo() {
-    if (this.titulo != "") {
-      this.leyes = this.leyes.filter(res => {
-        return res.titulo.toLocaleLowerCase().match(this.titulo.toLocaleLowerCase());
-      });
-    } else if (this.titulo == "") {
-      this.ngOnInit();
-    }
-  } */
+ mostrarNombrePorNumero(leyes?: LeyProvincial):string | undefined {
+   return leyes? leyes.numero: undefined;
+ }
 
-  abrirArchivo(archivo){
+ seleccionarLeyPorNumero(event: MatAutocompleteSelectedEvent) : void {
+   let ley = event.option.value as LeyProvincial;
+   console.log(ley);
+   this.leyProvincialExt.listaDeLeyes.push(ley);
 
-  }
+   this.autocompleteControlPorNumero.setValue('');
+   event.option.focus();
+   event.option.deselect();
 
-
-
+ }
 
 
 }

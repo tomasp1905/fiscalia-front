@@ -4,8 +4,7 @@ import { LeyProvincialService } from './ley-provincial.service';
 import swal from 'sweetalert2';
 import { ModalService } from './archivo/modal.service';
 import { AuthService } from '../usuarios/auth.service';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
+
 
 
 @Component({
@@ -16,13 +15,12 @@ import { Observable } from 'rxjs';
 export class LeyesProvincialesComponent implements OnInit {
 
   leyes: LeyProvincial[];
+
+
   leyProvincialSeleccionada: LeyProvincial; //MODAL
+
   titulo: string;
   numero: string;
-
-  autocompleteControl = new FormControl();
-
-  leyesFiltradas: Observable<LeyProvincial[]>;
 
 
   //constructor (private NombreDelAtributo: Servicio) {} --> instanciar servicio
@@ -33,7 +31,9 @@ export class LeyesProvincialesComponent implements OnInit {
     this.leyProvincialService.getLeyesProvinciales().subscribe( //llama al metodo GET del Service
       leyes => this.leyes = leyes //es el Observador, esto actualiza el listado de leyes y lo pasa a la vista con los posibles cambios
     );
+
   }
+
 
 
   delete(leyProvincial: LeyProvincial): void {
@@ -73,6 +73,7 @@ export class LeyesProvincialesComponent implements OnInit {
     this.modalService.abirModal();
   }
 
+
   searchTitulo() {
     if (this.titulo != "") {
       this.leyes = this.leyes.filter(res => {
@@ -87,14 +88,13 @@ export class LeyesProvincialesComponent implements OnInit {
   searchNumero() {
     if (this.numero != "") {
       this.leyes = this.leyes.filter(res => {
-        return res.numero.toLocaleLowerCase().match(this.numero.toLocaleLowerCase());
+        return res.numero.match(this.numero);
       });
     } else if (this.numero == "") {
       this.ngOnInit();
     }
 
   }
-
 
 
 }

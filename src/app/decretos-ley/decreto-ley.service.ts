@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { formatDate } from '@angular/common';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 import { DecretoLey } from './decretoLey';
 
 @Injectable({
@@ -11,7 +11,7 @@ import { DecretoLey } from './decretoLey';
 })
 export class DecretoLeyService {
 
-private urlEndPoint: string = 'http://localhost:8080/api/decretosley';
+  private urlEndPoint: string = 'http://localhost:8080/api/decretosley';
 
   constructor(private http: HttpClient, private router: Router) { }
 

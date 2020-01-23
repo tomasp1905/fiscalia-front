@@ -56,12 +56,13 @@
     <table class="table table-bordered table-striped text-center">
       <thead>
         <tr>
-          <th>Archivo</th>
+          <th>Cargar Archivo</th>
           <th>Número</th>
           <th>Título</th>
           <th>Año</th>
           <th>Fecha de Sanción</th>
           <th>Publicación en BO</th>
+          <th>Archivo</th>
         </tr>
       </thead>
 
@@ -74,6 +75,10 @@
           <td>{{decretoLey.anio}}</td>
           <td>{{decretoLey.fechaSancion}}</td>
           <td>{{decretoLey.publicacionBO}}</td>
+
+          <td>
+            <p><a *ngIf="decretoLey?.archivo" href="http://localhost:8080/api/uploads/archivodecreto/{{decretoLey.archivo}}" target='_heopenit' title="Descargar archivo">Descargar archivo</a></p>
+          </td>
 
           <td>
             <button type="button" name="editar" [routerLink]="['/decretosLey/formDecretoLey', decretoLey.id]" class="btn btn-success btn-sm"> EDITAR </button>

@@ -1,6 +1,6 @@
 section {
  margin-left: 5px;
- 
+
 }
 
 button {
@@ -10,4 +10,15 @@ button {
 
 #list-home-list{
   font-size: 85%;
+}
+
+img{
+    position: absolute;
+     max-width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 8px;
 }

@@ -9,7 +9,7 @@ export class ModalResumenSemanalService {
 
   constructor() { }
 
-  abirModal() {
+  abrirModal() {
     this.modal = true;
   }
 

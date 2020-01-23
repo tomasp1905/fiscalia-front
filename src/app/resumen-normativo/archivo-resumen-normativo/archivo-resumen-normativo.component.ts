@@ -38,14 +38,14 @@ export class ArchivoResumenNormativoComponent implements OnInit {
 
           console.log(response);
 
-          this.resumen = response.res as ResumenNormativo;
+          this.resumen = response.resumen as ResumenNormativo;
 
           console.log(this.resumen);
           console.log(response.resumen);
           console.log(response.mensaje);
 
           swal.fire('Archivo subido completamente', response.mensaje, 'success');
-          console.log("Este es el resumen" + this.resumen.id);
+          //console.log("Este es el resumen" + this.resumen.id);
         }
 
       });

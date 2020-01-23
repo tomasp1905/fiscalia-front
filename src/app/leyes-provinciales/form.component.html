@@ -23,14 +23,14 @@
 
       <div class="form-group row">
         <label for="fechaSancion" class="col-form-label col-auto">Fecha Sanción:</label>
-        <div class="col-auto">
+        <div class="col-3">
           <input type="date" class="form-control" [(ngModel)]="leyProvincial.fechaSancion" name="fechaSancion" required>
         </div>
       </div>
 
       <div class="form-group row">
         <label for="publicacionBO" class="col-form-label col-auto">Publicación BO:</label>
-        <div class="col-auto">
+        <div class="col-3">
           <input type="date" class="form-control" [(ngModel)]="leyProvincial.publicacionBO" name="publicacionBO" required>
         </div>
       </div>
@@ -59,12 +59,3 @@
   <button class="btn btn-primary" role="button" [routerLink]="['/leyesProvinciales']">VOLVER ATRÁS</button>
   </div>
 </div>
-
-<footer class="footer row bg-dark">
-  <div class="col-12">
-    <h5>
-      La información a la que se accederá es producida por la Dirección de Informática Jurdídica dependiente de la
-      Fiscalía de Estado de la Provincia de Córdoba.
-    </h5>
-  </div>
-</footer>

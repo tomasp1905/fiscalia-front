@@ -13,7 +13,7 @@ export class ResumenNormativoComponent implements OnInit {
 
   resumenes: ResumenNormativo[];
   resumenSeleccionado: ResumenNormativo;
-  anio: string;
+
 
 
   constructor(private resumenNormativoService: ResumenNormativoService, private modalResumenNormativoService: ModalResumenSemanalService) { }
@@ -58,17 +58,10 @@ export class ResumenNormativoComponent implements OnInit {
 
   abrirModal(resumen: ResumenNormativo) {
     this.resumenSeleccionado = resumen;
-    this.modalResumenNormativoService.abirModal();
+    this.modalResumenNormativoService.abrirModal();
+    console.log("Click");
   }
 
-  searchAnio() {
-    if (this.anio != "") {
-      this.resumenes = this.resumenes.filter(res => {
-        return res.anio.toLocaleLowerCase().match(this.anio.toLocaleLowerCase());
-      });
-    } else if (this.anio == "") {
-      this.ngOnInit();
-    }
-  }
+
 
 }

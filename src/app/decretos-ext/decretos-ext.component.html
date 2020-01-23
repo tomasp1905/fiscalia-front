@@ -1,0 +1,93 @@
+<app-header></app-header>
+
+<div class="card border-primary mb-3">
+  <div class="card-header">
+    <h5 align="center">DECRETOS PROVINCIALES</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Ingrese título del Decreto" aria-label="Decretos" matInput [formControl]="autocompleteControlPorTitulo" [matAutocomplete]="autoTitulo">
+            <mat-autocomplete #autoTitulo="matAutocomplete" [displayWith]="mostrarNombrePorTitulo" (optionSelected)="seleccionarDecretoPorTitulo($event)">
+              <mat-option *ngFor="let decretos of decretosFiltradosPorTitulo | async" [value]="decretos">
+                {{decretos.titulo}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Ingrese año del Decreto" aria-label="Decretos" matInput [formControl]="autocompleteControlPorAnio" [matAutocomplete]="autoAnio">
+            <mat-autocomplete #autoAnio="matAutocomplete" [displayWith]="mostrarNombrePorAnio" (optionSelected)="seleccionarDecretoPorAnio($event)">
+              <mat-option *ngFor="let decretos of decretosFiltradosPorAnio | async" [value]="decretos">
+                Año: {{decretos.anio}} - Título: {{decretos.titulo}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Ingrese N° del Decreto" aria-label="Decretos" matInput [formControl]="autocompleteControlPorNumero" [matAutocomplete]="autoNumero">
+            <mat-autocomplete #autoNumero="matAutocomplete" [displayWith]="mostrarNombrePorNumero" (optionSelected)="seleccionarDecretoPorNumero($event)">
+              <mat-option *ngFor="let decretos of decretosFiltradosPorNumero | async" [value]="decretos">
+                N°: {{decretos.numero}} - Título: {{decretos.titulo}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="form-group row">
+      <div class="col-auto">
+        <table class="table table-bordered" *ngIf="decretoExt.listaDeDecretos?.length > 0">
+          <thead>
+            <tr class="table-primary" align="center">
+              <th>TÍTULO</th>
+              <th>NÚMERO</th>
+              <th>FECHA EMISIÓN</th>
+              <th>PUBLICACIÓN EN BO</th>
+              <th>ARCHIVO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let decreto of decretoExt.listaDeDecretos" align="center">
+              <td>{{decreto.titulo}}</td>
+              <td>{{decreto.numero}}</td>
+              <td>{{decreto.fechaEmision}}</td>
+              <td>{{decreto.publicacionBO}}</td>
+              <td>
+                <div>
+                  <p><a *ngIf="decreto?.archivo" href="http://localhost:8080/api/uploads/archivo/{{decreto.archivo}}" target='_heopenit' title="Descargar archivo">Descargar archivo</a></p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <br>
+
+  </div>
+</div>
+
+<div class="col-10">
+  <button class="btn btn-primary" role="button" [routerLink]="['/section']">VOLVER ATRÁS</button>
+</div>

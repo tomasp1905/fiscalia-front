@@ -45,7 +45,7 @@
 
     <div class="my-2 text-left">
       <button  class="btn btn-rounded btn-primary" type="button" [routerLink]="['/decretos/formDecreto']">
-        CARGAR DECRETO 
+        CARGAR DECRETO
       </button>
     </div>
 
@@ -56,12 +56,13 @@
     <table class="table table-bordered table-striped text-center">
       <thead>
         <tr>
-          <th>Archivo</th>
+          <th>Cargar Archivo</th>
           <th>Número</th>
           <th>Título</th>
           <th>Año</th>
           <th>Fecha de Emisión</th>
           <th>Publicación en BO</th>
+          <th>Archivo</th>
         </tr>
       </thead>
 
@@ -74,6 +75,10 @@
           <td>{{decreto.anio}}</td>
           <td>{{decreto.fechaEmision}}</td>
           <td>{{decreto.publicacionBO}}</td>
+
+          <td>
+            <p><a *ngIf="decreto?.archivo" href="http://localhost:8080/api/uploads/img/{{decreto.archivo}}" target='_heopenit' title="Descargar archivo">Descargar archivo</a></p>
+          </td>
 
           <td>
             <button type="button" name="editar" [routerLink]="['/decretos/formDecreto', decreto.id]" class="btn btn-success btn-sm"> EDITAR </button>

@@ -8,23 +8,11 @@
       <!--esto sirve para habilitar el boton cuando los datos ingresados sean válidos -->
 
       <div class="form-group row">
-        <label for="anio" class="col-form-label col-auto">Año:</label>
-        <div class="col-auto">
-          <input type="number" class="form-control" [(ngModel)]="resumen.anio" name="anio" autocomplete="off" required>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="mes" class="col-form-label col-auto">Mes:</label>
-        <div class="col-8">
-          <input type="text" class="form-control" [(ngModel)]="resumen.mes" name="mes" autocomplete="off" required>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="semana" class="col-form-label col-auto">Semana:</label>
-        <div class="col-8">
-          <input type="number" class="form-control" [(ngModel)]="resumen.semana" name="semana" autocomplete="off" required>
+        <label for="fecha" class="col-form-label col-auto">Fecha:</label>
+        <div class="col-3">
+          <input [matDatepicker]="myDatepicker" class="form-control" [(ngModel)]="resumen.fecha" name="fecha" autocomplete="off" placeholder="Ingrese fecha" style="display:inline;" required/>
+            <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker></mat-datepicker>
         </div>
       </div>
 
@@ -53,11 +41,11 @@
   </div>
 </div>
 
-<footer class="footer row bg-dark">
+<!-- <footer class="footer row bg-dark">
   <div class="col-12">
     <h5>
       La información a la que se accederá es producida por la Dirección de Informática Jurdídica dependiente de la
       Fiscalía de Estado de la Provincia de Córdoba.
     </h5>
   </div>
-</footer>
+</footer> -->

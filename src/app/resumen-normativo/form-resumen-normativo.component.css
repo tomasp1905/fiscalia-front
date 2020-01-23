@@ -8,3 +8,19 @@ h5 {
   color: #3498db;
   text-align: center;
 }
+
+label{
+  display: inline-block;
+  width: 115px;
+}
+
+.full-width {
+  width: 100%;
+
+}
+
+.form {
+  min-width: 150px;
+  max-width: 600px;
+  width: 100%;
+}

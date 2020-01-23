@@ -3,6 +3,8 @@ import { DecretoLey } from './decretoLey';
 import { DecretoLeyService } from './decreto-ley.service';
 import swal from 'sweetalert2';
 import { ModalDecretoLeyService } from './archivo-decreto-ley/modal-decreto-ley.service';
+import { tap } from 'rxjs/operators';
+import { DecretoLeyExtService } from '../decretos-ley-ext/decreto-ley-ext.service';
 
 @Component({
   selector: 'app-decretos-ley',
@@ -85,7 +87,7 @@ export class DecretosLeyComponent implements OnInit {
   searchAnio() {
     if (this.anio != "") {
       this.decretosLey = this.decretosLey.filter(res => {
-        return res.anio.toLocaleLowerCase().match(this.anio.toLocaleLowerCase());
+        return res.anio.match(this.anio);
       });
     } else if (this.anio == "") {
       this.ngOnInit();

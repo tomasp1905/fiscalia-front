@@ -4,5 +4,6 @@ export class LeyProvincial {
   titulo: string;
   fechaSancion: string;
   publicacionBO: string;
-  foto: string;
+  archivo: string;
+  listaDeLeyes: Array<LeyProvincial> = [];
 }
