@@ -47,7 +47,8 @@
               <th>NÚMERO</th>
               <th>FECHA SANCIÓN</th>
               <th>PUBLICACIÓN EN BO</th>
-              <th>ARCHIVO</th>
+              <th>TEXTO ORIGINAL</th>
+              <th>TEXTO ACTUALIZADO</th>
             </tr>
           </thead>
           <tbody>
@@ -58,7 +59,12 @@
               <td>{{ley.publicacionBO}}</td>
               <td>
                 <div>
-                  <a *ngIf="ley?.archivo" href="http://localhost:8080/api/uploads/img/{{ley.archivo}}" title="Descargar archivo">Descargar archivo</a>
+                  <a *ngIf="ley?.archivo" href="http://localhost:8080/api/uploads/archivo/{{ley.archivo}}" target='_blank' title="Ver archivo">Ver archivo</a>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <a *ngIf="ley?.archivoActualizado" href="http://localhost:8080/api/uploadsActualizado/archivo/{{ley.archivoActualizado}}" target='_blank' title="Ver archivo">Ver archivo</a>
                 </div>
               </td>
             </tr>
@@ -70,6 +76,7 @@
   </div>
 
 </div>
+
 
 <div class="col-10">
   <button class="btn btn-primary" role="button" [routerLink]="['/section']">VOLVER ATRÁS</button>

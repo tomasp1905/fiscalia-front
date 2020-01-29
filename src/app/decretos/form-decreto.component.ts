@@ -34,7 +34,7 @@ export class FormDecretoComponent implements OnInit {
     })
   }
 
-
+/*  COMENTO POR SI LLEGA A FALLAR EL NUEVO CAMBIO
    create(): void {
     this.decretoService.create(this.decreto).subscribe(
       decreto => {
@@ -47,13 +47,27 @@ export class FormDecretoComponent implements OnInit {
         console.error(err.error.errors);
       }
     );
-  }
+  } */
+
+  create(): void {
+   this.decretoService.create(this.decreto).subscribe(
+     decreto => {
+       this.router.navigate(['/decretos'])
+       swal.fire('Nuevo Decreto', `El Decreto ${this.decreto.numero} se creó con éxito`, 'success')
+     },
+     err => {
+       this.errores = err.error.errors as string[];
+       console.error('Código del error desde el backend: ' + err.status);
+       console.error(err.error.errors);
+     }
+   );
+ }
 
 update(): void {
   this.decretoService.update(this.decreto)
     .subscribe(json => {
       this.router.navigate(['/decretos'])
-      swal.fire('Decreto Actualizado', `${json.mensaje}`, 'success');
+      swal.fire('Decreto Actualizado',`El Decreto ${this.decreto.numero} se actualizó con éxito`, 'success');
     },
       err => {
         this.errores = err.error.errors as string[];

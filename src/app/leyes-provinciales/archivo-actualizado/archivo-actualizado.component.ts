@@ -1,19 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LeyProvincial } from '../ley-provincial';
 import { LeyProvincialService } from '../ley-provincial.service';
-import swal from 'sweetalert2';
+import { LeyProvincial } from '../ley-provincial';
 import { HttpEventType } from '@angular/common/http';
-import { ModalService } from './modal.service';
-import { AuthService } from 'src/app/usuarios/auth.service';
-
-
+import swal from 'sweetalert2';
+import { ModalActualizadoService } from './modal-actualizado.service';
 
 @Component({
-  selector: 'ley-archivo',
-  templateUrl: './archivo.component.html',
-  styleUrls: ['./archivo.component.css']
+  selector: 'app-archivo-actualizado',
+  templateUrl: './archivo-actualizado.component.html',
+  styleUrls: ['./archivo-actualizado.component.css']
 })
-export class ArchivoComponent implements OnInit {
+export class ArchivoActualizadoComponent implements OnInit {
 
   @Input() leyProvincial: LeyProvincial; //INPUT MODAL
   titulo: string = "ARCHIVO LEY PROVINCIAL";
@@ -21,20 +18,9 @@ export class ArchivoComponent implements OnInit {
   progreso: number = 0;
 
 
-
-  constructor(private leyProvincialService: LeyProvincialService, public modalService: ModalService, public authService: AuthService) { }
+  constructor(private leyProvincialService: LeyProvincialService, private modalActualizadoService: ModalActualizadoService) { }
 
   ngOnInit() {
-    //Se saca para el MODAL
-  /*  this.activatedRoute.paramMap.subscribe(params => {
-      let id = +params.get('id');
-      if (id) {
-        this.leyProvincialService.getLeyProvincial(id).subscribe(leyProvincial => {
-          this.leyProvincial = leyProvincial;
-        });
-      }
-    }); */
-
   }
 
   seleccionarArchivo(event) {
@@ -46,7 +32,7 @@ export class ArchivoComponent implements OnInit {
 
 
   subirArchivo() {
-    this.leyProvincialService.subirArchivo(this.archivoSeleccionado, this.leyProvincial.id)
+    this.leyProvincialService.subirArchivoActualizado(this.archivoSeleccionado, this.leyProvincial.id)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progreso = Math.round((event.loaded / event.total) * 100);
@@ -69,8 +55,8 @@ export class ArchivoComponent implements OnInit {
       });
   }
 
-  cerrarModal() {
-    this.modalService.cerrarModal();
+  cerrarModalActualizado() {
+    this.modalActualizadoService.cerrarModalActualizado();
     this.archivoSeleccionado = null;
     this.progreso = 0;
   }

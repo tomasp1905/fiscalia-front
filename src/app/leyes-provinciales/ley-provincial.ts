@@ -6,4 +6,6 @@ export class LeyProvincial {
   publicacionBO: string;
   archivo: string;
   listaDeLeyes: Array<LeyProvincial> = [];
+
+  archivoActualizado: string;
 }

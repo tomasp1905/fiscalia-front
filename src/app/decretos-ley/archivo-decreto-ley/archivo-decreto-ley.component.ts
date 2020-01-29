@@ -13,7 +13,7 @@ import { ModalDecretoLeyService } from './modal-decreto-ley.service';
 export class ArchivoDecretoLeyComponent implements OnInit {
 
   @Input() decretoLey: DecretoLey; //INPUT MODAL
-  titulo: string = "ARCHIVO DECRETO";
+  titulo: string = "ARCHIVO DECRETO LEY";
   private archivoSeleccionado: File;
   progreso: number = 0;
 
@@ -39,13 +39,13 @@ export class ArchivoDecretoLeyComponent implements OnInit {
           console.log(response);
 
           this.decretoLey = response.decreto as DecretoLey;
-
-          console.log(this.decretoLey);
-          console.log(response.decretoLey);
-          console.log(response.mensaje);
-
-          swal.fire('Archivo subido completamente', response.mensaje, 'success');
-          console.log("Este es el decreto" + this.decretoLey.id);
+          location.reload();
+          // console.log(this.decretoLey);
+          // console.log(response.decretoLey);
+          // console.log(response.mensaje);
+          //
+          // swal.fire('Archivo subido completamente', response.mensaje, 'success');
+          // console.log("Este es el decreto" + this.decretoLey.id);
         }
 
       });

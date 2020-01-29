@@ -1,23 +1,24 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Decreto } from '../decreto';
 import { DecretoService } from '../decreto.service';
-import { ModalDecretoService } from './modal-decreto.service';
+import { ModalActualizadoDecretoService } from './modal-actualizado-decreto.service';
 import { HttpEventType } from '@angular/common/http';
 import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-archivo-decreto',
-  templateUrl: './archivo-decreto.component.html',
-  styleUrls: ['./archivo-decreto.component.css']
+  selector: 'app-archivo-actualizado-decreto',
+  templateUrl: './archivo-actualizado-decreto.component.html',
+  styleUrls: ['./archivo-actualizado-decreto.component.css']
 })
-export class ArchivoDecretoComponent implements OnInit {
+export class ArchivoActualizadoDecretoComponent implements OnInit {
 
   @Input() decreto: Decreto; //INPUT MODAL
   titulo: string = "ARCHIVO DECRETO";
   private archivoSeleccionado: File;
   progreso: number = 0;
 
-  constructor(private decretoService: DecretoService, public modalDecretoService: ModalDecretoService) { }
+
+  constructor(private decretoService: DecretoService, private modalActualizadoDecretoService: ModalActualizadoDecretoService) { }
 
   ngOnInit() {
   }
@@ -29,9 +30,8 @@ export class ArchivoDecretoComponent implements OnInit {
 
   }
 
-
   subirArchivo() {
-    this.decretoService.subirArchivoDecreto(this.archivoSeleccionado, this.decreto.id)
+    this.decretoService.subirArchivoActualizado(this.archivoSeleccionado, this.decreto.id)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progreso = Math.round((event.loaded / event.total) * 100);
@@ -48,14 +48,14 @@ export class ArchivoDecretoComponent implements OnInit {
           // console.log(response.mensaje);
           //
           // swal.fire('Archivo subido completamente', response.mensaje, 'success');
-          // console.log("Este es el decreto" + this.decreto.id);
+          // console.log("Esta es el decreto" + this.decreto.id);
         }
 
       });
   }
 
-  cerrarModal() {
-    this.modalDecretoService.cerrarModal();
+  cerrarModalActualizado() {
+    this.modalActualizadoDecretoService.cerrarModalActualizado();
     this.archivoSeleccionado = null;
     this.progreso = 0;
   }

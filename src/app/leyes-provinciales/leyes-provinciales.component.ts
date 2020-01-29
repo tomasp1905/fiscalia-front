@@ -4,6 +4,7 @@ import { LeyProvincialService } from './ley-provincial.service';
 import swal from 'sweetalert2';
 import { ModalService } from './archivo/modal.service';
 import { AuthService } from '../usuarios/auth.service';
+import { ModalActualizadoService } from './archivo-actualizado/modal-actualizado.service';
 
 
 
@@ -18,13 +19,14 @@ export class LeyesProvincialesComponent implements OnInit {
 
 
   leyProvincialSeleccionada: LeyProvincial; //MODAL
+  leyProvincialSeleccionadaActualizada: LeyProvincial //MODAL ACTUALIZADO
 
   titulo: string;
   numero: string;
 
 
   //constructor (private NombreDelAtributo: Servicio) {} --> instanciar servicio
-  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService, public authService: AuthService) { }
+  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService, public authService: AuthService, private modalActualizadoService:ModalActualizadoService) { }
 
 
   ngOnInit() {
@@ -73,6 +75,11 @@ export class LeyesProvincialesComponent implements OnInit {
     this.modalService.abirModal();
   }
 
+  abrirModalActualizado(ley:LeyProvincial) {
+    this.leyProvincialSeleccionadaActualizada = ley;
+    this.modalActualizadoService.abirModalActualizado();
+  }
+
 
   searchTitulo() {
     if (this.titulo != "") {
@@ -96,5 +103,6 @@ export class LeyesProvincialesComponent implements OnInit {
 
   }
 
+  
 
 }

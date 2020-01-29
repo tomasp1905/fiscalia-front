@@ -4,6 +4,10 @@
 <app-archivo-decreto *ngIf="decretoSeleccionado" [decreto]="decretoSeleccionado"></app-archivo-decreto>
 <!-- PARA MODAL -->
 
+<!-- PARA MODAL ACTUALIZADO-->
+<app-archivo-actualizado-decreto *ngIf="decretoSeleccionadoActualizado" [decreto]="decretoSeleccionadoActualizado"></app-archivo-actualizado-decreto>
+<!-- PARA MODAL ACTUALIZADO-->
+
 <div class="card border-primary mb-3">
   <div class="card-header">
     <h5 align="center">LISTADO DECRETOS</h5>
@@ -53,23 +57,26 @@
       No hay registros en la Base de Datos
     </div>
 
-    <table class="table table-bordered table-striped text-center">
+    <table class="table table-bordered table-striped text-center" align="center"  *ngIf="decretos?.length>0">
       <thead>
         <tr>
-          <th>Cargar Archivo</th>
+          <th>Cargar Texto Original</th>
+          <th>Cargar Texto Actualizado</th>
           <th>Número</th>
           <th>Título</th>
           <th>Año</th>
           <th>Fecha de Emisión</th>
           <th>Publicación en BO</th>
-          <th>Archivo</th>
+          <th>Texto Original</th>
+          <th>Texto Actualizado</th>
         </tr>
       </thead>
 
       <tbody>
         <tr *ngFor="let decreto of decretos">
 
-          <td><button type="button" (click)="abrirModal(decreto)" class="btn btn-dark btn-sm">ARCHIVO</button></td>
+          <td><button type="button" (click)="abrirModal(decreto)" class="btn btn-dark btn-sm">ORIGINAL</button></td>
+          <td><button type="button" (click)="abrirModalActualizado(decreto)" class="btn btn-dark btn-sm">ACTUALIZADO</button></td>
           <td>{{decreto.numero}}</td>
           <td>{{decreto.titulo}}</td>
           <td>{{decreto.anio}}</td>
@@ -77,7 +84,11 @@
           <td>{{decreto.publicacionBO}}</td>
 
           <td>
-            <p><a *ngIf="decreto?.archivo" href="http://localhost:8080/api/uploads/img/{{decreto.archivo}}" target='_heopenit' title="Descargar archivo">Descargar archivo</a></p>
+            <p><a *ngIf="decreto?.archivo" href="http://localhost:8080/api/uploadsDecreto/archivo/{{decreto.archivo}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+          </td>
+
+          <td>
+            <p><a *ngIf="decreto?.archivoActualizado" href="http://localhost:8080/api/uploadsActualizadoDecreto/archivo/{{decreto.archivoActualizado}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
           </td>
 
           <td>
@@ -92,3 +103,12 @@
       </tbody>
 
     </table>
+
+    </div>
+    </div>
+
+    <br>
+
+    <div class="col-10">
+      <button class="btn btn-primary" role="button" [routerLink]="['/sectionInterno']">VOLVER ATRÁS</button>
+    </div>

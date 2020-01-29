@@ -53,7 +53,7 @@
       No hay registros en la Base de Datos
     </div>
 
-    <table class="table table-bordered table-striped text-center">
+    <table class="table table-bordered table-striped text-center" *ngIf="decretosLey?.length > 0">
       <thead>
         <tr>
           <th>Cargar Archivo</th>
@@ -62,7 +62,7 @@
           <th>Año</th>
           <th>Fecha de Sanción</th>
           <th>Publicación en BO</th>
-          <th>Archivo</th>
+          <th>Texto Original</th>
         </tr>
       </thead>
 
@@ -77,7 +77,7 @@
           <td>{{decretoLey.publicacionBO}}</td>
 
           <td>
-            <p><a *ngIf="decretoLey?.archivo" href="http://localhost:8080/api/uploads/archivodecreto/{{decretoLey.archivo}}" target='_heopenit' title="Descargar archivo">Descargar archivo</a></p>
+            <p><a *ngIf="decretoLey?.archivo" href="http://localhost:8080/api/uploads/archivodecreto/{{decretoLey.archivo}}" target='_heopenit' title="Ver archivo">Ver archivo</a></p>
           </td>
 
           <td>
@@ -92,3 +92,12 @@
       </tbody>
 
     </table>
+
+    </div>
+    </div>
+
+    <br>
+
+    <div class="col-10">
+      <button class="btn btn-primary" role="button" [routerLink]="['/sectionInterno']">VOLVER ATRÁS</button>
+    </div>

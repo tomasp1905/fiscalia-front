@@ -3,6 +3,7 @@ import { Decreto } from './decreto';
 import { DecretoService } from './decreto.service';
 import swal from 'sweetalert2';
 import { ModalDecretoService } from './archivo-decreto/modal-decreto.service';
+import { ModalActualizadoDecretoService } from './archivo-actualizado-decreto/modal-actualizado-decreto.service';
 
 @Component({
   selector: 'app-decretos',
@@ -17,7 +18,9 @@ export class DecretosComponent implements OnInit {
   numero: string;
   anio:string;
 
-  constructor(private decretoService: DecretoService, private modalDecretoService: ModalDecretoService) { }
+  decretoSeleccionadoActualizado: Decreto;
+
+  constructor(private decretoService: DecretoService, private modalDecretoService: ModalDecretoService, private modalActualizadoDecretoService: ModalActualizadoDecretoService) { }
 
   ngOnInit() {
     this.decretoService.getDecretos().subscribe( //llama al metodo GET del Service
@@ -60,6 +63,11 @@ export class DecretosComponent implements OnInit {
   abrirModal(decreto: Decreto) {
     this.decretoSeleccionado = decreto;
     this.modalDecretoService.abirModal();
+  }
+
+  abrirModalActualizado(decreto:Decreto) {
+    this.decretoSeleccionadoActualizado = decreto;
+    this.modalActualizadoDecretoService.abirModalActualizado();
   }
 
   searchTitulo() {

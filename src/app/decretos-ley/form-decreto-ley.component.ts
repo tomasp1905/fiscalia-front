@@ -38,7 +38,7 @@ export class FormDecretoLeyComponent implements OnInit {
     this.decretoLeyService.create(this.decretoLey).subscribe(
       decretoLey => {
         this.router.navigate(['/decretosLey'])
-        swal.fire('Nuevo Decreto Ley', `El Decreto Ley se creó con éxito`, 'success')
+        swal.fire('Nuevo Decreto Ley', `El Decreto Ley ${this.decretoLey.numero} se creó con éxito`, 'success')
       },
       err => {
         this.errores = err.error.errors as string[];
@@ -52,7 +52,7 @@ update(): void {
   this.decretoLeyService.update(this.decretoLey)
     .subscribe(json => {
       this.router.navigate(['/decretosLey'])
-      swal.fire('Decreto Ley Actualizado', `${json.mensaje}`, 'success');
+      swal.fire('Decreto Ley Actualizado', `El Decreto Ley ${this.decretoLey.numero} se actualizó con éxito`, 'success');
     },
       err => {
         this.errores = err.error.errors as string[];

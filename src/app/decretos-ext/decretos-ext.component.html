@@ -62,7 +62,8 @@
               <th>NÚMERO</th>
               <th>FECHA EMISIÓN</th>
               <th>PUBLICACIÓN EN BO</th>
-              <th>ARCHIVO</th>
+              <th>TEXTO ORIGINAL</th>
+              <th>TEXTO ACTUALIZADO</th>
             </tr>
           </thead>
           <tbody>
@@ -73,7 +74,12 @@
               <td>{{decreto.publicacionBO}}</td>
               <td>
                 <div>
-                  <p><a *ngIf="decreto?.archivo" href="http://localhost:8080/api/uploads/archivo/{{decreto.archivo}}" target='_heopenit' title="Descargar archivo">Descargar archivo</a></p>
+                  <p><a *ngIf="decreto?.archivo" href="http://localhost:8080/api/uploadsDecreto/archivo/{{decreto.archivo}}" target='_heopenit' title="Descargar archivo">Ver archivo</a></p>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <a *ngIf="decreto?.archivoActualizado" href="http://localhost:8080/api/uploadsActualizadoDecreto/archivo/{{decreto.archivoActualizado}}" target='_blank' title="Ver archivo">Ver archivo</a>
                 </div>
               </td>
             </tr>

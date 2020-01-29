@@ -1,11 +1,11 @@
-<div class="abrir-modal animacion fadeIn" *ngIf="modalService.modal">
+<div class="abrir-modal-actualizado animacion fadeIn" *ngIf="modalActualizadoDecretoService.modalActualizado">
 
   <div class="modal" tabindex="-1" role="dialog" style="display:block;">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">SUBIR ARCHIVO</h5>
-          <button (click)="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
+          <button (click)="cerrarModalActualizado()" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -14,11 +14,12 @@
             <div class="row">
               <div class="col-sm">
 
-                <ul *ngIf="leyProvincial" class="list-group text-dark mb-3">
-                  <li class="list-group-item"><b>NUMERO</b>: {{leyProvincial.numero}}</li>
-                  <li class="list-group-item"><b>TITULO</b>: {{leyProvincial.titulo}}</li>
-                  <li class="list-group-item"><b>FECHA SANCIÓN</b>: {{leyProvincial.fechaSancion}}</li>
-                  <li class="list-group-item"><b>PUBLICACIÓN EN BO</b>: {{leyProvincial.publicacionBO}}</li>
+                <ul *ngIf="decreto" class="list-group text-dark mb-3">
+                  <li class="list-group-item"><b>NUMERO</b>: {{decreto.numero}}</li>
+                  <li class="list-group-item"><b>TITULO</b>: {{decreto.titulo}}</li>
+                  <li class="list-group-item"><b>AÑO</b>: {{decreto.anio}}</li>
+                  <li class="list-group-item"><b>FECHA EMISIÓN</b>: {{decreto.fechaEmision}}</li>
+                  <li class="list-group-item"><b>PUBLICACIÓN EN BO</b>: {{decreto.publicacionBO}}</li>
                 </ul>
 
 
@@ -54,7 +55,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button (click)="cerrarModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button (click)="cerrarModalActualizado()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
 
       </div>

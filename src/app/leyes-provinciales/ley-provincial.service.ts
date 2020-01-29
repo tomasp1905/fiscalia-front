@@ -110,6 +110,19 @@ export class LeyProvincialService {
     return this.http.request(req);
   }
 
+  subirArchivoActualizado(archivo: File, id): Observable<HttpEvent<{}>> {
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id", id);
+
+    const req = new HttpRequest('POST', `${this.urlEndPoint}/uploadActualizado`, formData, {
+      reportProgress: true
+
+    });
+
+    return this.http.request(req);
+  }
+
 
 
 

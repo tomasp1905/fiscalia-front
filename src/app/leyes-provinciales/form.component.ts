@@ -3,10 +3,10 @@ import { LeyProvincial } from './ley-provincial';
 import { LeyProvincialService } from './ley-provincial.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
-
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+//
+// import {FormControl} from '@angular/forms';
+// import {Observable} from 'rxjs';
+// import {map, startWith} from 'rxjs/operators';
 
 
 @Component({
@@ -16,9 +16,8 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class FormComponent implements OnInit {
 
-  public leyProvincial: LeyProvincial = new LeyProvincial();
+  private leyProvincial: LeyProvincial = new LeyProvincial();
   errores: string[];
-
 
 
   constructor(private leyProvincialService: LeyProvincialService,
@@ -50,9 +49,9 @@ export class FormComponent implements OnInit {
   // Metodo para crear ley
    create(): void { //viene de <form (ngSubmit) = "create()"> --> se llama a este metodo
     this.leyProvincialService.create(this.leyProvincial).subscribe( //invoco el método que esta en el Service
-      leyprovincial => {
+      leyProvincial => {
         this.router.navigate(['/leyesProvinciales']) // la respuesta sería que una vez creado el objeto redirije al listado de leyes para mostrar la nueva ley creada
-        swal.fire('Nueva Ley', `La Ley  se creó con éxito`, 'success')
+        swal.fire('Nueva Ley', `La ley ${this.leyProvincial.numero} se creó con éxito`, 'success')
       },
       err => {
         this.errores = err.error.errors as string[];
@@ -66,7 +65,7 @@ update(): void {
   this.leyProvincialService.update(this.leyProvincial)
     .subscribe(json => {
       this.router.navigate(['/leyesProvinciales'])
-      swal.fire('Ley Actualizada', `${json.mensaje}`, 'success');
+      swal.fire('Ley Actualizada', `La ley ${this.leyProvincial.numero} se actualizó con éxito`, 'success');
     },
       err => {
         this.errores = err.error.errors as string[];
