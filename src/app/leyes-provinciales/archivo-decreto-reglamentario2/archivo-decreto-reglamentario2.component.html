@@ -1,11 +1,11 @@
-<div class="abrir-modal animacion fadeIn" *ngIf="modalDecretoReglamentarioService.modal">
+<div class="abrir-modal-decreto-reglamentario-2 animacion fadeIn" *ngIf="modalDecretoReglamentario2Service.modalDecretoReglamentario">
 
   <div class="modal" tabindex="-1" role="dialog" style="display:block;">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">SUBIR ARCHIVO</h5>
-          <button (click)="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
+          <button (click)="cerrarModalDecretoReglamentario2()" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -14,11 +14,11 @@
             <div class="row">
               <div class="col-sm">
 
-                <ul *ngIf="decretoReglamentario" class="list-group text-dark mb-3">
-                  <li class="list-group-item"><b>NÚMERO</b>: {{decretoReglamentario.numero}}</li>
-                  <li class="list-group-item"><b>AÑO</b>: {{decretoReglamentario.anio}}</li>
-                  <li class="list-group-item"><b>FECHA EMISIÓN</b>: {{decretoReglamentario.fechaEmision}}</li>
-                  <li class="list-group-item"><b>PUBLICACIÓN EN BO</b>: {{decretoReglamentario.publicacionBO}}</li>
+                <ul *ngIf="leyProvincial" class="list-group text-dark mb-3">
+                  <li class="list-group-item"><b>NUMERO</b>: {{leyProvincial.numero}}</li>
+                  <li class="list-group-item"><b>TITULO</b>: {{leyProvincial.titulo}}</li>
+                  <li class="list-group-item"><b>FECHA SANCIÓN</b>: {{leyProvincial.fechaSancion}}</li>
+                  <li class="list-group-item"><b>PUBLICACIÓN EN BO</b>: {{leyProvincial.publicacionBO}}</li>
                 </ul>
 
 
@@ -29,7 +29,7 @@
                   </div>
 
                   <div class="input-group-append">
-                    <button (click)="subirArchivo()" class="btn btn-primary" type="button" id="inputGroupFileAddon04">Subir</button>
+                    <button (click)="subirArchivo()" class="btn btn-primary" type="button" id="inputGroupFileAddon04">SUBIR</button>
                   </div>
                 </div>
 
@@ -41,19 +41,20 @@
                   </div>
                 </div>
 
-                <div>
+                <!-- <div>
                   <div class="col-sm">
-                    <p><a *ngIf="decretoReglamentario?.archivo" href="http://localhost:8080/api/uploads/archivo/{{decretoReglamentario.archivo}}" target='_blank' title="Click aquí para descargar el archivo">Click aquí para descargar el archivo</a></p>
-                  </div>
+                    <p><a *ngIf="leyProvincial?.foto" href="http://localhost:8080/api/uploads/img/{{leyProvincial.archivo}}" target='_blank' title="Click aquí para descargar el archivo">Click aquí para descargar el archivo</a></p>
                 </div>
+              </div> -->
 
               </div>
+
 
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button (click)="cerrarModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button (click)="cerrarModalDecretoReglamentario2()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
 
       </div>

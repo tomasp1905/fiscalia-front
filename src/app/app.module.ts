@@ -41,14 +41,14 @@ import { FormDecretoLeyComponent } from './decretos-ley/form-decreto-ley.compone
 import { ResumenNormativoComponent } from './resumen-normativo/resumen-normativo.component';
 import { FormResumenNormativoComponent } from './resumen-normativo/form-resumen-normativo.component';
 import { ArchivoResumenNormativoComponent } from './resumen-normativo/archivo-resumen-normativo/archivo-resumen-normativo.component';
-import { DecretoReglamentarioComponent } from './decreto-reglamentario/decreto-reglamentario.component';
-import { FormDecretoReglamentarioComponent } from './decreto-reglamentario/form-decreto-reglamentario.component';
-import { ArchivoDecretoReglamentarioComponent } from './decreto-reglamentario/archivo-decreto-reglamentario/archivo-decreto-reglamentario.component';
 import { LeyesProvincialesExtComponent } from './leyes-provinciales-ext/leyes-provinciales-ext.component';
 import { DecretosExtComponent } from './decretos-ext/decretos-ext.component';
 import { DecretosLeyExtComponent } from './decretos-ley-ext/decretos-ley-ext.component';
 import { ArchivoActualizadoComponent } from './leyes-provinciales/archivo-actualizado/archivo-actualizado.component';
 import { ArchivoActualizadoDecretoComponent } from './decretos/archivo-actualizado-decreto/archivo-actualizado-decreto.component';
+import { DecretoReglamentarioComponent } from './leyes-provinciales/decretos-reglamentarios/decreto-reglamentario.component';
+import { ArchivoDecretoReglamentarioComponent } from './leyes-provinciales/archivo-decreto-reglamentario/archivo-decreto-reglamentario.component';
+import { ArchivoDecretoReglamentario2Component } from './leyes-provinciales/archivo-decreto-reglamentario2/archivo-decreto-reglamentario2.component';
 
 
 
@@ -75,13 +75,12 @@ const routes: Routes = [
   {path: 'resumenesNormativos', component: ResumenNormativoComponent},
   {path: 'resumenesNormativos/formResumenNormativo', component: FormResumenNormativoComponent},
   {path: 'resumenesNormativos/formResumenNormativo/:id', component: FormResumenNormativoComponent},
-  {path: 'decretosReglamentarios', component: DecretoReglamentarioComponent},
-  {path: 'decretosReglamentarios/formDecretoReglamentario', component: FormDecretoReglamentarioComponent},
-  {path: 'decretosReglamentarios/formDecretoReglamentario/:id', component: FormDecretoReglamentarioComponent},
   {path: 'leyesProvincialesExt', component: LeyesProvincialesExtComponent },
   {path: 'decretosExt', component: DecretosExtComponent },
   {path: 'decretosLeyExt', component: DecretosLeyExtComponent },
-  {path: 'decretosLeyExt/page/:page', component: DecretosLeyExtComponent }
+  {path: 'decretosLeyExt/page/:page', component: DecretosLeyExtComponent },
+  { path: 'leyesProvinciales/decretoReg/:id', component: DecretoReglamentarioComponent}
+
 
 ];
 
@@ -109,14 +108,14 @@ const routes: Routes = [
     ResumenNormativoComponent,
     FormResumenNormativoComponent,
     ArchivoResumenNormativoComponent,
-    DecretoReglamentarioComponent,
-    FormDecretoReglamentarioComponent,
-    ArchivoDecretoReglamentarioComponent,
     LeyesProvincialesExtComponent,
     DecretosExtComponent,
     DecretosLeyExtComponent,
     ArchivoActualizadoComponent,
     ArchivoActualizadoDecretoComponent,
+    DecretoReglamentarioComponent,
+    ArchivoDecretoReglamentarioComponent,
+    ArchivoDecretoReglamentario2Component,
 
 
   ],

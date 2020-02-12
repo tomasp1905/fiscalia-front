@@ -1,11 +1,11 @@
-<div class="abrir-modal animacion fadeIn" *ngIf="modalService.modal">
+<div class="abrir-modal-decreto-reglamentario animacion fadeIn" *ngIf="modalDecretoReglamentarioService.modalDecretoReglamentario">
 
   <div class="modal" tabindex="-1" role="dialog" style="display:block;">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">SUBIR ARCHIVO</h5>
-          <button (click)="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
+          <button (click)="cerrarModalDecretoReglamentario1()" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -41,44 +41,16 @@
                   </div>
                 </div>
 
-                <!-- <div>
-                  <div class="col-sm">
-                    <p><a *ngIf="leyProvincial?.foto" href="http://localhost:8080/api/uploads/img/{{leyProvincial.archivo}}" target='_blank' title="Click aquí para descargar el archivo">Click aquí para descargar el archivo</a></p>
-                </div>
-              </div> -->
+
 
               </div>
 
 
             </div>
-
-         <!-- PRUEBA DECRETOS REGLAMENTARIOS  -->
-         <!-- <div class="row">
-           <div class="alert alert-info my-4" *ngIf="leyProvincial.listaDeDecretosReglamentarios.length == 0">
-             No hay decretos reglamentarios para la Ley "{{leyProvincial.titulo}}"
-           </div>
-
-            <table class="table table-bordered table-striped my-4"  *ngIf="leyProvincial.listaDeDecretosReglamentarios.length >  0">
-              <thead>
-                <tr>
-                  <th>Número</th>
-                  <th>Fecha Emisión</th>
-                  <th>Publicación BO</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let decretoReglamentario of leyProvincial.listaDeDecretosReglamentarios">
-                  <td>{{decretoReglamentario.numero}}</td>
-                  <td>{{decretoReglamentario.fechaEmision}}</td>
-                  <td>{{decretoReglamentario.publicacionBO}}</td>
-                </tr>
-              </tbody>
-              </table>
-          </div> -->
-
+          </div>
         </div>
         <div class="modal-footer">
-          <button (click)="cerrarModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button (click)="cerrarModalDecretoReglamentario1()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
 
       </div>

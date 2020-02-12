@@ -1,4 +1,4 @@
-<div class="abrir-modal animacion fadeIn" *ngIf="modalService.modal">
+<!-- <div class="abrir-modal animacion fadeIn" *ngIf="modalDecRegService.modal">
 
   <div class="modal" tabindex="-1" role="dialog" style="display:block;">
     <div class="modal-dialog" role="document">
@@ -14,11 +14,9 @@
             <div class="row">
               <div class="col-sm">
 
-                <ul *ngIf="leyProvincial" class="list-group text-dark mb-3">
-                  <li class="list-group-item"><b>NUMERO</b>: {{leyProvincial.numero}}</li>
-                  <li class="list-group-item"><b>TITULO</b>: {{leyProvincial.titulo}}</li>
-                  <li class="list-group-item"><b>FECHA SANCIÓN</b>: {{leyProvincial.fechaSancion}}</li>
-                  <li class="list-group-item"><b>PUBLICACIÓN EN BO</b>: {{leyProvincial.publicacionBO}}</li>
+                <ul *ngIf="decretoReglamentario" class="list-group text-dark mb-3">
+                  <li class="list-group-item"><b>NUMERO</b>: {{decretoReglamentario.numero}}</li>
+                  <li class="list-group-item"><b>PUBLICACIÓN EN BO</b>: {{decretoReglamentario.publicacionBO}}</li>
                 </ul>
 
 
@@ -41,19 +39,21 @@
                   </div>
                 </div>
 
-                <!-- <div>
+                <div>
                   <div class="col-sm">
                     <p><a *ngIf="leyProvincial?.foto" href="http://localhost:8080/api/uploads/img/{{leyProvincial.archivo}}" target='_blank' title="Click aquí para descargar el archivo">Click aquí para descargar el archivo</a></p>
                 </div>
-              </div> -->
+              </div>
 
               </div>
 
 
             </div>
 
-         <!-- PRUEBA DECRETOS REGLAMENTARIOS  -->
-         <!-- <div class="row">
+            PRUEBA DECRETO RELGAMENTARIO
+
+
+          <div class="row">
            <div class="alert alert-info my-4" *ngIf="leyProvincial.listaDeDecretosReglamentarios.length == 0">
              No hay decretos reglamentarios para la Ley "{{leyProvincial.titulo}}"
            </div>
@@ -74,7 +74,7 @@
                 </tr>
               </tbody>
               </table>
-          </div> -->
+          </div>
 
         </div>
         <div class="modal-footer">
@@ -83,5 +83,46 @@
 
       </div>
     </div>
+  </div>
+</div> -->
+
+<div class="card border-primary mb-3">
+  <div class="card-header">
+    <h5 align="center">DETALLE DE LA LEY LA CUAL SE RELACIONARÁ EL DECRETO REGLAMENTARIO</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+
+         <ul *ngIf="leyProvincial" class="list-group text-dark">
+           <li class="list-group-item"><u>NÚMERO</u>: {{leyProvincial.numero}}</li>
+           <li class="list-group-item"><u>TÍTULO</u>: {{leyProvincial.titulo}}</li>
+           <li class="list-group-item"><u>FECHA SANCIÓN</u>: {{leyProvincial.fechaSancion}}</li>
+           <li class="list-group-item"><u>PUBLICACIÓN BO</u>: {{leyProvincial.publicacionBO}}</li>
+         </ul>
+
+
+          <div class="input-group mb-3">
+            <div class="custom-file">
+              <input (change)="seleccionarArchivoDecretoReg($event)" type="file" class="custom-file-input" id="customFileLang" aria-describedby="inputGroupFileAddon04">
+              <label class="custom-file-label" for="inputGroupFile04">Seleccionar Decreto Reglamentario</label>
+            </div>
+
+            <div class="input-group-append">
+              <button (click)="subirArchivoDecretoReg()" class="btn btn-primary" type="button" id="inputGroupFileAddon04">SUBIR</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+
+        </div>
+      </div>
+    </div>
+
+
+
+
   </div>
 </div>

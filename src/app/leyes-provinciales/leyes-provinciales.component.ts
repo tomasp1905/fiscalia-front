@@ -5,6 +5,10 @@ import swal from 'sweetalert2';
 import { ModalService } from './archivo/modal.service';
 import { AuthService } from '../usuarios/auth.service';
 import { ModalActualizadoService } from './archivo-actualizado/modal-actualizado.service';
+import { DecretoReglamentario } from './decretos-reglamentarios/decretosReglamentarios';
+import { ModalDecRegService } from './decretos-reglamentarios/modal-dec-reg.service';
+import { ModalDecretoReglamentarioService } from './archivo-decreto-reglamentario/modal-decreto-reglamentario.service';
+import { ModalDecretoReglamentario2Service } from './archivo-decreto-reglamentario2/modal-decreto-reglamentario2.service';
 
 
 
@@ -21,21 +25,23 @@ export class LeyesProvincialesComponent implements OnInit {
   leyProvincialSeleccionada: LeyProvincial; //MODAL
   leyProvincialSeleccionadaActualizada: LeyProvincial //MODAL ACTUALIZADO
 
+  leyProvincialSeleccionadaParaDecretoReglamentario:LeyProvincial
+  leyProvincialSeleccionadaParaDecretoReglamentario2:LeyProvincial
+
   titulo: string;
   numero: string;
 
 
   //constructor (private NombreDelAtributo: Servicio) {} --> instanciar servicio
-  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService, public authService: AuthService, private modalActualizadoService:ModalActualizadoService) { }
+  constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService, public authService: AuthService, private modalActualizadoService:ModalActualizadoService, private modalDecRegService: ModalDecretoReglamentarioService,
+  private modalDecRegService2: ModalDecretoReglamentario2Service) { }
 
 
   ngOnInit() {
-    this.leyProvincialService.getLeyesProvinciales().subscribe( //llama al metodo GET del Service
-      leyes => this.leyes = leyes //es el Observador, esto actualiza el listado de leyes y lo pasa a la vista con los posibles cambios
-    );
-
+     this.leyProvincialService.getLeyesProvinciales().subscribe(
+      leyes => this.leyes = leyes
+     );
   }
-
 
 
   delete(leyProvincial: LeyProvincial): void {
@@ -80,6 +86,16 @@ export class LeyesProvincialesComponent implements OnInit {
     this.modalActualizadoService.abirModalActualizado();
   }
 
+  abrirModalDecretoReglamentario(ley:LeyProvincial) {
+    this.leyProvincialSeleccionadaParaDecretoReglamentario = ley;
+    this.modalDecRegService.abrirModalDecretoReglamentario();
+  }
+
+  abrirModalDecretoReglamentario2(ley:LeyProvincial) {
+    this.leyProvincialSeleccionadaParaDecretoReglamentario2 = ley;
+    this.modalDecRegService2.abrirModalDecretoReglamentario();
+  }
+
 
   searchTitulo() {
     if (this.titulo != "") {
@@ -103,6 +119,6 @@ export class LeyesProvincialesComponent implements OnInit {
 
   }
 
-  
+
 
 }

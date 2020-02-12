@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class LeyProvincialService {
 //  private urlEndPoint: string = URL_BACKEND + '/api/leyesProvinciales'; //defino EndPoint del BACK
   private urlEndPoint: string = 'http://localhost:8080/api/leyesProvinciales';
-
+  //private urlEndPoint2: string = 'http://localhost:8080/api/decretosReglamentarios/upload';
   //private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' }); //especificamos el tipo de contenido que estamos enviando desde el cliente angular hacia el api rest, los datos los estamos enviando en estructura json
 
   constructor(private http: HttpClient, private router: Router) { } //se inyecta la referencia a HttpClient
@@ -122,6 +122,34 @@ export class LeyProvincialService {
 
     return this.http.request(req);
   }
+
+  subirArchivoDecretoReglamentario(archivo: File, id): Observable<HttpEvent<{}>> {
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id", id);
+
+    const req = new HttpRequest('POST', `${this.urlEndPoint}/uploadDecretoRelgamentario`, formData, {
+      reportProgress: true
+
+    });
+
+    return this.http.request(req);
+  }
+
+  subirArchivoDecretoReglamentario2(archivo: File, id): Observable<HttpEvent<{}>> {
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id", id);
+
+    const req = new HttpRequest('POST', `${this.urlEndPoint}/uploadDecretoRelgamentario2`, formData, {
+      reportProgress: true
+
+    });
+
+    return this.http.request(req);
+  }
+
+
 
 
 

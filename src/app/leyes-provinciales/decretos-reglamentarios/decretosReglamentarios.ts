@@ -1,8 +1,7 @@
 export class DecretoReglamentario {
-  id: number;
+  id:number;
   numero: string;
-  anio:string;
-  fechaEmision: string;
+  fechaEmision:string;
   publicacionBO: string;
-  archivo: string;
+  archivo:string;
 }
