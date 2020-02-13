@@ -40,15 +40,15 @@
 
     <div class="form-group row">
       <div class="col-auto">
-        <table class="table table-bordered" *ngIf="leyProvincialExt.listaDeLeyes?.length > 0">
+        <table class="table table-bordered"  *ngFor="let ley of leyProvincialExt.listaDeLeyes">
           <thead>
             <tr class="table-primary" align="center">
               <th>TÍTULO</th>
               <th>NÚMERO</th>
               <th>FECHA SANCIÓN</th>
               <th>PUBLICACIÓN EN BO</th>
-              <th>TEXTO ORIGINAL</th>
-              <th>TEXTO ACTUALIZADO</th>
+              <th *ngIf="ley?.archivo">TEXTO ORIGINAL</th>
+              <th *ngIf="ley?.archivoActualizado">TEXTO ACTUALIZADO</th>
             </tr>
           </thead>
           <tbody>
@@ -57,21 +57,72 @@
               <td>{{ley.numero}}</td>
               <td>{{ley.fechaSancion}}</td>
               <td>{{ley.publicacionBO}}</td>
-              <td>
-                <div>
-                  <a *ngIf="ley?.archivo" href="http://localhost:8080/api/uploads/archivo/{{ley.archivo}}" target='_blank' title="Ver archivo">Ver archivo</a>
-                </div>
+              <td *ngIf="ley?.archivo">
+                  <a href="http://localhost:8080/api/uploads/archivo/{{ley.archivo}}" target='_blank' title="Ver archivo">Ver archivo</a>
               </td>
-              <td>
-                <div>
-                  <a *ngIf="ley?.archivoActualizado" href="http://localhost:8080/api/uploadsActualizado/archivo/{{ley.archivoActualizado}}" target='_blank' title="Ver archivo">Ver archivo</a>
-                </div>
+
+              <td *ngIf="ley?.archivoActualizado">
+                  <a  href="http://localhost:8080/api/uploadsActualizado/archivo/{{ley.archivoActualizado}}" target='_blank' title="Ver archivo">Ver archivo</a>
               </td>
+
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+
+
+    <div class="form-group row">
+      <div class="col-auto">
+        <table class="table table-bordered"  *ngFor="let ley of leyProvincialExt.listaDeLeyes">
+          <thead>
+            <tr class="table-primary" align="center">
+              <th *ngIf="ley?.archivoDecretoReglamentario">DECRETO REGLAMENTARIO</th>
+              <th *ngIf="ley?.archivoDecretoReglamentario2">DECRETO REGLAMENTARIO</th>
+              <th *ngIf="ley?.archivoDecretoReglamentario3">DECRETO REGLAMENTARIO</th>
+              <th *ngIf="ley?.archivoDecretoReglamentario4">DECRETO REGLAMENTARIO</th>
+              <th *ngIf="ley?.archivoDecretoReglamentario5">DECRETO REGLAMENTARIO</th>
+              <th *ngIf="ley?.archivoDecretoReglamentario6">DECRETO REGLAMENTARIO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ley of leyProvincialExt.listaDeLeyes" align="center">
+
+              <td *ngIf="ley?.archivoDecretoReglamentario">
+                <p><a  href="http://localhost:8080/api/uploadDecretoRelgamentario/archivo/{{ley.archivoDecretoReglamentario}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+              </td>
+
+              <td *ngIf="ley?.archivoDecretoReglamentario2">
+                <p><a href="http://localhost:8080/api/uploadDecretoRelgamentario2/archivo/{{ley.archivoDecretoReglamentario2}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+              </td>
+
+              <td *ngIf="ley?.archivoDecretoReglamentario3">
+                <p><a href="http://localhost:8080/api/uploadDecretoRelgamentario3/archivo/{{ley.archivoDecretoReglamentario3}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+              </td>
+
+              <td *ngIf="ley?.archivoDecretoReglamentario4">
+                <p><a href="http://localhost:8080/api/uploadDecretoRelgamentario4/archivo/{{ley.archivoDecretoReglamentario4}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+              </td>
+
+              <td *ngIf="ley?.archivoDecretoReglamentario5">
+                <p><a href="http://localhost:8080/api/uploadDecretoRelgamentario5/archivo/{{ley.archivoDecretoReglamentario5}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+              </td>
+
+              <td *ngIf="ley?.archivoDecretoReglamentario6">
+                <p><a href="http://localhost:8080/api/uploadDecretoRelgamentario6/archivo/{{ley.archivoDecretoReglamentario6}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="col-10">
+      <button class="btn btn-success" (click)="limpiarBusqueda()" role="button">LIMPIAR BÚSQUEDA <i class="fas fa-broom"></i></button>
+    </div>
+  </div>
 
 
   </div>

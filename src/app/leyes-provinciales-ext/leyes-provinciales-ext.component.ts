@@ -85,5 +85,9 @@ export class LeyesProvincialesExtComponent implements OnInit {
 
  }
 
+ limpiarBusqueda(){
+   this.leyProvincialExt.listaDeLeyes.pop();
+ }
+
 
 }

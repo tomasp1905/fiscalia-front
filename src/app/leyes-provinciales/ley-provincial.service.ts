@@ -149,7 +149,57 @@ export class LeyProvincialService {
     return this.http.request(req);
   }
 
+  subirArchivoDecretoReglamentario3(archivo: File, id): Observable<HttpEvent<{}>> {
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id", id);
 
+    const req = new HttpRequest('POST', `${this.urlEndPoint}/uploadDecretoRelgamentario3`, formData, {
+      reportProgress: true
+
+    });
+
+    return this.http.request(req);
+  }
+
+  subirArchivoDecretoReglamentario4(archivo: File, id): Observable<HttpEvent<{}>> {
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id", id);
+
+    const req = new HttpRequest('POST', `${this.urlEndPoint}/uploadDecretoRelgamentario4`, formData, {
+      reportProgress: true
+
+    });
+
+    return this.http.request(req);
+  }
+
+  subirArchivoDecretoReglamentario5(archivo: File, id): Observable<HttpEvent<{}>> {
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id", id);
+
+    const req = new HttpRequest('POST', `${this.urlEndPoint}/uploadDecretoRelgamentario5`, formData, {
+      reportProgress: true
+
+    });
+
+    return this.http.request(req);
+  }
+
+  subirArchivoDecretoReglamentario6(archivo: File, id): Observable<HttpEvent<{}>> {
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id", id);
+
+    const req = new HttpRequest('POST', `${this.urlEndPoint}/uploadDecretoRelgamentario6`, formData, {
+      reportProgress: true
+
+    });
+
+    return this.http.request(req);
+  }
 
 
 

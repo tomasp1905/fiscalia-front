@@ -9,6 +9,10 @@ import { DecretoReglamentario } from './decretos-reglamentarios/decretosReglamen
 import { ModalDecRegService } from './decretos-reglamentarios/modal-dec-reg.service';
 import { ModalDecretoReglamentarioService } from './archivo-decreto-reglamentario/modal-decreto-reglamentario.service';
 import { ModalDecretoReglamentario2Service } from './archivo-decreto-reglamentario2/modal-decreto-reglamentario2.service';
+import { ModalDecretoReglamentario3Service } from './archivo-decreto-reglamentario3/modal-decreto-reglamentario3.service';
+import { ModalDecretoReglamentario4Service } from './archivo-decreto-reglamentario4/modal-decreto-reglamentario4.service';
+import { ModalDecretoReglamentario5Service } from './archivo-decreto-reglamentario5/modal-decreto-reglamentario5.service';
+import { ModalDecretoReglamentario6Service } from './archivo-decreto-reglamentario6/modal-decreto-reglamentario6.service';
 
 
 
@@ -21,20 +25,23 @@ export class LeyesProvincialesComponent implements OnInit {
 
   leyes: LeyProvincial[];
 
-
   leyProvincialSeleccionada: LeyProvincial; //MODAL
   leyProvincialSeleccionadaActualizada: LeyProvincial //MODAL ACTUALIZADO
 
   leyProvincialSeleccionadaParaDecretoReglamentario:LeyProvincial
   leyProvincialSeleccionadaParaDecretoReglamentario2:LeyProvincial
+  leyProvincialSeleccionadaParaDecretoReglamentario3:LeyProvincial
+  leyProvincialSeleccionadaParaDecretoReglamentario4:LeyProvincial
+  leyProvincialSeleccionadaParaDecretoReglamentario5:LeyProvincial
+  leyProvincialSeleccionadaParaDecretoReglamentario6:LeyProvincial
 
   titulo: string;
   numero: string;
 
-
   //constructor (private NombreDelAtributo: Servicio) {} --> instanciar servicio
   constructor(private leyProvincialService: LeyProvincialService, private modalService: ModalService, public authService: AuthService, private modalActualizadoService:ModalActualizadoService, private modalDecRegService: ModalDecretoReglamentarioService,
-  private modalDecRegService2: ModalDecretoReglamentario2Service) { }
+  private modalDecRegService2: ModalDecretoReglamentario2Service, private modalDecRegService3: ModalDecretoReglamentario3Service,private modalDecRegService4: ModalDecretoReglamentario4Service,
+  private modalDecRegService5: ModalDecretoReglamentario5Service, private modalDecRegService6: ModalDecretoReglamentario6Service) { }
 
 
   ngOnInit() {
@@ -95,6 +102,27 @@ export class LeyesProvincialesComponent implements OnInit {
     this.leyProvincialSeleccionadaParaDecretoReglamentario2 = ley;
     this.modalDecRegService2.abrirModalDecretoReglamentario();
   }
+
+  abrirModalDecretoReglamentario3(ley:LeyProvincial) {
+    this.leyProvincialSeleccionadaParaDecretoReglamentario3 = ley;
+    this.modalDecRegService3.abrirModalDecretoReglamentario();
+  }
+
+  abrirModalDecretoReglamentario4(ley:LeyProvincial) {
+    this.leyProvincialSeleccionadaParaDecretoReglamentario4 = ley;
+    this.modalDecRegService4.abrirModalDecretoReglamentario();
+  }
+
+  abrirModalDecretoReglamentario5(ley:LeyProvincial) {
+    this.leyProvincialSeleccionadaParaDecretoReglamentario5 = ley;
+    this.modalDecRegService5.abrirModalDecretoReglamentario();
+  }
+
+  abrirModalDecretoReglamentario6(ley:LeyProvincial) {
+    this.leyProvincialSeleccionadaParaDecretoReglamentario6 = ley;
+    this.modalDecRegService6.abrirModalDecretoReglamentario();
+  }
+
 
 
   searchTitulo() {

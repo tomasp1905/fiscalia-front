@@ -1,6 +1,5 @@
 <app-header></app-header>
 
-
 <!-- PARA MODAL -->
 <ley-archivo *ngIf="leyProvincialSeleccionada" [leyProvincial]="leyProvincialSeleccionada"></ley-archivo>
 <!-- PARA MODAL -->
@@ -13,6 +12,15 @@
 
 <!-- <app-decreto-reglamentario *ngIf="decretoReglamentarioSeleccionado" [decretoReglamentario]="decretoReglamentarioSeleccionado"></app-decreto-reglamentario> -->
 <app-archivo-decreto-reglamentario2 *ngIf="leyProvincialSeleccionadaParaDecretoReglamentario2" [leyProvincial]="leyProvincialSeleccionadaParaDecretoReglamentario2"></app-archivo-decreto-reglamentario2>
+
+<app-archivo-decreto-reglamentario3 *ngIf="leyProvincialSeleccionadaParaDecretoReglamentario3" [leyProvincial]="leyProvincialSeleccionadaParaDecretoReglamentario3"></app-archivo-decreto-reglamentario3>
+
+<app-archivo-decreto-reglamentario4 *ngIf="leyProvincialSeleccionadaParaDecretoReglamentario4" [leyProvincial]="leyProvincialSeleccionadaParaDecretoReglamentario4"></app-archivo-decreto-reglamentario4>
+
+<app-archivo-decreto-reglamentario5 *ngIf="leyProvincialSeleccionadaParaDecretoReglamentario5" [leyProvincial]="leyProvincialSeleccionadaParaDecretoReglamentario5"></app-archivo-decreto-reglamentario5>
+
+<app-archivo-decreto-reglamentario6 *ngIf="leyProvincialSeleccionadaParaDecretoReglamentario6" [leyProvincial]="leyProvincialSeleccionadaParaDecretoReglamentario6"></app-archivo-decreto-reglamentario6>
+
 
 
 <div class="card border-primary mb-3">
@@ -105,12 +113,12 @@
       </tbody>
     </table>
 
-    <div class="row">
-      <div class="col-3">
-        <table class="table table-bordered table-striped text-center" *ngIf="leyes?.length>0">
+    <div class="row " *ngIf="leyes?.length>0">
+      <div class="col-2">
+        <table class="table table-bordered table-striped text-center" >
           <thead>
             <tr>
-              <th>Cargar Decreto Reglamentario - 1</th>
+              <th>Cargar Decreto Reglamentario</th>
               <th>Archivo </th>
             </tr>
           </thead>
@@ -128,11 +136,11 @@
         </table>
       </div>
 
-      <div  *ngIf="ley?.archivoDecretoReglamentario" class="col-3">
-        <table class="table table-bordered table-striped text-center" *ngIf="leyes?.length>0">
+      <div class="col-2">
+        <table class="table table-bordered table-striped text-center" >
           <thead>
             <tr>
-              <th>Cargar Decreto Reglamentario - 2</th>
+              <th>Cargar Decreto Reglamentario</th>
               <th>Archivo </th>
             </tr>
           </thead>
@@ -149,6 +157,95 @@
           </tbody>
         </table>
       </div>
+
+      <div class="col-2">
+        <table class="table table-bordered table-striped text-center" >
+          <thead>
+            <tr>
+              <th>Cargar Decreto Reglamentario</th>
+              <th>Archivo </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ley of leyes">
+
+              <td><button type="button" (click)="abrirModalDecretoReglamentario3(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
+
+              <td>
+                <p><a *ngIf="ley?.archivoDecretoReglamentario3" href="http://localhost:8080/api/uploadDecretoRelgamentario3/archivo/{{ley.archivoDecretoReglamentario3}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-2">
+        <table class="table table-bordered table-striped text-center" >
+          <thead>
+            <tr>
+              <th>Cargar Decreto Reglamentario</th>
+              <th>Archivo </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ley of leyes">
+
+              <td><button type="button" (click)="abrirModalDecretoReglamentario4(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
+
+              <td>
+                <p><a *ngIf="ley?.archivoDecretoReglamentario4" href="http://localhost:8080/api/uploadDecretoRelgamentario4/archivo/{{ley.archivoDecretoReglamentario4}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-2">
+        <table class="table table-bordered table-striped text-center" >
+          <thead>
+            <tr>
+              <th>Cargar Decreto Reglamentario</th>
+              <th>Archivo </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ley of leyes">
+
+              <td><button type="button" (click)="abrirModalDecretoReglamentario5(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
+
+              <td>
+                <p><a *ngIf="ley?.archivoDecretoReglamentario5" href="http://localhost:8080/api/uploadDecretoRelgamentario5/archivo/{{ley.archivoDecretoReglamentario5}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-2">
+        <table class="table table-bordered table-striped text-center" >
+          <thead>
+            <tr>
+              <th>Cargar Decreto Reglamentario</th>
+              <th>Archivo </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ley of leyes">
+
+              <td><button type="button" (click)="abrirModalDecretoReglamentario6(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
+
+              <td>
+                <p><a *ngIf="ley?.archivoDecretoReglamentario6" href="http://localhost:8080/api/uploadDecretoRelgamentario6/archivo/{{ley.archivoDecretoReglamentario6}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
 
 
