@@ -16,7 +16,7 @@ import swal from 'sweetalert2';
 })
 export class FormComponent implements OnInit {
 
-  private leyProvincial: LeyProvincial = new LeyProvincial();
+  public leyProvincial: LeyProvincial = new LeyProvincial();
   errores: string[];
 
 

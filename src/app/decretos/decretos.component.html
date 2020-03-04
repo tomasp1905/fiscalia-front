@@ -14,16 +14,15 @@
   </div>
   <div class="card-body text-primary">
 
-    <div  class="row">
+    <!-- <div  class="row">
       <div class="input-group input-group-sm col-4">
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputTitulo">Buscar por Título:</span>
         </div>
          <input type="text" [(ngModel)]="titulo" (input)="searchTitulo()" class="form-control" aria-describedby="inputTitulo" />
       </div>
-    </div>
+    </div> -->
 
-    <br>
 
     <div  class="row">
       <div class="input-group input-group-sm col-2">
@@ -63,7 +62,7 @@
           <th>Cargar Texto Original</th>
           <th>Cargar Texto Actualizado</th>
           <th>Número</th>
-          <th>Título</th>
+          <!-- <th>Título</th> -->
           <th>Año</th>
           <th>Fecha de Emisión</th>
           <th>Publicación en BO</th>
@@ -78,7 +77,7 @@
           <td><button type="button" (click)="abrirModal(decreto)" class="btn btn-dark btn-sm">ORIGINAL</button></td>
           <td><button type="button" (click)="abrirModalActualizado(decreto)" class="btn btn-dark btn-sm">ACTUALIZADO</button></td>
           <td>{{decreto.numero}}</td>
-          <td>{{decreto.titulo}}</td>
+          <!-- <td>{{decreto.titulo}}</td> -->
           <td>{{decreto.anio}}</td>
           <td>{{decreto.fechaEmision}}</td>
           <td>{{decreto.publicacionBO}}</td>

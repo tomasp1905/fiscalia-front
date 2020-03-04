@@ -1,4 +1,3 @@
-import { DecretoReglamentario } from './decretos-reglamentarios/decretosReglamentarios';
 
 export class LeyProvincial {
   id: number;
@@ -13,8 +12,11 @@ export class LeyProvincial {
   //DECRETOS REGLAMENTARIOS
   archivoDecretoReglamentario:string;
   archivoDecretoReglamentario2:string;
+  archivoDecretoReglamentario3:string;
+  archivoDecretoReglamentario4:string;
+  archivoDecretoReglamentario5:string;
+  archivoDecretoReglamentario6:string;
 
-
-  listaDeDecretosReglamentarios: Array<DecretoReglamentario> = [];
+  
 
 }

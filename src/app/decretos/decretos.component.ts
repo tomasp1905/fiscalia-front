@@ -20,7 +20,7 @@ export class DecretosComponent implements OnInit {
 
   decretoSeleccionadoActualizado: Decreto;
 
-  constructor(private decretoService: DecretoService, private modalDecretoService: ModalDecretoService, private modalActualizadoDecretoService: ModalActualizadoDecretoService) { }
+  constructor(private decretoService: DecretoService, public modalDecretoService: ModalDecretoService, public modalActualizadoDecretoService: ModalActualizadoDecretoService) { }
 
   ngOnInit() {
     this.decretoService.getDecretos().subscribe( //llama al metodo GET del Service

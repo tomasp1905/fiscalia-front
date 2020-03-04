@@ -1,16 +1,13 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 
 <!-- PARA MODAL -->
 <ley-archivo *ngIf="leyProvincialSeleccionada" [leyProvincial]="leyProvincialSeleccionada"></ley-archivo>
 <!-- PARA MODAL -->
 
-<!-- PARA MODAL ACTUALIZADO-->
 <app-archivo-actualizado *ngIf="leyProvincialSeleccionadaActualizada" [leyProvincial]="leyProvincialSeleccionadaActualizada"></app-archivo-actualizado>
-<!-- PARA MODAL ACTUALIZADO-->
 
 <app-archivo-decreto-reglamentario *ngIf="leyProvincialSeleccionadaParaDecretoReglamentario" [leyProvincial]="leyProvincialSeleccionadaParaDecretoReglamentario"></app-archivo-decreto-reglamentario>
 
-<!-- <app-decreto-reglamentario *ngIf="decretoReglamentarioSeleccionado" [decretoReglamentario]="decretoReglamentarioSeleccionado"></app-decreto-reglamentario> -->
 <app-archivo-decreto-reglamentario2 *ngIf="leyProvincialSeleccionadaParaDecretoReglamentario2" [leyProvincial]="leyProvincialSeleccionadaParaDecretoReglamentario2"></app-archivo-decreto-reglamentario2>
 
 <app-archivo-decreto-reglamentario3 *ngIf="leyProvincialSeleccionadaParaDecretoReglamentario3" [leyProvincial]="leyProvincialSeleccionadaParaDecretoReglamentario3"></app-archivo-decreto-reglamentario3>
@@ -23,236 +20,125 @@
 
 
 
-<div class="card border-primary mb-3">
+<!-- <div class="card border-primary mb-3" style="max-width:200rem;">
   <div class="card-header">
     <h5 align="center">LISTADO DE LEYES PROVINCIALES</h5>
   </div>
-  <div class="card-body text-primary">
+  <div class="card-body text-primary"> -->
 
-    <div class="row">
-      <div class="input-group input-group-sm col-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputTitulo">Buscar por Título:</span>
-        </div>
-        <input type="text" [(ngModel)]="titulo" (input)="searchTitulo()" class="form-control" aria-describedby="inputTitulo" />
-      </div>
+
+<div class="row" style="margin-left:1px">
+  <div class="input-group input-group-sm col-4">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputTitulo">Buscar por palabra(respetar tildes):</span>
     </div>
-
-    <br>
-
-    <div class="row">
-      <div class="input-group input-group-sm col-2">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputNumero">Buscar por N°:</span>
-        </div>
-        <input type="text" [(ngModel)]="numero" (input)="searchNumero()" class="form-control" aria-describedby="inputNumero" />
-      </div>
-    </div>
-
-    <br>
-
-
-    <div class="my-2 text-left">
-      <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/leyesProvinciales/form']">
-        CARGAR LEY PROVINCIAL
-      </button>
-    </div>
-
-
-    <div *ngIf="leyes?.length == 0" class="alert alert-info">
-      No hay registros en la Base de Datos
-    </div>
-
-    <table class="table table-bordered table-striped text-center" *ngIf="leyes?.length>0">
-      <thead>
-        <tr>
-          <th>Cargar Texto Original</th>
-          <th>Cargar Texto Actualizado</th>
-          <!-- <th>Cargar Decreto Reglamentario</th> -->
-          <th>Número</th>
-          <th>Título</th>
-          <th>Fecha Sanción</th>
-          <th>Publicación en BO</th>
-          <th>Texto Original</th>
-          <th>Texto Actualizado</th>
-          <!-- <th>Decreto Reglamentario</th> -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let ley of leyes">
-
-          <td><button type="button" (click)="abrirModal(ley)" class="btn btn-dark btn-sm">ORIGINAL</button></td>
-          <td><button type="button" (click)="abrirModalActualizado(ley)" class="btn btn-dark btn-sm">ACTUALIZADO</button></td>
-          <!-- <td><button type="button" (click)="abrirModalDecretoReglamentario(ley)" class="btn btn-dark btn-sm">DECRETO REGL</button></td> -->
-          <td>{{ley.numero}}</td>
-          <td>{{ley.titulo}}</td>
-          <td>{{ley.fechaSancion}}</td>
-          <td>{{ley.publicacionBO}}</td>
-
-          <td>
-            <p><a *ngIf="ley?.archivo" href="http://localhost:8080/api/uploads/archivo/{{ley.archivo}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
-          </td>
-
-          <td>
-            <p><a *ngIf="ley?.archivoActualizado" href="http://localhost:8080/api/uploadsActualizado/archivo/{{ley.archivoActualizado}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
-          </td>
-
-          <!-- <td>
-            <p><a *ngIf="ley?.archivoDecretoReglamentario" href="http://localhost:8080/api/uploadDecretoRelgamentario/archivo/{{ley.archivoDecretoReglamentario}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
-          </td> -->
-
-          <td>
-            <button type="button" name="editar" [routerLink]="['/leyesProvinciales/form', ley.id]" class="btn btn-success btn-sm"> EDITAR </button>
-          </td>
-
-          <td>
-            <button type="button" name="eliminar" (click)='delete(ley)' class="btn btn-danger btn-sm"> ELIMINAR </button>
-          </td>
-
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="row " *ngIf="leyes?.length>0">
-      <div class="col-2">
-        <table class="table table-bordered table-striped text-center" >
-          <thead>
-            <tr>
-              <th>Cargar Decreto Reglamentario</th>
-              <th>Archivo </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let ley of leyes">
-
-              <td><button type="button" (click)="abrirModalDecretoReglamentario(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
-
-              <td>
-                <p><a *ngIf="ley?.archivoDecretoReglamentario" href="http://localhost:8080/api/uploadDecretoRelgamentario/archivo/{{ley.archivoDecretoReglamentario}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
-              </td>
-
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="col-2">
-        <table class="table table-bordered table-striped text-center" >
-          <thead>
-            <tr>
-              <th>Cargar Decreto Reglamentario</th>
-              <th>Archivo </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let ley of leyes">
-
-              <td><button type="button" (click)="abrirModalDecretoReglamentario2(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
-
-              <td>
-                <p><a *ngIf="ley?.archivoDecretoReglamentario2" href="http://localhost:8080/api/uploadDecretoRelgamentario2/archivo/{{ley.archivoDecretoReglamentario2}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
-              </td>
-
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="col-2">
-        <table class="table table-bordered table-striped text-center" >
-          <thead>
-            <tr>
-              <th>Cargar Decreto Reglamentario</th>
-              <th>Archivo </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let ley of leyes">
-
-              <td><button type="button" (click)="abrirModalDecretoReglamentario3(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
-
-              <td>
-                <p><a *ngIf="ley?.archivoDecretoReglamentario3" href="http://localhost:8080/api/uploadDecretoRelgamentario3/archivo/{{ley.archivoDecretoReglamentario3}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
-              </td>
-
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="col-2">
-        <table class="table table-bordered table-striped text-center" >
-          <thead>
-            <tr>
-              <th>Cargar Decreto Reglamentario</th>
-              <th>Archivo </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let ley of leyes">
-
-              <td><button type="button" (click)="abrirModalDecretoReglamentario4(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
-
-              <td>
-                <p><a *ngIf="ley?.archivoDecretoReglamentario4" href="http://localhost:8080/api/uploadDecretoRelgamentario4/archivo/{{ley.archivoDecretoReglamentario4}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
-              </td>
-
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="col-2">
-        <table class="table table-bordered table-striped text-center" >
-          <thead>
-            <tr>
-              <th>Cargar Decreto Reglamentario</th>
-              <th>Archivo </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let ley of leyes">
-
-              <td><button type="button" (click)="abrirModalDecretoReglamentario5(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
-
-              <td>
-                <p><a *ngIf="ley?.archivoDecretoReglamentario5" href="http://localhost:8080/api/uploadDecretoRelgamentario5/archivo/{{ley.archivoDecretoReglamentario5}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
-              </td>
-
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="col-2">
-        <table class="table table-bordered table-striped text-center" >
-          <thead>
-            <tr>
-              <th>Cargar Decreto Reglamentario</th>
-              <th>Archivo </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let ley of leyes">
-
-              <td><button type="button" (click)="abrirModalDecretoReglamentario6(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
-
-              <td>
-                <p><a *ngIf="ley?.archivoDecretoReglamentario6" href="http://localhost:8080/api/uploadDecretoRelgamentario6/archivo/{{ley.archivoDecretoReglamentario6}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
-              </td>
-
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-    </div>
-
-
+    <input (input)="searchTitulo()" type="text" [(ngModel)]="titulo" class="form-control" aria-describedby="inputTitulo" />
   </div>
 </div>
 
-<br>
+
+<div class="my-2 text-left">
+  <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/leyesProvinciales/form']">
+    CARGAR LEY PROVINCIAL
+  </button>
+</div>
+
+
+<div *ngIf="leyes?.length == 0" class="alert alert-info">
+  No hay registros en la Base de Datos
+</div>
+
+
+<table class="table table-bordered table-striped text-center" *ngIf="leyes?.length>0">
+  <thead>
+    <tr>
+      <th>Cargar Texto Original</th>
+      <th>Cargar Texto Actualizado</th>
+      <th>Número</th>
+      <!-- <th>Título</th> -->
+      <th>Fecha Sanción</th>
+      <th>Publicación en BO</th>
+      <th>Texto Original</th>
+      <th>Texto Actualizado</th>
+      <th>Cargar Decreto Reglamentario</th>
+      <th>Archivo </th>
+      <th>Cargar Decreto Reglamentario</th>
+      <th>Archivo </th>
+      <th>Cargar Decreto Reglamentario</th>
+      <th>Archivo </th>
+      <th>Cargar Decreto Reglamentario</th>
+      <th>Archivo </th>
+      <th>Cargar Decreto Reglamentario</th>
+      <th>Archivo </th>
+      <th>Cargar Decreto Reglamentario</th>
+      <th>Archivo </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ley of leyes">
+
+      <td><button type="button" (click)="abrirModal(ley)" class="btn btn-info btn-sm">ORIGINAL</button></td>
+      <td><button type="button" (click)="abrirModalActualizado(ley)" class="btn btn-info btn-sm">ACTUALIZADO</button></td>
+      <td>{{ley.numero}}</td>
+      <!-- <td>{{ley.titulo}}</td> -->
+      <td>{{ley.fechaSancion}}</td>
+      <td>{{ley.publicacionBO}}</td>
+
+      <td>
+        <p><a *ngIf="ley?.archivo" href="http://localhost:8080/api/uploads/archivo/{{ley.archivo}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+      </td>
+
+      <td>
+        <p><a *ngIf="ley?.archivoActualizado" href="http://localhost:8080/api/uploadsActualizado/archivo/{{ley.archivoActualizado}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+      </td>
+
+      <td><button type="button" (click)="abrirModalDecretoReglamentario(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
+
+      <td>
+        <p><a *ngIf="ley?.archivoDecretoReglamentario" href="http://localhost:8080/api/uploadDecretoRelgamentario/archivo/{{ley.archivoDecretoReglamentario}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+      </td>
+
+      <td><button type="button" (click)="abrirModalDecretoReglamentario2(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
+
+      <td>
+        <p><a *ngIf="ley?.archivoDecretoReglamentario2" href="http://localhost:8080/api/uploadDecretoRelgamentario2/archivo/{{ley.archivoDecretoReglamentario2}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+      </td>
+
+      <td><button type="button" (click)="abrirModalDecretoReglamentario3(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
+
+      <td>
+        <p><a *ngIf="ley?.archivoDecretoReglamentario3" href="http://localhost:8080/api/uploadDecretoRelgamentario3/archivo/{{ley.archivoDecretoReglamentario3}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+      </td>
+
+      <td><button type="button" (click)="abrirModalDecretoReglamentario4(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
+
+      <td>
+        <p><a *ngIf="ley?.archivoDecretoReglamentario4" href="http://localhost:8080/api/uploadDecretoRelgamentario4/archivo/{{ley.archivoDecretoReglamentario4}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+      </td>
+
+      <td><button type="button" (click)="abrirModalDecretoReglamentario5(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
+
+      <td>
+        <p><a *ngIf="ley?.archivoDecretoReglamentario5" href="http://localhost:8080/api/uploadDecretoRelgamentario5/archivo/{{ley.archivoDecretoReglamentario5}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+      </td>
+
+      <td><button type="button" (click)="abrirModalDecretoReglamentario6(ley)" class="btn btn-dark btn-sm">CARGAR ARCHIVO</button></td>
+
+      <td>
+        <p><a *ngIf="ley?.archivoDecretoReglamentario6" href="http://localhost:8080/api/uploadDecretoRelgamentario6/archivo/{{ley.archivoDecretoReglamentario6}}" target='_blank' title="Ver archivo">Ver archivo</a></p>
+      </td>
+
+      <td>
+        <button type="button" name="editar" [routerLink]="['/leyesProvinciales/form', ley.id]" class="btn btn-success btn-sm"> EDITAR </button>
+      </td>
+
+      <td>
+        <button type="button" name="eliminar" (click)='delete(ley)' class="btn btn-danger btn-sm"> ELIMINAR </button>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
 
 <div class="col-10">
   <button class="btn btn-primary" role="button" [routerLink]="['/sectionInterno']">VOLVER ATRÁS</button>

@@ -19,7 +19,7 @@ export class DecretosLeyComponent implements OnInit {
   numero: string;
   anio:string;
 
-  constructor(private decretoLeyService: DecretoLeyService, private modalDecretoLeyService: ModalDecretoLeyService) { }
+  constructor(private decretoLeyService: DecretoLeyService, public modalDecretoLeyService: ModalDecretoLeyService) { }
 
   ngOnInit() {
     this.decretoLeyService.getDecretosLey().subscribe( //llama al metodo GET del Service

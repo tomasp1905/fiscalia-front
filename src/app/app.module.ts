@@ -46,7 +46,6 @@ import { DecretosExtComponent } from './decretos-ext/decretos-ext.component';
 import { DecretosLeyExtComponent } from './decretos-ley-ext/decretos-ley-ext.component';
 import { ArchivoActualizadoComponent } from './leyes-provinciales/archivo-actualizado/archivo-actualizado.component';
 import { ArchivoActualizadoDecretoComponent } from './decretos/archivo-actualizado-decreto/archivo-actualizado-decreto.component';
-import { DecretoReglamentarioComponent } from './leyes-provinciales/decretos-reglamentarios/decreto-reglamentario.component';
 import { ArchivoDecretoReglamentarioComponent } from './leyes-provinciales/archivo-decreto-reglamentario/archivo-decreto-reglamentario.component';
 import { ArchivoDecretoReglamentario2Component } from './leyes-provinciales/archivo-decreto-reglamentario2/archivo-decreto-reglamentario2.component';
 import { ArchivoDecretoReglamentario3Component } from './leyes-provinciales/archivo-decreto-reglamentario3/archivo-decreto-reglamentario3.component';
@@ -83,7 +82,7 @@ const routes: Routes = [
   {path: 'decretosExt', component: DecretosExtComponent },
   {path: 'decretosLeyExt', component: DecretosLeyExtComponent },
   {path: 'decretosLeyExt/page/:page', component: DecretosLeyExtComponent },
-  { path: 'leyesProvinciales/decretoReg/:id', component: DecretoReglamentarioComponent}
+
 
 
 ];
@@ -117,7 +116,6 @@ const routes: Routes = [
     DecretosLeyExtComponent,
     ArchivoActualizadoComponent,
     ArchivoActualizadoDecretoComponent,
-    DecretoReglamentarioComponent,
     ArchivoDecretoReglamentarioComponent,
     ArchivoDecretoReglamentario2Component,
     ArchivoDecretoReglamentario3Component,

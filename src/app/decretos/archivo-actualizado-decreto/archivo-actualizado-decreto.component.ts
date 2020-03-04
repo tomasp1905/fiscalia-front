@@ -18,7 +18,7 @@ export class ArchivoActualizadoDecretoComponent implements OnInit {
   progreso: number = 0;
 
 
-  constructor(private decretoService: DecretoService, private modalActualizadoDecretoService: ModalActualizadoDecretoService) { }
+  constructor(private decretoService: DecretoService, public modalActualizadoDecretoService: ModalActualizadoDecretoService) { }
 
   ngOnInit() {
   }

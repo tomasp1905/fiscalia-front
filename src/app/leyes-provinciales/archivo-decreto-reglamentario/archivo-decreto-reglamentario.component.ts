@@ -16,7 +16,7 @@ export class ArchivoDecretoReglamentarioComponent implements OnInit {
   private archivoSeleccionado: File;
   progreso: number = 0;
 
-  constructor(private leyProvincialService: LeyProvincialService, private modalDecretoReglamentarioService: ModalDecretoReglamentarioService) { }
+  constructor(private leyProvincialService: LeyProvincialService, public modalDecretoReglamentarioService: ModalDecretoReglamentarioService) { }
 
   ngOnInit() {
   }

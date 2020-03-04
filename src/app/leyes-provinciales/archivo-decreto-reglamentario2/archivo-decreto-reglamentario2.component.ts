@@ -17,7 +17,7 @@ export class ArchivoDecretoReglamentario2Component implements OnInit {
   progreso: number = 0;
 
 
-  constructor(private leyProvincialService: LeyProvincialService, private modalDecretoReglamentario2Service:ModalDecretoReglamentario2Service) { }
+  constructor(private leyProvincialService: LeyProvincialService, public modalDecretoReglamentario2Service:ModalDecretoReglamentario2Service) { }
 
   ngOnInit() {
   }

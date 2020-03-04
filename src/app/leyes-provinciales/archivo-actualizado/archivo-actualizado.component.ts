@@ -18,7 +18,7 @@ export class ArchivoActualizadoComponent implements OnInit {
   progreso: number = 0;
 
 
-  constructor(private leyProvincialService: LeyProvincialService, private modalActualizadoService: ModalActualizadoService) { }
+  constructor(private leyProvincialService: LeyProvincialService, public modalActualizadoService: ModalActualizadoService) { }
 
   ngOnInit() {
   }

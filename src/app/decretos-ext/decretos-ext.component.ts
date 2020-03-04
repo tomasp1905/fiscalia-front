@@ -111,4 +111,8 @@ export class DecretosExtComponent implements OnInit {
 
   }
 
+  limpiarBusqueda(){
+    this.decretoExt.listaDeDecretos.pop();
+  }
+
 }

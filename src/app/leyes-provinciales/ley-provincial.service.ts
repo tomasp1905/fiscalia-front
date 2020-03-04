@@ -18,6 +18,8 @@ export class LeyProvincialService {
   //private urlEndPoint2: string = 'http://localhost:8080/api/decretosReglamentarios/upload';
   //private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' }); //especificamos el tipo de contenido que estamos enviando desde el cliente angular hacia el api rest, los datos los estamos enviando en estructura json
 
+  public leyes:LeyProvincial[];
+
   constructor(private http: HttpClient, private router: Router) { } //se inyecta la referencia a HttpClient
 
 
@@ -200,7 +202,6 @@ export class LeyProvincialService {
 
     return this.http.request(req);
   }
-
 
 
 
